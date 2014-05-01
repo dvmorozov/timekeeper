@@ -147,6 +147,12 @@
   <data name="MainPageName" xml:space="preserve">
     <value>Start Activity</value>
   </data>
+  <data name="ActionLoadingErrorMessage" xml:space="preserve">
+    <value>Actions loading error: "{0}"!</value>
+  </data>
+  <data name="ActionSavingErrorMessage" xml:space="preserve">
+    <value>Actions saving error: "{0}"!</value>
+  </data>
   <data name="DeleteCategoryCaption" xml:space="preserve">
     <value>Attention</value>
   </data>

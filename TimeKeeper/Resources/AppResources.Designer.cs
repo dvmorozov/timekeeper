@@ -61,6 +61,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions loading error: &quot;{0}&quot;!.
+        /// </summary>
+        public static string ActionLoadingErrorMessage {
+            get {
+                return ResourceManager.GetString("ActionLoadingErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions saving error: &quot;{0}&quot;!.
+        /// </summary>
+        public static string ActionSavingErrorMessage {
+            get {
+                return ResourceManager.GetString("ActionSavingErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Activity.
         /// </summary>
         public static string AddCategoryPageName {

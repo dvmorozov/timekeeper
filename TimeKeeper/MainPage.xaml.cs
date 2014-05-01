@@ -86,10 +86,9 @@ namespace TimeKeeper
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
-                //  TODO: show message!
-                var i = 0;
+                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
             return new TimeExpensesData();
@@ -101,7 +100,7 @@ namespace TimeKeeper
             try
             {
                 var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-                using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.OpenOrCreate, fileStorage))
+                using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Create, fileStorage))
                 {
                     var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
                     ser.WriteObject(stream, this);
@@ -109,7 +108,7 @@ namespace TimeKeeper
             }
             catch (Exception e)
             {
-                // TODO: show message! 
+                MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
             }
         }
     }
