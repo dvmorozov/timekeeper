@@ -126,13 +126,31 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>MY APPLICATION</value>
+    <value>Time Keeper</value>
   </data>
   <data name="AppBarButtonAddText" xml:space="preserve">
-    <value>addLocal</value>
+    <value>Add</value>
     <comment>Name for "add category" button.</comment>
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
+  </data>
+  <data name="AddCategoryPageName" xml:space="preserve">
+    <value>Add Activity</value>
+  </data>
+  <data name="AppBarButtonDeleteText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteCategoryPageName" xml:space="preserve">
+    <value>Delete Activity</value>
+  </data>
+  <data name="MainPageName" xml:space="preserve">
+    <value>Start Activity</value>
+  </data>
+  <data name="DeleteCategoryCaption" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="DeleteCategoryMessage" xml:space="preserve">
+    <value>Do you really want to delete activity "{0}"?</value>
   </data>
 </root>

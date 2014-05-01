@@ -19,7 +19,7 @@ namespace TimeKeeper
 
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            MainPage.CategoryName = TextBoxCategoryName.Text;
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text);
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }

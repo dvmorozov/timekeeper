@@ -49,18 +49,27 @@ namespace TimeKeeper
 
         public void AddCategory(string name)
         {
+            var preparedName = name.Trim().ToLower();
+            //  Searches for existing category with the same name.
+            foreach (var c in categories)
+            {
+                //  Silently exits if the category already exists.
+                if (c.Name == preparedName)
+                    return;
+            }
             categories.Add(new Category(name));
+            Save();
         }
-    }
 
-    public partial class MainPage : PhoneApplicationPage
-    {
-        private TimeExpensesData _data;
-        private string _fileName = "TimeExpensesData";
+        public void DeleteCategory(Category obj)
+        {
+            categories.Remove(obj);
+            Save();
+        }
 
-        public static string CategoryName;
+        private static string _fileName = "TimeExpensesData";
 
-        private void LoadCategories()
+        public static TimeExpensesData Load()
         {
             try
             {
@@ -73,24 +82,20 @@ namespace TimeKeeper
                     {
                         //  Deserialize the object.
                         var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
-                        _data = (TimeExpensesData)ser.ReadObject(stream);
+                        return (TimeExpensesData)ser.ReadObject(stream);
                     }
                 }
-                
-                if(_data == null)
-                    _data = new TimeExpensesData();
-
-                //???
-                //for (var i = 0; i < 50; i++)
-                //    _data.categories.Add(new Category((i * 100000).ToString()));
             }
             catch
             {
                 //  TODO: show message!
+                var i = 0;
             }
+            //  In any case the object must be created!
+            return new TimeExpensesData();
         }
 
-        private void SaveCategories()
+        public void Save()
         {
             //  Save data to file.
             try
@@ -99,14 +104,29 @@ namespace TimeKeeper
                 using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.OpenOrCreate, fileStorage))
                 {
                     var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
-                    ser.WriteObject(stream, _data);
+                    ser.WriteObject(stream, this);
                 }
             }
-            catch(Exception e) 
-            { 
+            catch (Exception e)
+            {
                 // TODO: show message! 
-                var i = 0;
             }
+        }
+    }
+
+    public partial class MainPage : PhoneApplicationPage
+    {
+        //  For exchange between pages.
+        public static TimeExpensesData Data; 
+
+        private void LoadCategories()
+        {
+            Data = TimeExpensesData.Load();
+        }
+
+        private void SaveCategories()
+        {
+            Data.Save();
         }
 
         // Constructor
@@ -115,7 +135,7 @@ namespace TimeKeeper
             InitializeComponent();
             LoadCategories();
 
-            CategoryList.ItemsSource = _data.categories;
+            CategoryList.ItemsSource = Data.categories;
 
             BuildLocalizedApplicationBar();
         }
@@ -126,9 +146,19 @@ namespace TimeKeeper
             for(var i = 0; i < ApplicationBar.Buttons.Count; i++)
             {
                 var btn = ApplicationBar.Buttons[i] as ApplicationBarIconButton;
-                if (btn != null && btn.Text.ToLower() == "add")
+                if (btn != null)
                 {
-                    btn.Text = AppResources.AppBarButtonAddText;
+                    switch(btn.Text.Trim().ToLower())
+                    {
+                        //  Uses default names to update button captions.
+                        case("add"):
+                            btn.Text = AppResources.AppBarButtonAddText;
+                        break;
+
+                        case ("delete"):
+                            btn.Text = AppResources.AppBarButtonDeleteText;
+                        break;
+                    }
                 }
             }
         }
@@ -138,19 +168,18 @@ namespace TimeKeeper
             //???
         }
 
-        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        private void ApplicationBarIconButtonAdd_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AddCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (CategoryName != null)
-            {
-                //  Return by pressing "Add category".
-                _data.AddCategory(CategoryName);
-                SaveCategories();
-            }
+        }
+
+        private void ApplicationBarIconButtonDelete_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/DeleteCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

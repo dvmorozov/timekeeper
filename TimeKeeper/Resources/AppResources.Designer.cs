@@ -61,11 +61,29 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to addLocal.
+        ///   Looks up a localized string similar to Add Activity.
+        /// </summary>
+        public static string AddCategoryPageName {
+            get {
+                return ResourceManager.GetString("AddCategoryPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AppBarButtonAddText {
             get {
                 return ResourceManager.GetString("AppBarButtonAddText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string AppBarButtonDeleteText {
+            get {
+                return ResourceManager.GetString("AppBarButtonDeleteText", resourceCulture);
             }
         }
         
@@ -79,11 +97,47 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MY APPLICATION.
+        ///   Looks up a localized string similar to Time Keeper.
         /// </summary>
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attention.
+        /// </summary>
+        public static string DeleteCategoryCaption {
+            get {
+                return ResourceManager.GetString("DeleteCategoryCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete activity &quot;{0}&quot;?.
+        /// </summary>
+        public static string DeleteCategoryMessage {
+            get {
+                return ResourceManager.GetString("DeleteCategoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Activity.
+        /// </summary>
+        public static string DeleteCategoryPageName {
+            get {
+                return ResourceManager.GetString("DeleteCategoryPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Activity.
+        /// </summary>
+        public static string MainPageName {
+            get {
+                return ResourceManager.GetString("MainPageName", resourceCulture);
             }
         }
         
