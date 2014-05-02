@@ -16,9 +16,9 @@
     
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="CategoryItemTemplateActive">
-            <Grid HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="436">
-                <TextBlock HorizontalAlignment="Right" Margin="0,16,204,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" RenderTransformOrigin="0.396,0.563" Width="222" FontSize="36"/>
-                <Button Content="More" HorizontalAlignment="Left" Margin="335,0,0,0" Height="90" Width="90" VerticalAlignment="Top" Click="ButtonStopAction_Click" Name="ButtonStopAction">
+            <Grid Background="{StaticResource PhoneAccentBrush}"
+                  Margin="0, 0, 12, 12">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStopAction_Click" Name="ButtonStopAction">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Grid>
@@ -27,20 +27,27 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
+                </StackPanel>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="CategoryItemTemplatePaused">
-            <Grid HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="436">
-                <TextBlock HorizontalAlignment="Right" Margin="0,16,204,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" RenderTransformOrigin="0.396,0.563" Width="222" FontSize="36"/>
-                <Button Content="More" HorizontalAlignment="Left" Margin="335,0,0,0" Height="90" Width="90" VerticalAlignment="Top" Click="ButtonStartAction_Click" Name="ButtonStartAction">
+            <Grid Background="{StaticResource PhoneAccentBrush}"
+                  Margin="0, 0, 12, 12">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStartAction_Click" Name="ButtonStartAction">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid>
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
                                 <Image Source="/Assets/AppBar/transport.play.png" HorizontalAlignment="Right"/>
                             </Grid>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
+                </StackPanel>                
             </Grid>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -62,12 +69,17 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanelActive" Grid.Row="1" Margin="12,0,12,0">
             <phone:LongListSelector Margin="10" Name="CategoryListActive" 
+                                    LayoutMode="Grid"
+                                    GridCellSize="140, 140"
                                     SelectionChanged="CategoryListActive_SelectionChanged"
                                     ItemTemplate="{StaticResource CategoryItemTemplateActive}">
+                
             </phone:LongListSelector>
          </Grid>
         <Grid x:Name="ContentPanelPaused" Grid.Row="2" Margin="12,0,12,0">
             <phone:LongListSelector Margin="10" Name="CategoryListPaused" 
+                                    LayoutMode="Grid"
+                                    GridCellSize="140, 140"
                                     SelectionChanged="CategoryListPaused_SelectionChanged"
                                     ItemTemplate="{StaticResource CategoryItemTemplatePaused}">
             </phone:LongListSelector>

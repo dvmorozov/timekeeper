@@ -172,6 +172,9 @@ namespace TimeKeeper
         {
             CategoryListActive.ItemsSource = Data.Active;
             CategoryListPaused.ItemsSource = Data.Paused;
+            //  Must be reset to interpret the first click as a change.
+            CategoryListActive.SelectedItem = null;
+            CategoryListPaused.SelectedItem = null;
         }
 
         // Constructor
@@ -221,7 +224,7 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/DeleteCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void ButtonStartAction_Click(object sender, RoutedEventArgs e)
+        private void StartActivity()
         {
             var item = (Category)CategoryListPaused.SelectedItem;
 
@@ -232,7 +235,7 @@ namespace TimeKeeper
             }
         }
 
-        private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
+        private void StopActivity()
         {
             var item = (Category)CategoryListActive.SelectedItem;
 
@@ -243,13 +246,24 @@ namespace TimeKeeper
             }
         }
 
+        private void ButtonStartAction_Click(object sender, RoutedEventArgs e)
+        {
+            StartActivity();
+        }
+
+        private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
+        {
+            StopActivity();
+        }
+
         private void CategoryListActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            StopActivity();
         }
 
         private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            StartActivity();
         }
     }
 }
