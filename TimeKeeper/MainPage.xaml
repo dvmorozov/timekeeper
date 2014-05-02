@@ -21,7 +21,8 @@
                 <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStopAction_Click" Name="ButtonStopAction">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid>
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
                                 <Image Source="/Assets/AppBar/transport.pause.png" HorizontalAlignment="Right"/>
                             </Grid>
                         </ControlTemplate>

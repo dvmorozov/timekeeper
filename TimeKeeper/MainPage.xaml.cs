@@ -97,7 +97,7 @@ namespace TimeKeeper
                 if (c.Name == preparedName)
                     return;
             }
-            _categories.Add(new Category(name));
+            _categories.Add(new Category(preparedName));
             Save();
         }
 

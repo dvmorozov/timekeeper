@@ -30,10 +30,14 @@ namespace TimeKeeper
             var item = (Category)CategoryList.SelectedItem;
             if (item != null)
             {
-                var name = item.Name;
-                if (MessageBox.Show(string.Format(AppResources.DeleteCategoryMessage, name), AppResources.DeleteCategoryCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                //  Searches the list to protect from duplicate question.
+                if (MainPage.Data.Any.IndexOf(item) != -1)
                 {
-                    MainPage.Data.DeleteCategory(item);
+                    var name = item.Name;
+                    if (MessageBox.Show(string.Format(AppResources.DeleteCategoryMessage, name), AppResources.DeleteCategoryCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    {
+                        MainPage.Data.DeleteCategory(item);
+                    }
                 }
             }
         }
