@@ -87,6 +87,16 @@ namespace TimeKeeper
             _categories = new ObservableCollection<Category>();
         }
 
+        public void AddDefaultCategories()
+        {
+            if (MessageBox.Show(AppResources.AddDefaultCategoriesMessage, AppResources.AddDefaultCategoriesCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                var categories = AppResources.DefaultCategories.Split(',');
+                foreach (var c in categories)
+                    AddCategory(c);
+            }
+        }
+
         public void AddCategory(string name)
         {
             var preparedName = name.Trim().ToLower();
@@ -182,6 +192,10 @@ namespace TimeKeeper
         {
             InitializeComponent();
             LoadCategories();
+
+            if (Data.Any.Count == 0)
+                Data.AddDefaultCategories();
+
             UpdateLists();
 
             BuildLocalizedApplicationBar();

@@ -88,6 +88,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        public static string AddDefaultCategoriesCaption {
+            get {
+                return ResourceManager.GetString("AddDefaultCategoriesCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your activity list is empty. Do you want to add default activities?.
+        /// </summary>
+        public static string AddDefaultCategoriesMessage {
+            get {
+                return ResourceManager.GetString("AddDefaultCategoriesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AppBarButtonAddText {
@@ -120,6 +138,15 @@ namespace TimeKeeper.Resources {
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping.
+        /// </summary>
+        public static string DefaultCategories {
+            get {
+                return ResourceManager.GetString("DefaultCategories", resourceCulture);
             }
         }
         

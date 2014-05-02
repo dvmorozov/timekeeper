@@ -159,4 +159,13 @@
   <data name="DeleteCategoryMessage" xml:space="preserve">
     <value>Do you really want to delete activity "{0}"?</value>
   </data>
+  <data name="AddDefaultCategoriesCaption" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="AddDefaultCategoriesMessage" xml:space="preserve">
+    <value>Your activity list is empty. Do you want to add default activities?</value>
+  </data>
+  <data name="DefaultCategories" xml:space="preserve">
+    <value>Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping</value>
+  </data>
 </root>
