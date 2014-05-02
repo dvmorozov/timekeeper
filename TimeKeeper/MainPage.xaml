@@ -30,6 +30,7 @@
                 </Button>
                 <StackPanel VerticalAlignment="Bottom">
                     <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" />                    
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -48,6 +49,7 @@
                 </Button>
                 <StackPanel VerticalAlignment="Bottom">
                     <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" />
                 </StackPanel>                
             </Grid>
         </DataTemplate>

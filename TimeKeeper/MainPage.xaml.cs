@@ -13,6 +13,7 @@ using System.Runtime.Serialization;
 using System.IO.IsolatedStorage;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.ComponentModel;
 
 namespace TimeKeeper
 {
@@ -34,9 +35,42 @@ namespace TimeKeeper
             set;
         }
 
+        [DataMember]
+        public TimeSpan Duration
+        {
+            get;
+            set;
+        }
+
+        public string DurationStr
+        {
+            get 
+            {
+                int hour, min, sec;
+                hour = Duration.Hours;
+                min = Duration.Minutes;
+                sec = Duration.Seconds;
+                return string.Format("{0:D2}:{1:D2}:{2:D2}", hour, min, sec); 
+            }
+        }
+
+        public DateTime LastStart
+        {
+            get;
+            set;
+        }
+
         public Category(string name)
         {
             this.Name = name;
+        }
+
+        public Category(Category c)
+        {
+            this.Name = c.Name;
+            this.Active = c.Active;
+            this.Duration = c.Duration;
+            this.LastStart = c.LastStart;
         }
     }
 
@@ -46,6 +80,16 @@ namespace TimeKeeper
         [DataMember]
         private ObservableCollection<Category> _categories;
 
+        public void SetActive(string name, bool active)
+        {
+            var item = _categories.Single(t => t.Name == name);
+            item.Active = active;
+            if (active)   
+                item.LastStart = DateTime.Now;
+            else
+                item.Duration = item.Duration.Add(DateTime.Now.Subtract(item.LastStart));
+        }
+
         public ObservableCollection<Category> Active
         {
             get
@@ -54,7 +98,8 @@ namespace TimeKeeper
                 foreach (var c in _categories)
                 {
                     if (c.Active)
-                        result.Add(c);
+                        //  Copy ensures refreshment of the list.
+                        result.Add(new Category(c));
                 }
                 //  TODO: sorting.
                 return result;
@@ -69,7 +114,7 @@ namespace TimeKeeper
                 foreach (var c in _categories)
                 {
                     if (!c.Active)
-                        result.Add(c);
+                        result.Add(new Category(c));
                 }
                 //  TODO: sorting.
                 return result;
@@ -178,10 +223,18 @@ namespace TimeKeeper
             Data.Save();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private void UpdateLists()
         {
             CategoryListActive.ItemsSource = Data.Active;
             CategoryListPaused.ItemsSource = Data.Paused;
+
             //  Must be reset to interpret the first click as a change.
             CategoryListActive.SelectedItem = null;
             CategoryListPaused.SelectedItem = null;
@@ -244,7 +297,7 @@ namespace TimeKeeper
 
             if (item != null)
             {
-                item.Active = true;
+                Data.SetActive(item.Name, true);
                 UpdateLists();
             }
         }
@@ -255,7 +308,7 @@ namespace TimeKeeper
 
             if (item != null)
             {
-                item.Active = false;
+                Data.SetActive(item.Name, false);
                 UpdateLists();
             }
         }
