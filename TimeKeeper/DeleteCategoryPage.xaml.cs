@@ -22,7 +22,7 @@ namespace TimeKeeper
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            CategoryList.ItemsSource = MainPage.Data.categories;
+            CategoryList.ItemsSource = MainPage.Data.Any;
         }
 
         private void DeleteSelectedItem()

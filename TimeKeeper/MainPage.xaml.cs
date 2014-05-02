@@ -20,13 +20,18 @@ namespace TimeKeeper
     [DataContract]
     public class Category
     {
-        private string _name;
-
         [DataMember]
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get;
+            set;
+        }
+
+        [DataMember]
+        public bool Active
+        {
+            get;
+            set;
         }
 
         public Category(string name)
@@ -39,31 +44,66 @@ namespace TimeKeeper
     public class TimeExpensesData
     {
         [DataMember]
-        public ObservableCollection<Category> categories;
+        private ObservableCollection<Category> _categories;
+
+        public ObservableCollection<Category> Active
+        {
+            get
+            {
+                var result = new ObservableCollection<Category>();
+                foreach (var c in _categories)
+                {
+                    if (c.Active)
+                        result.Add(c);
+                }
+                //  TODO: sorting.
+                return result;
+            }
+        }
+
+        public ObservableCollection<Category> Paused
+        {
+            get
+            {
+                var result = new ObservableCollection<Category>();
+                foreach (var c in _categories)
+                {
+                    if (!c.Active)
+                        result.Add(c);
+                }
+                //  TODO: sorting.
+                return result;
+            }
+        }
+
+        public ObservableCollection<Category> Any
+        {
+            get { return _categories; }
+        }
 
         public TimeExpensesData()
         {
             //  Must be initialized in the constructor.
-            categories = new ObservableCollection<Category>();
+            _categories = new ObservableCollection<Category>();
         }
 
         public void AddCategory(string name)
         {
             var preparedName = name.Trim().ToLower();
             //  Searches for existing category with the same name.
-            foreach (var c in categories)
+            foreach (var c in _categories)
             {
                 //  Silently exits if the category already exists.
                 if (c.Name == preparedName)
                     return;
             }
-            categories.Add(new Category(name));
+            _categories.Add(new Category(name));
             Save();
         }
 
         public void DeleteCategory(Category obj)
         {
-            categories.Remove(obj);
+            _categories.Remove(obj);
             Save();
         }
 
@@ -128,13 +168,18 @@ namespace TimeKeeper
             Data.Save();
         }
 
+        private void UpdateLists()
+        {
+            CategoryListActive.ItemsSource = Data.Active;
+            CategoryListPaused.ItemsSource = Data.Paused;
+        }
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             LoadCategories();
-
-            CategoryList.ItemsSource = Data.categories;
+            UpdateLists();
 
             BuildLocalizedApplicationBar();
         }
@@ -162,11 +207,6 @@ namespace TimeKeeper
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //???
-        }
-
         private void ApplicationBarIconButtonAdd_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AddCategoryPage.xaml", UriKind.RelativeOrAbsolute));
@@ -179,6 +219,37 @@ namespace TimeKeeper
         private void ApplicationBarIconButtonDelete_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/DeleteCategoryPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ButtonStartAction_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (Category)CategoryListPaused.SelectedItem;
+
+            if (item != null)
+            {
+                item.Active = true;
+                UpdateLists();
+            }
+        }
+
+        private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (Category)CategoryListActive.SelectedItem;
+
+            if (item != null)
+            {
+                item.Active = false;
+                UpdateLists();
+            }
+        }
+
+        private void CategoryListActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
