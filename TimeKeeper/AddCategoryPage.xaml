@@ -17,6 +17,8 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -28,10 +30,100 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBox HorizontalAlignment="Left" Height="72" Margin="10,10,-10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Name="TextBoxCategoryName"/>
-            <Button Content="Add" Margin="170,114,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="Button_Click_Add"/>
+            <TextBox HorizontalAlignment="Left" Height="72" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Name="TextBoxCategoryName"/>
+            <Button Content="Add" Margin="0,82,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click_Add"/>
+        </Grid>
 
+        <StackPanel VerticalAlignment="Top" Grid.Row="2">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.SelectCategoryText, Source={StaticResource LocalizedStrings}}" Margin="0, 20, 0, 20" TextAlignment="Center"/>
+        </StackPanel>
+
+        <Grid Margin="12,0,12,0" Grid.Row="3" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Background="Orange"
+                    Margin="6, 6, 6, 6"
+                    Grid.Row="0" Grid.Column="0">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                <TextBlock Text="I" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Background="Green"
+                    Margin="6, 6, 6, 6"
+                    Grid.Row="0" Grid.Column="1">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                <TextBlock Text="II" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Background="Red"
+                    Margin="6, 6, 6, 6"
+                    Grid.Row="1" Grid.Column="0">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                <TextBlock Text="III" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Background="Red"
+                    Margin="6, 6, 6, 6"
+                    Grid.Row="1" Grid.Column="1">
+                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Margin="10">
+                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                <TextBlock Text="IV" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
-
 </phone:PhoneApplicationPage>

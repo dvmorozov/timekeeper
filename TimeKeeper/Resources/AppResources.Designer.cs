@@ -178,11 +178,38 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Important.
+        /// </summary>
+        public static string ImportantText {
+            get {
+                return ResourceManager.GetString("ImportantText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Activity.
         /// </summary>
         public static string MainPageName {
             get {
                 return ResourceManager.GetString("MainPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not important.
+        /// </summary>
+        public static string NotImportantText {
+            get {
+                return ResourceManager.GetString("NotImportantText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not urgent.
+        /// </summary>
+        public static string NotUrgentText {
+            get {
+                return ResourceManager.GetString("NotUrgentText", resourceCulture);
             }
         }
         
@@ -201,6 +228,24 @@ namespace TimeKeeper.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a category for this activity. Be objective!.
+        /// </summary>
+        public static string SelectCategoryText {
+            get {
+                return ResourceManager.GetString("SelectCategoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Urgent.
+        /// </summary>
+        public static string UrgentText {
+            get {
+                return ResourceManager.GetString("UrgentText", resourceCulture);
             }
         }
     }
