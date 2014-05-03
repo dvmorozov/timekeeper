@@ -17,9 +17,27 @@ namespace TimeKeeper
             InitializeComponent();
         }
 
-        private void Button_Click_Add(object sender, RoutedEventArgs e)
+        private void ButtonAddUrgentImportant_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Data.AddCategory(TextBoxCategoryName.Text);
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, true);
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ButtonAddNotUrgentImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, true);
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ButtonAddUrgentNotImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, false);
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ButtonAddNotUrgentNotImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, false);
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }

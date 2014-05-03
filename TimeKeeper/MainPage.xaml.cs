@@ -42,6 +42,20 @@ namespace TimeKeeper
             set;
         }
 
+        [DataMember]
+        public bool Urgent
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public bool Important
+        {
+            get;
+            set;
+        }
+
         public string DurationStr
         {
             get 
@@ -69,6 +83,8 @@ namespace TimeKeeper
         {
             this.Name = c.Name;
             this.Active = c.Active;
+            this.Urgent = c.Urgent;
+            this.Important = c.Important;
             this.Duration = c.Duration;
             this.LastStart = c.LastStart;
         }
@@ -144,7 +160,7 @@ namespace TimeKeeper
             }
         }
 
-        public void AddCategory(string name)
+        public void AddCategory(string name, bool urgent = false, bool important = false)
         {
             var preparedName = name.Trim().ToLower();
             //  Searches for existing category with the same name.

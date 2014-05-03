@@ -142,7 +142,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping.
+        ///   Looks up a localized string similar to Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping, State Duties, Meeting With Family.
         /// </summary>
         public static string DefaultCategories {
             get {

@@ -166,7 +166,7 @@
     <value>Your activity list is empty. Do you want to add default activities?</value>
   </data>
   <data name="DefaultCategories" xml:space="preserve">
-    <value>Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping</value>
+    <value>Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping, State Duties, Meeting With Family</value>
   </data>
   <data name="ImportantText" xml:space="preserve">
     <value>Important</value>

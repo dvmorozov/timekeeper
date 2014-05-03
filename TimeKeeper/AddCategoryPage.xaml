@@ -31,7 +31,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBox HorizontalAlignment="Left" Height="72" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Name="TextBoxCategoryName"/>
-            <Button Content="Add" Margin="0,82,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Click_Add"/>
         </Grid>
 
         <StackPanel VerticalAlignment="Top" Grid.Row="2">
@@ -49,35 +48,45 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Background="Orange"
+            <Grid Background="BlueViolet"
                     Margin="6, 6, 6, 6"
-                    Grid.Row="0" Grid.Column="0">
-                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Grid Margin="10">
-                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                <TextBlock Text="I" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                    Grid.Row="0" Grid.Column="0" >
+
+                <!-- The button must cover entire cell. -->
+
                 <StackPanel VerticalAlignment="Bottom">
                     <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
                     <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
                 </StackPanel>
+                
+                <Button Click="ButtonAddUrgentImportant_Click" >
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                    <!-- <TextBlock Text="I" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                    <Image Source="/Assets/AppBar/add.png"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>
 
             <Grid Background="Green"
                     Margin="6, 6, 6, 6"
                     Grid.Row="0" Grid.Column="1">
-                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                <Button Click="ButtonAddNotUrgentImportant_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid Margin="10">
-                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                <TextBlock Text="II" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
+                            <Border Background="{TemplateBinding Background}">
+                                <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                    <!-- <TextBlock Text="II" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                    <Image Source="/Assets/AppBar/add.png"/>
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
@@ -87,16 +96,19 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Background="Red"
+            <Grid Background="Orange"
                     Margin="6, 6, 6, 6"
                     Grid.Row="1" Grid.Column="0">
-                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                <Button Click="ButtonAddUrgentNotImportant_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid Margin="10">
-                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                <TextBlock Text="III" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
+                            <Border Background="{TemplateBinding Background}">
+                                <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                    <!-- <TextBlock Text="III" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                    <Image Source="/Assets/AppBar/add.png"/>
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
@@ -109,13 +121,16 @@
             <Grid Background="Red"
                     Margin="6, 6, 6, 6"
                     Grid.Row="1" Grid.Column="1">
-                <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60">
+                <Button Click="ButtonAddNotUrgentNotImportant_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
-                            <Grid Margin="10">
-                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                <TextBlock Text="IV" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Grid>
+                            <Border Background="{TemplateBinding Background}">
+                                <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                    <!-- <TextBlock Text="IV" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                    <Image Source="/Assets/AppBar/add.png"/>
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
