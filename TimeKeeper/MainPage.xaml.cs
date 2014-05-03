@@ -154,9 +154,13 @@ namespace TimeKeeper
         {
             if (MessageBox.Show(AppResources.AddDefaultCategoriesMessage, AppResources.AddDefaultCategoriesCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                var categories = AppResources.DefaultCategories.Split(',');
+                /* TODO: use JSON parser.
+                var categories = 
+                    
+                    AppResources.DefaultCategories.Split(',');
                 foreach (var c in categories)
                     AddCategory(c);
+                 */
             }
         }
 

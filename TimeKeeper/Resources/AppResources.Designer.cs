@@ -142,7 +142,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Working, Learning, Eating, Driving, Sleeping, Watching TV, Walking, Talking, Surfing Internet, Chatting, Shopping, State Duties, Meeting With Family.
+        ///   Looks up a localized string similar to {[{Name: &apos;Working&apos;, Urgent: false, Important: true}, {Name: &apos;Learning&apos;, Urgent: false, Important: true}, {Name: &apos;Eating&apos;, Urgent: true, Important: false}, {Name: &apos;Driving&apos;, Urgent: false, Important: true}, {Name: &apos;Sleeping&apos;, Urgent: true, Important: false}, {Name: &apos;Watching TV&apos;, Urgent: false, Important: false}, {Name: &apos;Walking&apos;, Urgent: true, Important: false}, {Name: &apos;Talking&apos;, Urgent: false, Important: false}, {Name: &apos;Surfing Internet&apos;, Urgent: false, Important: true}, {Name: &apos;Chatting&apos;, Urgent: false, I [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DefaultCategories {
             get {
