@@ -88,6 +88,8 @@ namespace TimeKeeper
                 item.LastStart = DateTime.Now;
             else
                 item.Duration = item.Duration.Add(DateTime.Now.Subtract(item.LastStart));
+
+            Save();
         }
 
         public ObservableCollection<Category> Active
