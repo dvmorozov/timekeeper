@@ -142,6 +142,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Counted Time.
+        /// </summary>
+        public static string CountedTimeText {
+            get {
+                return ResourceManager.GetString("CountedTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {&apos;CategorieList&apos;: [{&apos;Name&apos;: &apos;Working&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Learning&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Eating&apos;, &apos;Urgent&apos;: true, 
         ///&apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Driving&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Sleeping&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Watching TV&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Walking&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Talking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Surfing Internet&apos;, [rest of string was truncated]&quot;;.
         /// </summary>
@@ -215,6 +224,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your perf.: {0}.
+        /// </summary>
+        public static string PerformanceShortText {
+            get {
+                return ResourceManager.GetString("PerformanceShortText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {
@@ -242,11 +260,29 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uncounted Time.
+        /// </summary>
+        public static string UncountedTimeText {
+            get {
+                return ResourceManager.GetString("UncountedTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Urgent.
         /// </summary>
         public static string UrgentText {
             get {
                 return ResourceManager.GetString("UrgentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilized Time.
+        /// </summary>
+        public static string UtilizedTimeText {
+            get {
+                return ResourceManager.GetString("UtilizedTimeText", resourceCulture);
             }
         }
     }
