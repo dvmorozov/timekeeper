@@ -142,7 +142,8 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {[{Name: &apos;Working&apos;, Urgent: false, Important: true}, {Name: &apos;Learning&apos;, Urgent: false, Important: true}, {Name: &apos;Eating&apos;, Urgent: true, Important: false}, {Name: &apos;Driving&apos;, Urgent: false, Important: true}, {Name: &apos;Sleeping&apos;, Urgent: true, Important: false}, {Name: &apos;Watching TV&apos;, Urgent: false, Important: false}, {Name: &apos;Walking&apos;, Urgent: true, Important: false}, {Name: &apos;Talking&apos;, Urgent: false, Important: false}, {Name: &apos;Surfing Internet&apos;, Urgent: false, Important: true}, {Name: &apos;Chatting&apos;, Urgent: false, I [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {&apos;CategorieList&apos;: [{&apos;Name&apos;: &apos;Working&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Learning&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Eating&apos;, &apos;Urgent&apos;: true, 
+        ///&apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Driving&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Sleeping&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Watching TV&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Walking&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Talking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Surfing Internet&apos;, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string DefaultCategories {
             get {

@@ -14,6 +14,7 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace TimeKeeper
 {
@@ -150,17 +151,28 @@ namespace TimeKeeper
             _categories = new ObservableCollection<Category>();
         }
 
+        public class CategorieList
+        {
+            public string Name { get; set; }
+            public bool Urgent { get; set; }
+            public bool Important { get; set; }
+        }
+
+        public class RootObject
+        {
+            public List<CategorieList> CategorieList { get; set; }
+        }
+
         public void AddDefaultCategories()
         {
             if (MessageBox.Show(AppResources.AddDefaultCategoriesMessage, AppResources.AddDefaultCategoriesCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                /* TODO: use JSON parser.
-                var categories = 
-                    
-                    AppResources.DefaultCategories.Split(',');
-                foreach (var c in categories)
-                    AddCategory(c);
-                 */
+                var categories = AppResources.DefaultCategories;
+                var rootObject = JsonConvert.DeserializeObject<RootObject>(categories);
+                foreach (var c in rootObject.CategorieList)
+                {
+                    AddCategory(c.Name, c.Urgent, c.Important);
+                } 
             }
         }
 

@@ -166,7 +166,8 @@
     <value>Your activity list is empty. Do you want to add default activities?</value>
   </data>
   <data name="DefaultCategories" xml:space="preserve">
-    <value>{[{Name: 'Working', Urgent: false, Important: true}, {Name: 'Learning', Urgent: false, Important: true}, {Name: 'Eating', Urgent: true, Important: false}, {Name: 'Driving', Urgent: false, Important: true}, {Name: 'Sleeping', Urgent: true, Important: false}, {Name: 'Watching TV', Urgent: false, Important: false}, {Name: 'Walking', Urgent: true, Important: false}, {Name: 'Talking', Urgent: false, Important: false}, {Name: 'Surfing Internet', Urgent: false, Important: true}, {Name: 'Chatting', Urgent: false, Important: false}, {Name: 'Shopping', Urgent: false, Important: false}, {Name: 'State Duties', Urgent: false, Important: false}, {Name: 'Meeting With Family', Urgent: false, Important: false]}</value>
+    <value>{'CategorieList': [{'Name': 'Working', 'Urgent': false, 'Important': true}, {'Name': 'Learning', 'Urgent': false, 'Important': true}, {'Name': 'Eating', 'Urgent': true, 
+'Important': false}, {'Name': 'Driving', 'Urgent': false, 'Important': true}, {'Name': 'Sleeping', 'Urgent': true, 'Important': false}, {'Name': 'Watching TV', 'Urgent': false, 'Important': false}, {'Name': 'Walking', 'Urgent': true, 'Important': false}, {'Name': 'Talking', 'Urgent': false, 'Important': false}, {'Name': 'Surfing Internet', 'Urgent': false, 'Important': true}, {'Name': 'Chatting', 'Urgent': false, 'Important': false}, {'Name': 'Shopping', 'Urgent': false, 'Important': false}, {'Name': 'State Duties', 'Urgent': false, 'Important': false}, {'Name': 'Meeting With Family', 'Urgent': false, 'Important': false}]}</value>
   </data>
   <data name="ImportantText" xml:space="preserve">
     <value>Important</value>
