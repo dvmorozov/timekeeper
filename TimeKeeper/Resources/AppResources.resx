@@ -188,7 +188,7 @@
     <value>Counted Time</value>
   </data>
   <data name="PerformanceShortText" xml:space="preserve">
-    <value>Your perf.: {0}</value>
+    <value>Your perf: {0}%</value>
   </data>
   <data name="UncountedTimeText" xml:space="preserve">
     <value>Uncounted Time</value>

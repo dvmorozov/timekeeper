@@ -224,7 +224,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your perf.: {0}.
+        ///   Looks up a localized string similar to Your perf: {0}%.
         /// </summary>
         public static string PerformanceShortText {
             get {

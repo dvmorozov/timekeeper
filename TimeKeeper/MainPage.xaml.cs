@@ -145,6 +145,30 @@ namespace TimeKeeper
             get { return _categories; }
         }
 
+        public string PerfStr
+        {
+            get 
+            {
+                var perf = 0.0;
+                var importantDuration = new TimeSpan();
+                var notImportantDuration = new TimeSpan();
+
+                foreach (var c in _categories)
+                {
+                    if (c.Important)
+                        importantDuration = importantDuration.Add(c.Duration);
+                    else
+                        notImportantDuration = notImportantDuration.Add(c.Duration);
+                }
+
+                var totalSeconds = notImportantDuration.TotalSeconds + importantDuration.TotalSeconds;
+                if (totalSeconds != 0)
+                    perf = importantDuration.TotalSeconds * 100.0 / totalSeconds;
+
+                return string.Format("{0:0.0}", perf);
+            }
+        }
+
         public TimeExpensesData()
         {
             //  Must be initialized in the constructor.
@@ -186,7 +210,7 @@ namespace TimeKeeper
                 if (c.Name == preparedName)
                     return;
             }
-            _categories.Add(new Category(preparedName));
+            _categories.Add(new Category(preparedName) { Urgent = urgent, Important = important });
             Save();
         }
 
@@ -284,6 +308,7 @@ namespace TimeKeeper
                 Data.AddDefaultCategories();
 
             UpdateLists();
+            UpdatePerfShortText();
 
             BuildLocalizedApplicationBar();
         }
@@ -336,6 +361,12 @@ namespace TimeKeeper
             }
         }
 
+        private void UpdatePerfShortText()
+        {
+            var text = string.Format(AppResources.PerformanceShortText, Data.PerfStr);
+            PerfShortText.Text = text;
+        }
+
         private void StopActivity()
         {
             var item = (Category)CategoryListActive.SelectedItem;
@@ -344,6 +375,7 @@ namespace TimeKeeper
             {
                 Data.SetActive(item.Name, false);
                 UpdateLists();
+                UpdatePerfShortText();
             }
         }
 
