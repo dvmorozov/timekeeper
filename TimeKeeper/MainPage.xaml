@@ -113,6 +113,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/add.png" Text="Add" Click="ApplicationBarIconButtonAdd_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/delete.png" Text="Delete" Click="ApplicationBarIconButtonDelete_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.alarm.png" Text="Statistics" Click="ApplicationBarIconButtonStatistics_Click"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
                 <shell:ApplicationBarMenuItem Text="MenuItem 2"/>

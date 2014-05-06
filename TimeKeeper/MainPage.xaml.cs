@@ -331,6 +331,10 @@ namespace TimeKeeper
                         case ("delete"):
                             btn.Text = AppResources.AppBarButtonDeleteText;
                         break;
+
+                        case("statistics"):
+                        btn.Text = AppResources.AppBarButtonStatisticsText;
+                        break;
                     }
                 }
             }
@@ -397,6 +401,11 @@ namespace TimeKeeper
         private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             StartActivity();
+        }
+
+        private void ApplicationBarIconButtonStatistics_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/StatisticsPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

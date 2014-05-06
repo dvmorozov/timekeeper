@@ -109,6 +109,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -127,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StatisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -139,6 +146,7 @@
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\AppBar\add.png" />
     <Content Include="Assets\AppBar\delete.png" />
+    <Content Include="Assets\AppBar\feature.alarm.png" />
     <Content Include="Assets\AppBar\feature.settings.png" />
     <Content Include="Assets\AppBar\transport.pause.png" />
     <Content Include="Assets\AppBar\transport.play.png" />

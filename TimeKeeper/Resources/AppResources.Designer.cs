@@ -124,6 +124,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string AppBarButtonStatisticsText {
+            get {
+                return ResourceManager.GetString("AppBarButtonStatisticsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu Item.
         /// </summary>
         public static string AppBarMenuItemText {
@@ -138,15 +147,6 @@ namespace TimeKeeper.Resources {
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Counted Time.
-        /// </summary>
-        public static string CountedTimeText {
-            get {
-                return ResourceManager.GetString("CountedTimeText", resourceCulture);
             }
         }
         
@@ -260,11 +260,38 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uncounted Time.
+        ///   Looks up a localized string similar to Counted Time: {0}.
         /// </summary>
-        public static string UncountedTimeText {
+        public static string StatCountedTimeText {
             get {
-                return ResourceManager.GetString("UncountedTimeText", resourceCulture);
+                return ResourceManager.GetString("StatCountedTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string StatisticsPageName {
+            get {
+                return ResourceManager.GetString("StatisticsPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncounted Time: {0}.
+        /// </summary>
+        public static string StatUncountedTimeText {
+            get {
+                return ResourceManager.GetString("StatUncountedTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilized Time: {0}.
+        /// </summary>
+        public static string StatUtilizedTimeText {
+            get {
+                return ResourceManager.GetString("StatUtilizedTimeText", resourceCulture);
             }
         }
         
@@ -274,15 +301,6 @@ namespace TimeKeeper.Resources {
         public static string UrgentText {
             get {
                 return ResourceManager.GetString("UrgentText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Utilized Time.
-        /// </summary>
-        public static string UtilizedTimeText {
-            get {
-                return ResourceManager.GetString("UtilizedTimeText", resourceCulture);
             }
         }
     }

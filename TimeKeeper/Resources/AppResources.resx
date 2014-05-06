@@ -184,16 +184,22 @@
   <data name="UrgentText" xml:space="preserve">
     <value>Urgent</value>
   </data>
-  <data name="CountedTimeText" xml:space="preserve">
-    <value>Counted Time</value>
+  <data name="StatCountedTimeText" xml:space="preserve">
+    <value>Counted Time: {0}</value>
   </data>
   <data name="PerformanceShortText" xml:space="preserve">
     <value>Your perf: {0}%</value>
   </data>
-  <data name="UncountedTimeText" xml:space="preserve">
-    <value>Uncounted Time</value>
+  <data name="StatUncountedTimeText" xml:space="preserve">
+    <value>Uncounted Time: {0}</value>
   </data>
-  <data name="UtilizedTimeText" xml:space="preserve">
-    <value>Utilized Time</value>
+  <data name="StatUtilizedTimeText" xml:space="preserve">
+    <value>Utilized Time: {0}</value>
+  </data>
+  <data name="AppBarButtonStatisticsText" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="StatisticsPageName" xml:space="preserve">
+    <value>Statistics</value>
   </data>
 </root>
