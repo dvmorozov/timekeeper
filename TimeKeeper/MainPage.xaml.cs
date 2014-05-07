@@ -145,9 +145,9 @@ namespace TimeKeeper
             get { return _categories; }
         }
 
-        public string PerfStr
+        public double Perf
         {
-            get 
+            get
             {
                 var perf = 0.0;
                 var importantDuration = new TimeSpan();
@@ -165,6 +165,15 @@ namespace TimeKeeper
                 if (totalSeconds != 0)
                     perf = importantDuration.TotalSeconds * 100.0 / totalSeconds;
 
+                return perf;
+            }
+        }
+
+        public string PerfStr
+        {
+            get 
+            {
+                var perf = Perf;
                 return string.Format("{0:0.0}", perf);
             }
         }
@@ -175,6 +184,20 @@ namespace TimeKeeper
             _categories = new ObservableCollection<Category>();
         }
 
+        public TimeExpensesData(TimeExpensesData t)
+        {
+            _categories = t.CopyCategories();
+        }
+
+        private ObservableCollection<Category> CopyCategories()
+        {
+            var result = new ObservableCollection<Category>();
+            foreach (var c in _categories)
+                result.Add(new Category(c));
+            return result;
+        }
+
+        //  Classes for parsing JSON configuration data.
         public class CategorieList
         {
             public string Name { get; set; }

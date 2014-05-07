@@ -28,26 +28,29 @@ namespace TimeKeeper
     [DataContract]
     public class StatStack
     {
+        private const int _stackCapacity = 30;
         [DataMember]
         private ObservableCollection<StatDay> _lastDays;
         [DataMember]
-        private ObservableCollection<Category> _prevTimeActive;
+        private TimeExpensesData _prevData;
         [DataMember]
         private DateTime _lastRecalculationTime;
+        [DataMember]
+        private bool _lastRecalculationTimeInitialized;
+        [DataMember]
+        private double _integralPerf;
 
         public StatStack()
         {
             _lastDays = new ObservableCollection<StatDay>();
-            _prevTimeActive = new ObservableCollection<Category>();
+            _prevData = new TimeExpensesData();
         }
 
-        private void CopyActiveCategories()
+        private void CopyData()
         {
-            _prevTimeActive = new ObservableCollection<Category>();
-            foreach (var c in MainPage.Data.Active)
-                _prevTimeActive.Add(new Category(c));
-
+            _prevData = new TimeExpensesData(MainPage.Data);
             _lastRecalculationTime = DateTime.Now;
+            _lastRecalculationTimeInitialized = true;
         }
 
         public void StartActivity()
@@ -65,15 +68,35 @@ namespace TimeKeeper
             //  Gets the current active task list.
 
             //  Checks has the change been done in the current day or not.
-            if (_prevTimeActive != null)
+            if (_lastRecalculationTimeInitialized)
             {
-                //  Uses _prevTimeActive as initialization flag of _lastRecalculationTime.
                 var diff = DateTime.Now.Subtract(_lastRecalculationTime);
+                var days = diff.Days;
 
-                var days = diff.TotalDays;
+                if (days == 0)
+                {
+                    //  Activity list changed at the same day.
+                    var seconds = diff.Seconds;
+                    _integralPerf += _prevData.Perf * seconds;
+                }
+                else
+                { 
+                    //  Calculates integral performance.
+                    _integralPerf = _integralPerf / (24 * 60 * 60);
+                    //  Adds days to the history list.
+                    for (var i = 0; i < days; i++)
+                    {
+                        _lastDays.Add(new StatDay() { IntegralPerf = _integralPerf });
+                    }
+                    //  Removes old history.
+                    while (_lastDays.Count > _stackCapacity)
+                        _lastDays.RemoveAt(0);
+                    //  Resets the integral performance.
+                    _integralPerf = 0.0;
+                }
             }
                         
-            CopyActiveCategories();
+            CopyData();
             Save();
         }
 
