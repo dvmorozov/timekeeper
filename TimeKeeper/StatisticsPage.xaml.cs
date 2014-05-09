@@ -25,11 +25,11 @@ namespace TimeKeeper
         public double IntegralPerf { get; set; }
 
         [DataMember]
-        public double Index { get; set; }
+        public DateTime Date { get; set; }
 
-        public StatDay(double index, double integralPerf) 
+        public StatDay(DateTime date, double integralPerf) 
         {
-            Index = index;
+            Date = date;
             IntegralPerf = integralPerf;
         }
     }
@@ -104,15 +104,17 @@ namespace TimeKeeper
                     //  Adds days to the history list.
                     for (var i = 0; i < days; i++)
                     {
-                        _lastDays.Add(new StatDay(0, _integralPerf));
+                        _lastDays.Add(new StatDay(DateTime.Now, _integralPerf));
                     }
                     //  Removes old history.
                     while (_lastDays.Count > _stackCapacity)
                         _lastDays.RemoveAt(0);
-                    //  Recalculates indexes.
+                    //  Recalculates dates.
+                    /*
                     var index = 0;
                     for (var i = -1 * _lastDays.Count; i < 0; i++)
                         _lastDays[index++].Index = i;
+                     */
                     //  Resets the integral performance.
                     _integralPerf = 0.0;
                 }
@@ -187,7 +189,7 @@ namespace TimeKeeper
 
             _lastDaysSerie = new Sparrow.Chart.ColumnSeries();
             Chart.Series.Add(_lastDaysSerie);
-            
+
             LoadStatistics();
         }
 
@@ -196,8 +198,8 @@ namespace TimeKeeper
             _lastDaysSerie.Points.Clear();
             foreach (var c in _statistics.LastDays)
             { 
-                var point = new Sparrow.Chart.DoublePoint();
-                point.Data = c.Index;
+                var point = new Sparrow.Chart.TimePoint();
+                point.Time = c.Date;
                 point.Value = c.IntegralPerf;
                 _lastDaysSerie.Points.Add(point);
             }

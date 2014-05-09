@@ -41,7 +41,7 @@
         <Grid x:Name="ContentPanelChart" Grid.Row="2" Margin="10">
             <sparrow:SparrowChart Name="Chart">
                 <sparrow:SparrowChart.XAxis>
-                    <sparrow:LinearXAxis/>
+                    <sparrow:DateTimeXAxis StringFormat="dd.MM.yy"/>
                 </sparrow:SparrowChart.XAxis>
                 <sparrow:SparrowChart.YAxis>
                     <sparrow:LinearYAxis/>
