@@ -174,14 +174,8 @@ namespace TimeKeeper
 
     public partial class StatisticsPage : PhoneApplicationPage
     {
-        private StatStack _statistics;
         //  Chart serie.
         private Sparrow.Chart.ColumnSeries _lastDaysSerie;
-
-        private void LoadStatistics()
-        {
-            _statistics = StatStack.Load();
-        }
 
         public StatisticsPage()
         {
@@ -189,14 +183,12 @@ namespace TimeKeeper
 
             _lastDaysSerie = new Sparrow.Chart.ColumnSeries();
             Chart.Series.Add(_lastDaysSerie);
-
-            LoadStatistics();
         }
 
         private void UpdateChart()
         {
             _lastDaysSerie.Points.Clear();
-            foreach (var c in _statistics.LastDays)
+            foreach (var c in MainPage.Statistics.LastDays)
             { 
                 var point = new Sparrow.Chart.TimePoint();
                 point.Time = c.Date;
@@ -207,7 +199,6 @@ namespace TimeKeeper
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            _statistics.RecalculateStatisitics();
             UpdateChart();
         }
     }

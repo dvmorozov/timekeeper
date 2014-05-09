@@ -153,7 +153,7 @@ namespace TimeKeeper
                 var importantDuration = new TimeSpan();
                 var notImportantDuration = new TimeSpan();
 
-                foreach (var c in _categories)
+                foreach (var c in Active)
                 {
                     if (c.Important)
                         importantDuration = importantDuration.Add(c.Duration);
@@ -292,7 +292,8 @@ namespace TimeKeeper
     public partial class MainPage : PhoneApplicationPage
     {
         //  For exchange between pages.
-        public static TimeExpensesData Data; 
+        public static TimeExpensesData Data;
+        public static StatStack Statistics;
 
         private void LoadCategories()
         {
@@ -302,6 +303,11 @@ namespace TimeKeeper
         private void SaveCategories()
         {
             Data.Save();
+        }
+
+        private void LoadStatistics()
+        {
+            Statistics = StatStack.Load();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -326,6 +332,7 @@ namespace TimeKeeper
         {
             InitializeComponent();
             LoadCategories();
+            LoadStatistics();
 
             if (Data.Any.Count == 0)
                 Data.AddDefaultCategories();
@@ -384,6 +391,9 @@ namespace TimeKeeper
             if (item != null)
             {
                 Data.SetActive(item.Name, true);
+                //  Must be after SetActive.
+                Statistics.StartActivity();
+
                 UpdateLists();
             }
         }
@@ -401,6 +411,9 @@ namespace TimeKeeper
             if (item != null)
             {
                 Data.SetActive(item.Name, false);
+                //  Must be after SetActive.
+                Statistics.StopActivity();
+
                 UpdateLists();
                 UpdatePerfShortText();
             }
