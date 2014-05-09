@@ -175,13 +175,13 @@ namespace TimeKeeper
     public partial class StatisticsPage : PhoneApplicationPage
     {
         //  Chart serie.
-        private Sparrow.Chart.ColumnSeries _lastDaysSerie;
+        private Sparrow.Chart.SeriesBase _lastDaysSerie;
 
         public StatisticsPage()
         {
             InitializeComponent();
 
-            _lastDaysSerie = new Sparrow.Chart.ColumnSeries();
+            _lastDaysSerie = new Sparrow.Chart.StepLineSeries();
             Chart.Series.Add(_lastDaysSerie);
         }
 

@@ -395,6 +395,7 @@ namespace TimeKeeper
                 Statistics.StartActivity();
 
                 UpdateLists();
+                UpdatePerfShortText();
             }
         }
 
