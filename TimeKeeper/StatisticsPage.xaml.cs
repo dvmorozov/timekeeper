@@ -13,6 +13,8 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace TimeKeeper
 {
@@ -22,7 +24,14 @@ namespace TimeKeeper
         [DataMember]
         public double IntegralPerf { get; set; }
 
-        public StatDay() { }
+        [DataMember]
+        public double Index { get; set; }
+
+        public StatDay(double index, double integralPerf) 
+        {
+            Index = index;
+            IntegralPerf = integralPerf;
+        }
     }
 
     [DataContract]
@@ -39,6 +48,11 @@ namespace TimeKeeper
         private bool _lastRecalculationTimeInitialized;
         [DataMember]
         private double _integralPerf;
+
+        public ObservableCollection<StatDay> LastDays
+        {
+            get { return _lastDays; }
+        }
 
         public StatStack()
         {
@@ -71,26 +85,34 @@ namespace TimeKeeper
             if (_lastRecalculationTimeInitialized)
             {
                 var diff = DateTime.Now.Subtract(_lastRecalculationTime);
-                var days = diff.Days;
+                //??? var days = diff.Days;
+                var days = 1;
 
-                if (days == 0)
-                {
-                    //  Activity list changed at the same day.
-                    var seconds = diff.Seconds;
-                    _integralPerf += _prevData.Perf * seconds;
-                }
-                else
+                //if (days == 0)
+                //{
+                //    //  Activity list changed at the same day.
+                //    var seconds = diff.Seconds;
+                //    _integralPerf += _prevData.Perf * seconds;
+                //}
+                //else
                 { 
                     //  Calculates integral performance.
-                    _integralPerf = _integralPerf / (24 * 60 * 60);
+                    //_integralPerf = _integralPerf / (24 * 60 * 60);
+                    //???
+                    _integralPerf = _prevData.Perf;
+
                     //  Adds days to the history list.
                     for (var i = 0; i < days; i++)
                     {
-                        _lastDays.Add(new StatDay() { IntegralPerf = _integralPerf });
+                        _lastDays.Add(new StatDay(0, _integralPerf));
                     }
                     //  Removes old history.
                     while (_lastDays.Count > _stackCapacity)
                         _lastDays.RemoveAt(0);
+                    //  Recalculates indexes.
+                    var index = 0;
+                    for (var i = -1 * _lastDays.Count; i < 0; i++)
+                        _lastDays[index++].Index = i;
                     //  Resets the integral performance.
                     _integralPerf = 0.0;
                 }
@@ -151,6 +173,8 @@ namespace TimeKeeper
     public partial class StatisticsPage : PhoneApplicationPage
     {
         private StatStack _statistics;
+        //  Chart serie.
+        private Sparrow.Chart.ColumnSeries _lastDaysSerie;
 
         private void LoadStatistics()
         {
@@ -160,13 +184,29 @@ namespace TimeKeeper
         public StatisticsPage()
         {
             InitializeComponent();
+
+            _lastDaysSerie = new Sparrow.Chart.ColumnSeries();
+            Chart.Series.Add(_lastDaysSerie);
             
             LoadStatistics();
+        }
+
+        private void UpdateChart()
+        {
+            _lastDaysSerie.Points.Clear();
+            foreach (var c in _statistics.LastDays)
+            { 
+                var point = new Sparrow.Chart.DoublePoint();
+                point.Data = c.Index;
+                point.Value = c.IntegralPerf;
+                _lastDaysSerie.Points.Add(point);
+            }
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             _statistics.RecalculateStatisitics();
+            UpdateChart();
         }
     }
 }

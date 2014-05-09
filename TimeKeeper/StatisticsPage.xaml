@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sparrow="clr-namespace:Sparrow.Chart;assembly=Sparrow.Chart.WP8.45"
+    xmlns:TimeKeeper="clr-namespace:TimeKeeper"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -18,7 +19,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -38,21 +39,13 @@
         </Grid>
 
         <Grid x:Name="ContentPanelChart" Grid.Row="2" Margin="10">
-            <sparrow:SparrowChart>
+            <sparrow:SparrowChart Name="Chart">
                 <sparrow:SparrowChart.XAxis>
                     <sparrow:LinearXAxis/>
                 </sparrow:SparrowChart.XAxis>
                 <sparrow:SparrowChart.YAxis>
                     <sparrow:LinearYAxis/>
                 </sparrow:SparrowChart.YAxis>
-                <sparrow:LineSeries>
-                    <sparrow:LineSeries.Points>
-                        <sparrow:DoublePoint Data="0" Value="1"/>
-                        <sparrow:DoublePoint Data="1" Value="2"/>
-                        <sparrow:DoublePoint Data="2" Value="3"/>
-                        <sparrow:DoublePoint Data="3" Value="4"/>
-                    </sparrow:LineSeries.Points>
-                </sparrow:LineSeries>
             </sparrow:SparrowChart>
         </Grid>
     </Grid>
