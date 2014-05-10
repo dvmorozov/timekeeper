@@ -91,20 +91,39 @@ namespace TimeKeeper
         }
     }
 
+    //  Used for unit testing. 
+    public interface IDateTime
+    {
+        DateTime Now{ get; }
+    }
+
+    public class SysDateTime : IDateTime
+    {
+        public DateTime Now
+        {
+            get {
+                return DateTime.Now;
+            }
+        }
+    }
+
     [DataContract]
     public class TimeExpensesData
     {
         [DataMember]
         private ObservableCollection<Category> _categories;
+        private IDateTime _dt = new SysDateTime();
+        //  Used for unit testing.
+        public IDateTime Dt { set { _dt = value; } }
 
         public void SetActive(string name, bool active)
         {
             var item = _categories.Single(t => t.Name == name);
             item.Active = active;
             if (active)   
-                item.LastStart = DateTime.Now;
+                item.LastStart = _dt.Now;
             else
-                item.Duration = item.Duration.Add(DateTime.Now.Subtract(item.LastStart));
+                item.Duration = item.Duration.Add(_dt.Now.Subtract(item.LastStart));
 
             Save();
         }
@@ -145,6 +164,7 @@ namespace TimeKeeper
             get { return _categories; }
         }
 
+        //  Instantaneous performance.
         public double Perf
         {
             get
@@ -153,12 +173,22 @@ namespace TimeKeeper
                 var importantDuration = new TimeSpan();
                 var notImportantDuration = new TimeSpan();
 
-                foreach (var c in Active)
+                //  Adds durations of all finished activities.
+                foreach (var c in Any)
                 {
                     if (c.Important)
                         importantDuration = importantDuration.Add(c.Duration);
                     else
                         notImportantDuration = notImportantDuration.Add(c.Duration);
+                }
+
+                //  Adds durations of all current activities.
+                foreach (var c in Active)
+                {
+                    if (c.Important)
+                        importantDuration = importantDuration.Add(_dt.Now.Subtract(c.LastStart));
+                    else
+                        notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(c.LastStart));
                 }
 
                 var totalSeconds = notImportantDuration.TotalSeconds + importantDuration.TotalSeconds;
@@ -307,7 +337,7 @@ namespace TimeKeeper
 
         private void LoadStatistics()
         {
-            Statistics = StatStack.Load();
+            Statistics = StatStack.Load(Data);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

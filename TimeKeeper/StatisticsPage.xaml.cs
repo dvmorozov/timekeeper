@@ -49,21 +49,27 @@ namespace TimeKeeper
         [DataMember]
         private double _integralPerf;
 
+        private TimeExpensesData _data;
+        private IDateTime _dt = new SysDateTime();
+        //  Used for unit testing.
+        public IDateTime Dt { set { _dt = value; } }
+
         public ObservableCollection<StatDay> LastDays
         {
             get { return _lastDays; }
         }
 
-        public StatStack()
+        public StatStack(TimeExpensesData data)
         {
             _lastDays = new ObservableCollection<StatDay>();
             _prevData = new TimeExpensesData();
+            _data = data;
         }
 
         private void CopyData()
         {
-            _prevData = new TimeExpensesData(MainPage.Data);
-            _lastRecalculationTime = DateTime.Now;
+            _prevData = new TimeExpensesData(_data);
+            _lastRecalculationTime = _dt.Now;
             _lastRecalculationTimeInitialized = true;
         }
 
@@ -84,40 +90,49 @@ namespace TimeKeeper
             //  Checks has the change been done in the current day or not.
             if (_lastRecalculationTimeInitialized)
             {
-                var diff = DateTime.Now.Subtract(_lastRecalculationTime);
-                //??? var days = diff.Days;
-                var days = 1;
+                var firstDay = _lastRecalculationTime.Date;
+                var savedIntegralPerf = 0.0;
 
-                //if (days == 0)
-                //{
-                //    //  Activity list changed at the same day.
-                //    var seconds = diff.Seconds;
-                //    _integralPerf += _prevData.Perf * seconds;
-                //}
-                //else
-                { 
-                    //  Calculates integral performance.
-                    //_integralPerf = _integralPerf / (24 * 60 * 60);
-                    //???
-                    _integralPerf = _prevData.Perf;
-
-                    //  Adds days to the history list.
-                    for (var i = 0; i < days; i++)
+                for(var day = firstDay; day <= _dt.Now.Date; day = day.AddDays(1))
+                {
+                    if (day == _dt.Now.Date)
                     {
-                        _lastDays.Add(new StatDay(DateTime.Now, _integralPerf));
+                        //  The last day or today (must be the first).
+                        //  Contributes to the integral performance.
+                        var diff = _dt.Now.Subtract(_lastRecalculationTime);
+                        var seconds = diff.Seconds;
+                        _integralPerf += _prevData.Perf * seconds;
                     }
-                    //  Removes old history.
-                    while (_lastDays.Count > _stackCapacity)
-                        _lastDays.RemoveAt(0);
-                    //  Recalculates dates.
-                    /*
-                    var index = 0;
-                    for (var i = -1 * _lastDays.Count; i < 0; i++)
-                        _lastDays[index++].Index = i;
-                     */
-                    //  Resets the integral performance.
-                    _integralPerf = 0.0;
+                    else
+                    if (day == firstDay)
+                    {
+                        //  The first day.
+                        //  Adds value to the integral.
+                        var diff = day.Date.AddDays(1).Subtract(_lastRecalculationTime);
+                        var seconds = diff.Seconds;
+                        _integralPerf += _prevData.Perf * seconds;
+
+                        //  Calculates integral performance.
+                        savedIntegralPerf = _integralPerf / (24 * 60 * 60);
+                        _integralPerf = 0;
+
+                        _lastDays.Add(new StatDay(day.Date, savedIntegralPerf));
+                        //  Sets the marker at the beginning of next day.
+                        _lastRecalculationTime = day.Date.AddDays(1);
+                    }
+                    else
+                    {
+                        //  Any other day.
+                        //  Replicates last calculated integral performance.
+                        _lastDays.Add(new StatDay(day.Date, savedIntegralPerf));
+                        //  Sets the marker at the beginning of next day.
+                        _lastRecalculationTime = day.Date.AddDays(1);
+                    }
                 }
+
+                //  Removes old history.
+                while (_lastDays.Count > _stackCapacity)
+                    _lastDays.RemoveAt(0);
             }
                         
             CopyData();
@@ -126,7 +141,7 @@ namespace TimeKeeper
 
         private static string _fileName = "StatisticsData";
 
-        public static StatStack Load()
+        public static StatStack Load(TimeExpensesData data)
         {
             try
             {
@@ -140,7 +155,7 @@ namespace TimeKeeper
                         //  Deserialize the object.
                         var ser = new DataContractJsonSerializer(typeof(StatStack));
                         var stack = (StatStack)ser.ReadObject(stream);
-                        if (stack == null) stack = new StatStack();
+                        if (stack == null) stack = new StatStack(data);
                         return stack;
                     }
                 }
@@ -150,7 +165,7 @@ namespace TimeKeeper
                 MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
-            return new StatStack();
+            return new StatStack(data);
         }
 
         public void Save()
