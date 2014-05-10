@@ -105,6 +105,12 @@ namespace TimeKeeper
                 return DateTime.Now;
             }
         }
+
+        //  Returns the middle of the night.
+        static public DateTime Date(DateTime now)
+        {
+            return now.Date.AddHours(-12);
+        }
     }
 
     [DataContract]

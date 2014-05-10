@@ -90,17 +90,18 @@ namespace TimeKeeper
             //  Checks has the change been done in the current day or not.
             if (_lastRecalculationTimeInitialized)
             {
-                var firstDay = _lastRecalculationTime.Date;
+                //  By default this gives the middle of the day, not 00:00. So, correct that!
+                var firstDay = SysDateTime.Date(_lastRecalculationTime);
                 var savedIntegralPerf = 0.0;
 
-                for(var day = firstDay; day <= _dt.Now.Date; day = day.AddDays(1))
+                for(var day = firstDay; day <= SysDateTime.Date(_dt.Now); day = day.AddDays(1))
                 {
-                    if (day == _dt.Now.Date)
+                    if (day == SysDateTime.Date(_dt.Now))
                     {
                         //  The last day or today (must be the first).
                         //  Contributes to the integral performance.
                         var diff = _dt.Now.Subtract(_lastRecalculationTime);
-                        var seconds = diff.Seconds;
+                        var seconds = diff.TotalSeconds;
                         _integralPerf += _prevData.Perf * seconds;
                     }
                     else
@@ -108,8 +109,8 @@ namespace TimeKeeper
                     {
                         //  The first day.
                         //  Adds value to the integral.
-                        var diff = day.Date.AddDays(1).Subtract(_lastRecalculationTime);
-                        var seconds = diff.Seconds;
+                        var diff = day.AddDays(1).Subtract(_lastRecalculationTime);
+                        var seconds = diff.TotalSeconds;
                         _integralPerf += _prevData.Perf * seconds;
 
                         //  Calculates integral performance.
@@ -123,10 +124,11 @@ namespace TimeKeeper
                     else
                     {
                         //  Any other day.
-                        //  Replicates last calculated integral performance.
-                        _lastDays.Add(new StatDay(day.Date, savedIntegralPerf));
+                        //  Replicates last calculated performance.
+                        //  It will be equal to the integral performance for the all day.
+                        _lastDays.Add(new StatDay(SysDateTime.Date(day), _prevData.Perf));
                         //  Sets the marker at the beginning of next day.
-                        _lastRecalculationTime = day.Date.AddDays(1);
+                        _lastRecalculationTime = SysDateTime.Date(day).AddDays(1);
                     }
                 }
 
