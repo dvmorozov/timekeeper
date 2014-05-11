@@ -31,7 +31,7 @@ namespace TestTimeKeeper
             var data = new TimeExpensesData();
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
 
             var startDt = DateTime.Now;
             //  Sets up "now".
@@ -59,7 +59,7 @@ namespace TestTimeKeeper
             var stack = new StatStack(data);
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
             stack.Dt = dt;
 
             var startDt = DateTime.Now;
@@ -94,7 +94,7 @@ namespace TestTimeKeeper
             var stack = new StatStack(data);
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
             stack.Dt = dt;
 
             //  Middle of the day must be used. 
@@ -132,7 +132,7 @@ namespace TestTimeKeeper
             var stack = new StatStack(data);
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
             stack.Dt = dt;
 
             //  Middle of the day must be used. 
@@ -172,7 +172,7 @@ namespace TestTimeKeeper
             var stack = new StatStack(data);
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
             stack.Dt = dt;
 
             //  Middle of the day must be used. 
@@ -225,7 +225,7 @@ namespace TestTimeKeeper
             var data = new TimeExpensesData();
 
             var dt = new TestDateTime();
-            data.Dt = dt;
+            TimeExpensesData.Dt = dt;
 
             //  Middle of the day must be used. 
             var startDt = DateTime.Now.Date;

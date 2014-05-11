@@ -141,9 +141,9 @@ namespace TimeKeeper
         //  For unit-testing.
         public TimeSpan InactiveDuration { get { return _inactiveDuration; } }
 
-        private IDateTime _dt = new SysDateTime();
+        private static IDateTime _dt = new SysDateTime();
         //  Used for unit testing.
-        public IDateTime Dt { set { _dt = value; } }
+        public static IDateTime Dt { set { _dt = value; } }
 
         public void SetActive(string name, bool active)
         {
@@ -284,7 +284,7 @@ namespace TimeKeeper
             {
                 TimeSpan duration;
                 foreach (var c in Any)
-                    duration.Add(c.Duration);
+                    duration = duration.Add(c.Duration);
 
                 return Category.DurationS(duration);
             }
@@ -295,10 +295,23 @@ namespace TimeKeeper
         {
             get
             {
-                //  Don't use here _dt because _startDate is initialized by DateTime.Now.
-                TimeSpan totalDuration = DateTime.Now.Subtract(_startDate);
+                TimeSpan totalDuration = _dt.Now.Subtract(_startDate);
 
-                return Category.DurationS(totalDuration.Subtract(_inactiveDuration));
+                return Category.DurationS(totalDuration.Subtract(UncountedTime));
+            }
+        }
+
+        public TimeSpan UncountedTime
+        {
+            get
+            {
+                TimeSpan duration;
+                duration = duration.Add(_inactiveDuration);
+
+                if (_lastActiveIsEmptyInitialized)
+                    duration = duration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
+
+                return duration;
             }
         }
 
@@ -307,7 +320,7 @@ namespace TimeKeeper
         {
             get
             {
-                return Category.DurationS(_inactiveDuration);
+                return Category.DurationS(UncountedTime);
             }
         }
 
@@ -400,7 +413,7 @@ namespace TimeKeeper
                 MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
-            return new TimeExpensesData() { _startDate = DateTime.Now };
+            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, _lastActiveIsEmptyInitialized = true };
         }
 
         public void Save()
