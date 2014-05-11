@@ -50,7 +50,7 @@ namespace TimeKeeper
         private double _integralPerf;
 
         private TimeExpensesData _data;
-        private IDateTime _dt = new SysDateTime();
+        private IDateTime _dt;
         //  Used for unit testing.
         public IDateTime Dt { set { _dt = value; } }
 
@@ -59,11 +59,20 @@ namespace TimeKeeper
             get { return _lastDays; }
         }
 
+        //  Initializes the attributes not read from the JSON-stream.
+        //  Is called after ReadObject.
+        public void Initialize(TimeExpensesData data)
+        {
+            _dt = new SysDateTime();
+            _data = data;
+        }
+
         public StatStack(TimeExpensesData data)
         {
             _lastDays = new ObservableCollection<StatDay>();
             _prevData = new TimeExpensesData();
-            _data = data;
+        
+            Initialize(data);
         }
 
         private void CopyData()
@@ -157,7 +166,10 @@ namespace TimeKeeper
                         //  Deserialize the object.
                         var ser = new DataContractJsonSerializer(typeof(StatStack));
                         var stack = (StatStack)ser.ReadObject(stream);
+                        
                         if (stack == null) stack = new StatStack(data);
+                        else stack.Initialize(data);
+
                         return stack;
                     }
                 }
