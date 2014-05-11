@@ -57,15 +57,20 @@ namespace TimeKeeper
             set;
         }
 
+        public static string DurationS(TimeSpan duration)
+        {
+            int hour, min, sec;
+            hour = duration.Hours;
+            min = duration.Minutes;
+            sec = duration.Seconds;
+            return string.Format("{0:D2}:{1:D2}:{2:D2}", hour, min, sec);
+        }
+
         public string DurationStr
         {
             get 
             {
-                int hour, min, sec;
-                hour = Duration.Hours;
-                min = Duration.Minutes;
-                sec = Duration.Seconds;
-                return string.Format("{0:D2}:{1:D2}:{2:D2}", hour, min, sec); 
+                return DurationS(Duration);
             }
         }
 
@@ -123,6 +128,10 @@ namespace TimeKeeper
     {
         [DataMember]
         private ObservableCollection<Category> _categories;
+        [DataMember]
+        //  Initialized at the first attempt of loading.
+        private DateTime _startDate;
+
         private IDateTime _dt = new SysDateTime();
         //  Used for unit testing.
         public IDateTime Dt { set { _dt = value; } }
@@ -242,6 +251,41 @@ namespace TimeKeeper
             }
         }
 
+        //  The time counted for all activities in summary.
+        public string UtilizedTimeStr
+        {
+            get
+            {
+                TimeSpan duration;
+                foreach (var c in Any)
+                    duration.Add(c.Duration);
+
+                return Category.DurationS(duration);
+            }
+        }
+
+        //  The time counted for any activity.
+        public string CountedTimeStr
+        {
+            get { return ""; }
+        }
+
+        //  The time not counted for any activity.
+        public string UncountedTimeStr
+        {
+            get
+            {
+                TimeSpan duration;
+                foreach (var c in Any)
+                    duration.Add(c.Duration);
+
+                //  Don't use here _dt because _startDate is initialized by DateTime.Now.
+                TimeSpan totalDuration = DateTime.Now.Subtract(_startDate);
+
+                return Category.DurationS(totalDuration.Subtract(duration));
+            }
+        }
+
         public TimeExpensesData()
         {
             //  Must be initialized in the constructor.
@@ -331,7 +375,7 @@ namespace TimeKeeper
                 MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
-            return new TimeExpensesData();
+            return new TimeExpensesData() { _startDate = DateTime.Now };
         }
 
         public void Save()

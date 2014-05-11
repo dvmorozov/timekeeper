@@ -214,9 +214,17 @@ namespace TimeKeeper
             }
         }
 
+        private void UpdateTexts()
+        {
+            StatUtilizedTime.Text = string.Format(AppResources.StatUtilizedTimeText, MainPage.Data.UtilizedTimeStr);
+            StatCountedTime.Text = string.Format(AppResources.StatCountedTimeText, MainPage.Data.CountedTimeStr);
+            StatUncountedTime.Text = string.Format(AppResources.StatUncountedTimeText, MainPage.Data.UncountedTimeStr);
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateChart();
+            UpdateTexts();
         }
     }
 }
