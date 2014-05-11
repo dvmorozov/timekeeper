@@ -185,13 +185,13 @@
     <value>Urgent</value>
   </data>
   <data name="StatCountedTimeText" xml:space="preserve">
-    <value>Counted Time: {0}</value>
+    <value>Active Time: {0}</value>
   </data>
   <data name="PerformanceShortText" xml:space="preserve">
     <value>Your perf: {0}%</value>
   </data>
   <data name="StatUncountedTimeText" xml:space="preserve">
-    <value>Uncounted Time: {0}</value>
+    <value>Inactive Time: {0}</value>
   </data>
   <data name="StatUtilizedTimeText" xml:space="preserve">
     <value>Utilized Time: {0}</value>

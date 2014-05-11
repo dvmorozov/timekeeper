@@ -260,7 +260,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Counted Time: {0}.
+        ///   Looks up a localized string similar to Active Time: {0}.
         /// </summary>
         public static string StatCountedTimeText {
             get {
@@ -278,7 +278,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uncounted Time: {0}.
+        ///   Looks up a localized string similar to Inactive Time: {0}.
         /// </summary>
         public static string StatUncountedTimeText {
             get {

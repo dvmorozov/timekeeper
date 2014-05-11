@@ -218,5 +218,45 @@ namespace TestTimeKeeper
             intPerf = stack.LastDays[1].IntegralPerf;
             Assert.AreEqual(37, Math.Floor(intPerf));
         }
+
+        [TestMethod]
+        public void TestTimeExpensesData2()
+        {
+            var data = new TimeExpensesData();
+
+            var dt = new TestDateTime();
+            data.Dt = dt;
+
+            //  Middle of the day must be used. 
+            var startDt = DateTime.Now.Date;
+            //  Sets up "now".
+            dt.Now = startDt;
+
+            data.AddCategory("urgent, important", true, true);
+            data.AddCategory("not urgent, important", false, true);
+            data.AddCategory("urgent, not important", true, false);
+            data.AddCategory("not urgent, not important", false, false);
+
+            data.SetActive("urgent, important", true);
+            data.SetActive("urgent, not important", true);
+
+            dt.Now = startDt.AddDays(1);
+
+            data.SetActive("urgent, important", false);
+            data.SetActive("urgent, not important", false);
+
+            //  Pause for 6 hours.
+            dt.Now = startDt.AddDays(1).AddHours(6);
+
+            data.SetActive("urgent, important", true);
+            data.SetActive("urgent, not important", true);
+
+            dt.Now = startDt.AddDays(2);
+
+            data.SetActive("urgent, important", false);
+            data.SetActive("urgent, not important", false);
+
+            Assert.AreEqual(6, data.InactiveDuration.TotalHours);
+        }
     }
 }

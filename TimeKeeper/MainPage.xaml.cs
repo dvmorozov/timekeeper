@@ -131,6 +131,15 @@ namespace TimeKeeper
         [DataMember]
         //  Initialized at the first attempt of loading.
         private DateTime _startDate;
+        [DataMember]
+        private TimeSpan _inactiveDuration;
+        [DataMember]
+        private DateTime _lastActiveIsEmpty;
+        [DataMember]
+        private bool _lastActiveIsEmptyInitialized;
+
+        //  For unit-testing.
+        public TimeSpan InactiveDuration { get { return _inactiveDuration; } }
 
         private IDateTime _dt = new SysDateTime();
         //  Used for unit testing.
@@ -140,10 +149,27 @@ namespace TimeKeeper
         {
             var item = _categories.Single(t => t.Name == name);
             item.Active = active;
-            if (active)   
+            if (active)
+            {
                 item.LastStart = _dt.Now;
+
+                if (_lastActiveIsEmptyInitialized)
+                {
+                    _inactiveDuration = _inactiveDuration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
+                    _lastActiveIsEmptyInitialized = false;
+                }
+            }
             else
+            {
                 item.Duration = item.Duration.Add(_dt.Now.Subtract(item.LastStart));
+
+                var isAnyActive = Active.Count != 0;
+                if (!isAnyActive)
+                {
+                    _lastActiveIsEmpty = _dt.Now;
+                    _lastActiveIsEmptyInitialized = true;
+                }
+            }
 
             Save();
         }
@@ -267,7 +293,13 @@ namespace TimeKeeper
         //  The time counted for any activity.
         public string CountedTimeStr
         {
-            get { return ""; }
+            get
+            {
+                //  Don't use here _dt because _startDate is initialized by DateTime.Now.
+                TimeSpan totalDuration = DateTime.Now.Subtract(_startDate);
+
+                return Category.DurationS(totalDuration.Subtract(_inactiveDuration));
+            }
         }
 
         //  The time not counted for any activity.
@@ -275,14 +307,7 @@ namespace TimeKeeper
         {
             get
             {
-                TimeSpan duration;
-                foreach (var c in Any)
-                    duration.Add(c.Duration);
-
-                //  Don't use here _dt because _startDate is initialized by DateTime.Now.
-                TimeSpan totalDuration = DateTime.Now.Subtract(_startDate);
-
-                return Category.DurationS(totalDuration.Subtract(duration));
+                return Category.DurationS(_inactiveDuration);
             }
         }
 
