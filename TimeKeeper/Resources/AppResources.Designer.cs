@@ -79,7 +79,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Activity.
+        ///   Looks up a localized string similar to Add Your Usual Activity.
         /// </summary>
         public static string AddCategoryPageName {
             get {
@@ -251,7 +251,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a category for this activity. Be objective!.
+        ///   Looks up a localized string similar to Select a category for this activity relatively of your goals. Be objective!.
         /// </summary>
         public static string SelectCategoryText {
             get {

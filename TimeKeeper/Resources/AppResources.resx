@@ -136,7 +136,7 @@
     <value>Menu Item</value>
   </data>
   <data name="AddCategoryPageName" xml:space="preserve">
-    <value>Add Activity</value>
+    <value>Add Your Usual Activity</value>
   </data>
   <data name="AppBarButtonDeleteText" xml:space="preserve">
     <value>Delete</value>
@@ -179,7 +179,7 @@
     <value>Not urgent</value>
   </data>
   <data name="SelectCategoryText" xml:space="preserve">
-    <value>Select a category for this activity. Be objective!</value>
+    <value>Select a category for this activity relatively of your goals. Be objective!</value>
   </data>
   <data name="UrgentText" xml:space="preserve">
     <value>Urgent</value>
