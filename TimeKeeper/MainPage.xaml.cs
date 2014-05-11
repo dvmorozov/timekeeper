@@ -57,6 +57,13 @@ namespace TimeKeeper
             set;
         }
 
+        [DataMember]
+        public DateTime LastStart
+        {
+            get;
+            set;
+        }
+
         public static string DurationS(TimeSpan duration)
         {
             int hour, min, sec;
@@ -72,12 +79,6 @@ namespace TimeKeeper
             {
                 return DurationS(Duration);
             }
-        }
-
-        public DateTime LastStart
-        {
-            get;
-            set;
         }
 
         public Category(string name)
