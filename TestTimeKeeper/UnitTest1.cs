@@ -216,7 +216,7 @@ namespace TestTimeKeeper
             var intPerf = stack.LastDays[0].IntegralPerf;
             Assert.AreEqual(25, Math.Floor(intPerf));
             intPerf = stack.LastDays[1].IntegralPerf;
-            Assert.AreEqual(38, Math.Floor(intPerf));
+            Assert.AreEqual(37, Math.Floor(intPerf));
         }
     }
 }

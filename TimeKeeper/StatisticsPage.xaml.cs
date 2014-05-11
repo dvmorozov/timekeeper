@@ -102,7 +102,7 @@ namespace TimeKeeper
                         //  Contributes to the integral performance.
                         var diff = _dt.Now.Subtract(_lastRecalculationTime);
                         var seconds = diff.TotalSeconds;
-                        _integralPerf += _prevData.Perf * seconds;
+                        _integralPerf += _prevData.InstPerf * seconds;
                     }
                     else
                     if (day == firstDay)
@@ -111,7 +111,7 @@ namespace TimeKeeper
                         //  Adds value to the integral.
                         var diff = day.AddDays(1).Subtract(_lastRecalculationTime);
                         var seconds = diff.TotalSeconds;
-                        _integralPerf += _prevData.Perf * seconds;
+                        _integralPerf += _prevData.InstPerf * seconds;
 
                         //  Calculates integral performance.
                         savedIntegralPerf = _integralPerf / (24 * 60 * 60);
@@ -119,16 +119,16 @@ namespace TimeKeeper
 
                         _lastDays.Add(new StatDay(day.Date, savedIntegralPerf));
                         //  Sets the marker at the beginning of next day.
-                        _lastRecalculationTime = day.Date.AddDays(1);
+                        _lastRecalculationTime = SysDateTime.NextDay(_lastRecalculationTime);
                     }
                     else
                     {
                         //  Any other day.
                         //  Replicates last calculated performance.
                         //  It will be equal to the integral performance for the all day.
-                        _lastDays.Add(new StatDay(SysDateTime.Date(day), _prevData.Perf));
+                        _lastDays.Add(new StatDay(SysDateTime.Date(day), _prevData.InstPerf));
                         //  Sets the marker at the beginning of next day.
-                        _lastRecalculationTime = SysDateTime.Date(day).AddDays(1);
+                        _lastRecalculationTime = SysDateTime.NextDay(_lastRecalculationTime);
                     }
                 }
 

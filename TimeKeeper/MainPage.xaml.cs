@@ -111,6 +111,11 @@ namespace TimeKeeper
         {
             return now.Date.AddHours(-12);
         }
+
+        static public DateTime NextDay(DateTime now)
+        {
+            return Date(now).AddDays(1);
+        }
     }
 
     [DataContract]
@@ -171,6 +176,29 @@ namespace TimeKeeper
         }
 
         //  Instantaneous performance.
+        public double InstPerf
+        {
+            get
+            {
+                var importantCount = 0;
+                var notImportantCount = 0;
+
+                foreach (var c in Active)
+                {
+                    if (c.Important)
+                        importantCount++;
+                    else
+                        notImportantCount++;
+                }
+
+                var totalCount = importantCount + notImportantCount;
+
+                if (totalCount == 0) return 0;
+                else return (double) importantCount * 100.0 / (double) totalCount;
+            }
+        }
+
+        //  Accumulative performance.
         public double Perf
         {
             get
