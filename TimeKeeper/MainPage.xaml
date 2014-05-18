@@ -45,7 +45,7 @@
             <phone:LongListSelector Margin="10" Name="CategoryList" 
                                     LayoutMode="Grid"
                                     GridCellSize="140, 140"
-                                    SelectionChanged="CategoryListPaused_SelectionChanged"
+                                    SelectionChanged="CategoryList_SelectionChanged"
                                     >
                 <phone:LongListSelector.Resources>
                     <local:List_ClassConverter x:Key="List_ClassConverter"/>
@@ -54,7 +54,7 @@
                     <DataTemplate>
                         <Grid Background="{StaticResource PhoneAccentBrush}"
                             Margin="0, 0, 12, 12">
-                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStartAction_Click" Name="ButtonStartAction">
+                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonAction_Click" Name="ButtonStartAction">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Grid Margin="10">

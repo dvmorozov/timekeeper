@@ -488,6 +488,7 @@ namespace TimeKeeper
 
         private void UpdateLists()
         {
+            CategoryList.ItemsSource = null;
             CategoryList.ItemsSource = Data.Any;
 
             //  Must be reset to interpret the first click as a change.
@@ -589,24 +590,26 @@ namespace TimeKeeper
             }
         }
 
-        private void ButtonStartAction_Click(object sender, RoutedEventArgs e)
+        private void ButtonAction_Click(object sender, RoutedEventArgs e)
         {
-            StartActivity();
+            var item = (Category)CategoryList.SelectedItem;
+
+            if (item != null)
+            {
+                if (item.Active) StopActivity();
+                else StartActivity();
+            }
         }
 
-        private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
+        private void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StopActivity();
-        }
+            var item = (Category)CategoryList.SelectedItem;
 
-        private void CategoryListActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StopActivity();
-        }
-
-        private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StartActivity();
+            if (item != null)
+            {
+                if (item.Active) StopActivity();
+                else StartActivity();
+            }
         }
 
         private void ApplicationBarIconButtonStatistics_Click(object sender, EventArgs e)
