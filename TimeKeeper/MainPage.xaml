@@ -48,7 +48,7 @@
                                     SelectionChanged="CategoryList_SelectionChanged"
                                     >
                 <phone:LongListSelector.Resources>
-                    <local:List_ClassConverter x:Key="List_ClassConverter"/>
+                    <local:CategoryListIconConverter x:Key="List_ClassConverter"/>
                 </phone:LongListSelector.Resources>
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>

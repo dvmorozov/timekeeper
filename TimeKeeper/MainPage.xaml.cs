@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -15,8 +14,6 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.ComponentModel;
 using Newtonsoft.Json;
-using System.Windows.Data;
-using System.Globalization;
 
 namespace TimeKeeper
 {
@@ -435,26 +432,6 @@ namespace TimeKeeper
             {
                 MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
             }
-        }
-    }
-
-    public class List_ClassConverter : IValueConverter
-    {
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var c = value as Category;
-            if (c != null)
-            {
-                if (c.Active) return "/Assets/AppBar/transport.pause.png";
-                else return "/Assets/AppBar/transport.play.png";
-            }
-            return null;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return null;
         }
     }
 
