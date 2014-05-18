@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -14,6 +15,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.ComponentModel;
 using Newtonsoft.Json;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace TimeKeeper
 {
@@ -435,6 +438,26 @@ namespace TimeKeeper
         }
     }
 
+    public class List_ClassConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var c = value as Category;
+            if (c != null)
+            {
+                if (c.Active) return "/Assets/AppBar/transport.pause.png";
+                else return "/Assets/AppBar/transport.play.png";
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
     public partial class MainPage : PhoneApplicationPage
     {
         //  For exchange between pages.
@@ -465,11 +488,11 @@ namespace TimeKeeper
 
         private void UpdateLists()
         {
-            CategoryList.ItemsSource = null;
-            CategoryList.ItemsSource = Data.Any;
+            CategoryListActive.ItemsSource = null;
+            CategoryListPaused.ItemsSource = null;
 
-            //  Must be reset to interpret the first click as a change.
-            CategoryList.SelectedItem = null;
+            CategoryListActive.ItemsSource = Data.Active;
+            CategoryListPaused.ItemsSource = Data.Any;
         }
 
         // Constructor
@@ -529,21 +552,14 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/DeleteCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void StartActivity()
+        private void StartActivity(Category item)
         {
-            var item = (Category)CategoryList.SelectedItem;
+            Data.SetActive(item.Name, true);
+            //  Must be after SetActive.
+            Statistics.StartActivity();
 
-            if (item != null)
-            {
-                Data.SetActive(item.Name, true);
-                //  Must be after SetActive.
-                Statistics.StartActivity();
-
-                UpdateLists();
-                UpdatePerfShortText();
-            }
-
-            
+            UpdateLists();
+            UpdatePerfShortText();
         }
 
         private void UpdatePerfShortText()
@@ -552,40 +568,55 @@ namespace TimeKeeper
             PerfShortText.Text = text;
         }
 
-        private void StopActivity()
+        private void StopActivity(Category item)
         {
-            var item = (Category)CategoryList.SelectedItem;
+            Data.SetActive(item.Name, false);
+            //  Must be after SetActive.
+            Statistics.StopActivity();
+
+            UpdateLists();
+            UpdatePerfShortText();
+        }
+
+        private void ButtonStartStopAction_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (Category)CategoryListPaused.SelectedItem;
 
             if (item != null)
             {
-                Data.SetActive(item.Name, false);
-                //  Must be after SetActive.
-                Statistics.StopActivity();
-
-                UpdateLists();
-                UpdatePerfShortText();
+                if (item.Active) StopActivity(item);
+                else StartActivity(item);
             }
         }
 
-        private void ButtonAction_Click(object sender, RoutedEventArgs e)
+        private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
         {
-            var item = (Category)CategoryList.SelectedItem;
+            var item = (Category)CategoryListActive.SelectedItem;
 
             if (item != null)
             {
-                if (item.Active) StopActivity();
-                else StartActivity();
+                StopActivity(item);
             }
         }
 
-        private void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CategoryListActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = (Category)CategoryList.SelectedItem;
+            var item = (Category)CategoryListActive.SelectedItem;
 
             if (item != null)
             {
-                if (item.Active) StopActivity();
-                else StartActivity();
+                StopActivity(item);
+            }
+        }
+
+        private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (Category)CategoryListPaused.SelectedItem;
+
+            if (item != null)
+            {
+                if (item.Active) StopActivity(item);
+                else StartActivity(item);
             }
         }
 

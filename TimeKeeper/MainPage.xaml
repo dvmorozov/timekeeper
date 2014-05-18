@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
@@ -41,11 +42,46 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <phone:LongListSelector Margin="10" Name="CategoryList" 
+        <Grid x:Name="ContentPanelActive" Grid.Row="1" Margin="12,0,12,0">
+            <phone:LongListSelector Margin="10" Name="CategoryListActive" 
                                     LayoutMode="Grid"
                                     GridCellSize="140, 140"
-                                    SelectionChanged="CategoryList_SelectionChanged"
+                                    SelectionChanged="CategoryListActive_SelectionChanged"
+                                    >
+                <phone:LongListSelector.Resources>
+                    <local:CategoryListIconConverter x:Key="CategoryListIconConverter"/>
+                    <local:CategoryListTileColorConverter x:Key="CategoryListTileColorConverter"/>
+                    <local:CategoryActiveListTileColorConverter x:Key="CategoryActiveListTileColorConverter"/>
+                </phone:LongListSelector.Resources>
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}"
+                            Margin="0, 0, 12, 12">
+                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStopAction_Click" Name="ButtonStopAction">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid Margin="10">
+                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                            <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
+                                <TextBlock TextWrapping="Wrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
+        </Grid>
+
+        <Grid x:Name="ContentPanelPaused" Grid.Row="2" Margin="12,0,12,0">
+            <phone:LongListSelector Margin="10" Name="CategoryListPaused" 
+                                    LayoutMode="Grid"
+                                    GridCellSize="140, 140"
+                                    SelectionChanged="CategoryListPaused_SelectionChanged"
                                     >
                 <phone:LongListSelector.Resources>
                     <local:CategoryListIconConverter x:Key="CategoryListIconConverter"/>
@@ -55,7 +91,7 @@
                     <DataTemplate>
                         <Grid Background="{Binding Converter={StaticResource CategoryListTileColorConverter}}"
                             Margin="0, 0, 12, 12">
-                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonAction_Click" Name="ButtonStartAction">
+                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStartStopAction_Click" Name="ButtonStartAction">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Grid Margin="10">
