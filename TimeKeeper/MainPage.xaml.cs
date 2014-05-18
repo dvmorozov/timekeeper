@@ -66,6 +66,14 @@ namespace TimeKeeper
             set;
         }
 
+        //  Unique category identifier.
+        [DataMember]
+        public Guid CategoryId
+        {
+            get;
+            set;
+        }
+
         public static string DurationS(TimeSpan duration)
         {
             int hour, min, sec;
@@ -85,11 +93,13 @@ namespace TimeKeeper
 
         public Category(string name)
         {
+            this.CategoryId = Guid.NewGuid();
             this.Name = name;
         }
 
         public Category(Category c)
         {
+            this.CategoryId = c.CategoryId;
             this.Name = c.Name;
             this.Active = c.Active;
             this.Urgent = c.Urgent;
@@ -580,44 +590,22 @@ namespace TimeKeeper
 
         private void ButtonStartStopAction_Click(object sender, RoutedEventArgs e)
         {
-            var item = (Category)CategoryListPaused.SelectedItem;
+            var button = (Button)sender;
+            var value = (Guid)button.CommandParameter;
 
-            if (item != null)
-            {
-                if (item.Active) StopActivity(item);
-                else StartActivity(item);
-            }
+            var item = Data.Paused.Single(t => t.CategoryId == value);
+
+            if (item.Active) StopActivity(item);
+            else StartActivity(item);
         }
 
         private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
         {
-            var item = (Category)CategoryListActive.SelectedItem;
+            var button = (Button)sender;
+            var value = (Guid)button.CommandParameter;
 
-            if (item != null)
-            {
-                StopActivity(item);
-            }
-        }
-
-        private void CategoryListActive_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = (Category)CategoryListActive.SelectedItem;
-
-            if (item != null)
-            {
-                StopActivity(item);
-            }
-        }
-
-        private void CategoryListPaused_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = (Category)CategoryListPaused.SelectedItem;
-
-            if (item != null)
-            {
-                if (item.Active) StopActivity(item);
-                else StartActivity(item);
-            }
+            var item = Data.Active.Single(t => t.CategoryId == value);
+            StopActivity(item);
         }
 
         private void ApplicationBarIconButtonStatistics_Click(object sender, EventArgs e)

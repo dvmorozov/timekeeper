@@ -45,25 +45,25 @@
         <Grid x:Name="ContentPanelActive" Grid.Row="1" Margin="12,0,12,0">
             <phone:LongListSelector Margin="10" Name="CategoryListActive" 
                                     LayoutMode="Grid"
-                                    GridCellSize="140, 140"
-                                    SelectionChanged="CategoryListActive_SelectionChanged"
-                                    >
+                                    GridCellSize="140, 140">
                 <phone:LongListSelector.Resources>
                     <local:CategoryListIconConverter x:Key="CategoryListIconConverter"/>
-                    <local:CategoryListTileColorConverter x:Key="CategoryListTileColorConverter"/>
                     <local:CategoryActiveListTileColorConverter x:Key="CategoryActiveListTileColorConverter"/>
                 </phone:LongListSelector.Resources>
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <Grid Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}"
                             Margin="0, 0, 12, 12">
-                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStopAction_Click" Name="ButtonStopAction">
+                            <Button Click="ButtonStopAction_Click" CommandParameter="{Binding CategoryId}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Grid Margin="10">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
-                                        </Grid>
+                                        <!-- Border is used to make all the button clickable. -->
+                                        <Border Background="{TemplateBinding Background}">
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                                <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
+                                            </Grid>
+                                        </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
@@ -80,9 +80,7 @@
         <Grid x:Name="ContentPanelPaused" Grid.Row="2" Margin="12,0,12,0">
             <phone:LongListSelector Margin="10" Name="CategoryListPaused" 
                                     LayoutMode="Grid"
-                                    GridCellSize="140, 140"
-                                    SelectionChanged="CategoryListPaused_SelectionChanged"
-                                    >
+                                    GridCellSize="140, 140">
                 <phone:LongListSelector.Resources>
                     <local:CategoryListIconConverter x:Key="CategoryListIconConverter"/>
                     <local:CategoryListTileColorConverter x:Key="CategoryListTileColorConverter"/>
@@ -91,13 +89,16 @@
                     <DataTemplate>
                         <Grid Background="{Binding Converter={StaticResource CategoryListTileColorConverter}}"
                             Margin="0, 0, 12, 12">
-                            <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="ButtonStartStopAction_Click" Name="ButtonStartAction">
+                            <Button Click="ButtonStartStopAction_Click" CommandParameter="{Binding CategoryId}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Grid Margin="10">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
-                                        </Grid>
+                                        <!-- Border is used to make all the button clickable. -->
+                                        <Border Background="{TemplateBinding Background}">
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                                <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
+                                            </Grid>
+                                        </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
