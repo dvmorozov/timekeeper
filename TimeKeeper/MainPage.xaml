@@ -59,7 +59,7 @@
                                     <ControlTemplate TargetType="Button">
                                         <Grid Margin="10">
                                             <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <Image Source="{Binding Converter={StaticResource List_ClassConverter}}" Width="25" Height="25"/>
+                                            <Image Source="{Binding Converter={StaticResource List_ClassConverter}}"/>
                                         </Grid>
                                     </ControlTemplate>
                                 </Button.Template>
