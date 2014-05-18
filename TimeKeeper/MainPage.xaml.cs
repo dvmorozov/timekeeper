@@ -15,6 +15,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.ComponentModel;
 using Newtonsoft.Json;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace TimeKeeper
 {
@@ -436,6 +438,26 @@ namespace TimeKeeper
         }
     }
 
+    public class List_ClassConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var c = value as Category;
+            if (c != null)
+            {
+                if (c.Active) return "/Assets/AppBar/transport.pause.png";
+                else return "/Assets/AppBar/transport.play.png";
+            }
+            return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+    }
+
     public partial class MainPage : PhoneApplicationPage
     {
         //  For exchange between pages.
@@ -466,12 +488,10 @@ namespace TimeKeeper
 
         private void UpdateLists()
         {
-            CategoryListActive.ItemsSource = Data.Active;
-            CategoryListPaused.ItemsSource = Data.Paused;
+            CategoryList.ItemsSource = Data.Any;
 
             //  Must be reset to interpret the first click as a change.
-            CategoryListActive.SelectedItem = null;
-            CategoryListPaused.SelectedItem = null;
+            CategoryList.SelectedItem = null;
         }
 
         // Constructor
@@ -533,7 +553,7 @@ namespace TimeKeeper
 
         private void StartActivity()
         {
-            var item = (Category)CategoryListPaused.SelectedItem;
+            var item = (Category)CategoryList.SelectedItem;
 
             if (item != null)
             {
@@ -544,6 +564,8 @@ namespace TimeKeeper
                 UpdateLists();
                 UpdatePerfShortText();
             }
+
+            
         }
 
         private void UpdatePerfShortText()
@@ -554,7 +576,7 @@ namespace TimeKeeper
 
         private void StopActivity()
         {
-            var item = (Category)CategoryListActive.SelectedItem;
+            var item = (Category)CategoryList.SelectedItem;
 
             if (item != null)
             {
