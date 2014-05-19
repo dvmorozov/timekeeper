@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using System.ComponentModel;
 using System.Windows.Data;
 using TimeKeeper.Resources;
+using TimeKeeper.Core;
 
 namespace TimeKeeper
 {

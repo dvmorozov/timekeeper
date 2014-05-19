@@ -127,6 +127,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TimeKeeper.Core\TimeKeeper.Core.csproj">
+      <Project>{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}</Project>
+      <Name>TimeKeeper.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TimeKeeper\TimeKeeper.csproj">
       <Project>{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}</Project>
       <Name>TimeKeeper</Name>

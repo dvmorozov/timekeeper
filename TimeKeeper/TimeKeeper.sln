@@ -5,6 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper", "TimeKeeper.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTimeKeeper", "..\TestTimeKeeper\TestTimeKeeper.csproj", "{27DC6860-A20A-43D5-A3BE-84195ECD940D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Agent", "..\TimeKeeper.Agent\TimeKeeper.Agent.csproj", "{9CA97A10-2A49-4383-894C-828D4C75B60F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2} = {1ED2194F-3B91-4772-B37A-2D27C18AD0F2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Core", "..\TimeKeeper.Core\TimeKeeper.Core.csproj", "{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +68,38 @@ Global
 		{27DC6860-A20A-43D5-A3BE-84195ECD940D}.Release|x86.ActiveCfg = Release|x86
 		{27DC6860-A20A-43D5-A3BE-84195ECD940D}.Release|x86.Build.0 = Release|x86
 		{27DC6860-A20A-43D5-A3BE-84195ECD940D}.Release|x86.Deploy.0 = Release|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|ARM.Build.0 = Debug|ARM
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|x86.ActiveCfg = Debug|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Debug|x86.Build.0 = Debug|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|ARM.ActiveCfg = Release|ARM
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|ARM.Build.0 = Release|ARM
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|x86.ActiveCfg = Release|x86
+		{9CA97A10-2A49-4383-894C-828D4C75B60F}.Release|x86.Build.0 = Release|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|ARM.Build.0 = Debug|ARM
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|x86.ActiveCfg = Debug|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Debug|x86.Build.0 = Debug|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|ARM.ActiveCfg = Release|ARM
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|ARM.Build.0 = Release|ARM
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|x86.ActiveCfg = Release|x86
+		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
