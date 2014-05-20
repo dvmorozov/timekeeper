@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using Microsoft.Phone.Scheduler;
+using TimeKeeper.Core;
+using System;
 
 namespace TimeKeeper.Agent
 {
@@ -27,6 +29,8 @@ namespace TimeKeeper.Agent
                 Debugger.Break();
             }
         }
+        
+        public static StatStack Statistics;
 
         /// <summary>
         /// Agent that runs a scheduled task
@@ -39,8 +43,15 @@ namespace TimeKeeper.Agent
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            //TODO: Add code to perform your task in background
+            TimeExpensesData data = TimeExpensesData.Load();
+            Statistics = StatStack.Load(data);
 
+            Statistics.RecalculateStatisitics();
+
+#if DEBUG
+            //  This works even without debugger.
+            ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(30));
+#endif
             NotifyComplete();
         }
     }
