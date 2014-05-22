@@ -143,6 +143,10 @@ namespace TimeKeeper.Core
         private DateTime _lastActiveIsEmpty;
         [DataMember]
         private bool _lastActiveIsEmptyInitialized;
+        [DataMember]
+        private int _backgroundAgentInterval;
+        //  Used in debug environment.
+        public int BackgroundAgentInterval { get { return _backgroundAgentInterval; } }
 
         //  For unit-testing.
         public TimeSpan InactiveDuration { get { return _inactiveDuration; } }
@@ -339,6 +343,11 @@ namespace TimeKeeper.Core
         public TimeExpensesData(TimeExpensesData t)
         {
             _categories = t.CopyCategories();
+            _startDate = t._startDate;
+            _inactiveDuration = t._inactiveDuration;
+            _lastActiveIsEmpty = t._lastActiveIsEmpty;
+            _lastActiveIsEmptyInitialized = t._lastActiveIsEmptyInitialized;
+            _backgroundAgentInterval = t._backgroundAgentInterval;
         }
 
         private ObservableCollection<Category> CopyCategories()
@@ -419,7 +428,7 @@ namespace TimeKeeper.Core
                 MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
-            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, _lastActiveIsEmptyInitialized = true };
+            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, _lastActiveIsEmptyInitialized = true, _backgroundAgentInterval = 600 /*10 min*/ };
         }
 
         public void Save()

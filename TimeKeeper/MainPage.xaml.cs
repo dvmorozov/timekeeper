@@ -217,7 +217,7 @@ namespace TimeKeeper
 
                 // If debugging is enabled, use LaunchForTest to launch the agent in one minute.
                 if (Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(30));
+                    ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(Data.BackgroundAgentInterval));
             }
             catch (InvalidOperationException exception)
             {
