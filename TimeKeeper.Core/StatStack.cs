@@ -144,7 +144,7 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "StatisticsData";
 
-        public static StatStack Load(TimeExpensesData data)
+        public static StatStack Load(TimeExpensesData data, bool showMessage = true)
         {
             try
             {
@@ -168,13 +168,14 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
+                if (showMessage)
+                    MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
             return new StatStack(data);
         }
 
-        public void Save()
+        public void Save(bool showMessage = true)
         {
             //  Save data to file.
             try
@@ -188,7 +189,8 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
+                if (showMessage)
+                    MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
             }
         }
     }

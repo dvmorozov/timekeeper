@@ -43,13 +43,21 @@ namespace TimeKeeper.Agent
         /// </remarks>
         protected override void OnInvoke(ScheduledTask task)
         {
-            var data = TimeExpensesData.Load();
-            Statistics = StatStack.Load(data);
+            //  Blocks messages output.
+            try
+            {
+                var data = TimeExpensesData.Load(false);
+                Statistics = StatStack.Load(data, false);
 
-            Statistics.RecalculateStatisitics();
+                Statistics.RecalculateStatisitics();
 
-            if (Debugger.IsAttached)
-                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(data.BackgroundAgentInterval));
+                if (Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(data.BackgroundAgentInterval));
+            }
+            catch
+            { 
+                //  Blocks all exceptions.
+            }
 
             NotifyComplete();
         }

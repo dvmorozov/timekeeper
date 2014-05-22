@@ -406,7 +406,7 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "TimeExpensesData";
 
-        public static TimeExpensesData Load()
+        public static TimeExpensesData Load(bool showMessage = true)
         {
             try
             {
@@ -425,13 +425,14 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
+                if (showMessage)
+                    MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
             }
             //  In any case the object must be created!
             return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, _lastActiveIsEmptyInitialized = true, _backgroundAgentInterval = 600 /*10 min*/ };
         }
 
-        public void Save()
+        public void Save(bool showMessage = true)
         {
             //  Save data to file.
             try
@@ -445,7 +446,8 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
+                if (showMessage)
+                    MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
             }
         }
     }
