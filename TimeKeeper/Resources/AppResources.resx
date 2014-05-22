@@ -186,4 +186,10 @@
   <data name="StatisticsPageName" xml:space="preserve">
     <value>Statistics</value>
   </data>
+  <data name="BackgroundAgentDescription" xml:space="preserve">
+    <value>Updating TimeKeeper performance values.</value>
+  </data>
+  <data name="BackgroundAgentsDisabled" xml:space="preserve">
+    <value>Background agents for this application have been disabled by the user.</value>
+  </data>
 </root>

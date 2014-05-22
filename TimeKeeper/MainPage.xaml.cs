@@ -208,7 +208,7 @@ namespace TimeKeeper
 
             // The description is required for periodic agents. This is the string that the user
             // will see in the background services Settings page on the device.
-            periodicTask.Description = "Updating TimeKeeper performance values.";
+            periodicTask.Description = AppResources.BackgroundAgentDescription;
 
             // Place the call to Add in a try block in case the user has disabled agents.
             try
@@ -223,7 +223,7 @@ namespace TimeKeeper
             {
                 if (exception.Message.Contains("BNS Error: The action is disabled"))
                 {
-                    MessageBox.Show("Background agents for this application have been disabled by the user.");
+                    MessageBox.Show(AppResources.BackgroundAgentsDisabled);
                     agentsAreEnabled = false;
                 }
 

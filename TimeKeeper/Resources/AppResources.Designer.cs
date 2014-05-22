@@ -115,6 +115,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updating TimeKeeper performance values..
+        /// </summary>
+        public static string BackgroundAgentDescription {
+            get {
+                return ResourceManager.GetString("BackgroundAgentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background agents for this application have been disabled by the user..
+        /// </summary>
+        public static string BackgroundAgentsDisabled {
+            get {
+                return ResourceManager.GetString("BackgroundAgentsDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention.
         /// </summary>
         public static string DeleteCategoryCaption {
