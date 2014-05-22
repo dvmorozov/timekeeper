@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using TimeKeeper.Resources;
-using Microsoft.Phone.Scheduler;
 
 namespace TimeKeeper
 {
@@ -62,24 +60,6 @@ namespace TimeKeeper
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            string taskName = "TimeKeeperPerformanceUpdater";
-
-            PeriodicTask oldTask = ScheduledActionService.Find(taskName) as PeriodicTask;
-
-            if (oldTask != null)
-            {
-                ScheduledActionService.Remove(taskName);
-            }
-
-            PeriodicTask task = new PeriodicTask(taskName);
-            task.Description = "TimeKeeper updates the performance.";
-
-            ScheduledActionService.Add(task);
-
-            ScheduledActionService.LaunchForTest(
-                task.Name,
-                TimeSpan.FromSeconds(10));
-
         }
 
         // Code to execute when the application is activated (brought to foreground)

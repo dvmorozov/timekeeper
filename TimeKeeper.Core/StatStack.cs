@@ -142,7 +142,7 @@ namespace TimeKeeper.Core
             Save();
         }
 
-        private static string _fileName = "StatisticsData";
+        private const string _fileName = "StatisticsData";
 
         public static StatStack Load(TimeExpensesData data)
         {
@@ -153,7 +153,7 @@ namespace TimeKeeper.Core
 
                 if (fileStorage.FileExists(_fileName))
                 {
-                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, fileStorage))
+                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read, fileStorage))
                     {
                         //  Deserialize the object.
                         var ser = new DataContractJsonSerializer(typeof(StatStack));

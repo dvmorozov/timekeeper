@@ -3,17 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.Linq;
 using TimeKeeper.Core.Resources;
@@ -403,7 +395,7 @@ namespace TimeKeeper.Core
             Save();
         }
 
-        private static string _fileName = "TimeExpensesData";
+        private const string _fileName = "TimeExpensesData";
 
         public static TimeExpensesData Load()
         {
@@ -414,7 +406,7 @@ namespace TimeKeeper.Core
 
                 if (fileStorage.FileExists(_fileName))
                 {
-                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, fileStorage))
+                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read, fileStorage))
                     {
                         //  Deserialize the object.
                         var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));

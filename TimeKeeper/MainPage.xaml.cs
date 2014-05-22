@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Phone.Controls;
+using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Shell;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using TimeKeeper.Resources;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
-using System.IO.IsolatedStorage;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.ComponentModel;
-using Newtonsoft.Json;
 using System.Windows.Data;
-using System.Globalization;
+using System.Windows.Navigation;
 using TimeKeeper.Core;
+using TimeKeeper.Resources;
 
 namespace TimeKeeper
 {
@@ -93,6 +87,8 @@ namespace TimeKeeper
             UpdatePerfShortText();
 
             BuildLocalizedApplicationBar();
+
+            StartPeriodicAgent();
         }
 
         //  Replaces names with localized strings.
@@ -185,6 +181,72 @@ namespace TimeKeeper
         private void ApplicationBarIconButtonStatistics_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/StatisticsPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        PeriodicTask periodicTask;
+
+        string periodicTaskName = "TimeKeeperPerformanceUpdater";
+        public bool agentsAreEnabled = true;
+
+        private void StartPeriodicAgent()
+        {
+            // Variable for tracking enabled status of background agents for this app.
+            agentsAreEnabled = true;
+
+            // Obtain a reference to the period task, if one exists
+            periodicTask = ScheduledActionService.Find(periodicTaskName) as PeriodicTask;
+
+            // If the task already exists and background agents are enabled for the
+            // application, you must remove the task and then add it again to update 
+            // the schedule
+            if (periodicTask != null)
+            {
+                RemoveAgent(periodicTaskName);
+            }
+
+            periodicTask = new PeriodicTask(periodicTaskName);
+
+            // The description is required for periodic agents. This is the string that the user
+            // will see in the background services Settings page on the device.
+            periodicTask.Description = "Updating TimeKeeper performance values.";
+
+            // Place the call to Add in a try block in case the user has disabled agents.
+            try
+            {
+                ScheduledActionService.Add(periodicTask);
+
+                // If debugging is enabled, use LaunchForTest to launch the agent in one minute.
+                if (Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest(periodicTaskName, TimeSpan.FromSeconds(30));
+            }
+            catch (InvalidOperationException exception)
+            {
+                if (exception.Message.Contains("BNS Error: The action is disabled"))
+                {
+                    MessageBox.Show("Background agents for this application have been disabled by the user.");
+                    agentsAreEnabled = false;
+                }
+
+                if (exception.Message.Contains("BNS Error: The maximum number of ScheduledActions of this type have already been added."))
+                {
+                    // No user action required. The system prompts the user when the hard limit of periodic tasks has been reached.
+                }
+            }
+            catch (SchedulerServiceException)
+            {
+                // No user action required.
+            }
+        }
+
+        private void RemoveAgent(string name)
+        {
+            try
+            {
+                ScheduledActionService.Remove(name);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

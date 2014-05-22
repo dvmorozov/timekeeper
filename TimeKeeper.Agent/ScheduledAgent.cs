@@ -48,10 +48,9 @@ namespace TimeKeeper.Agent
 
             Statistics.RecalculateStatisitics();
 
-#if DEBUG
-            //  This works even without debugger.
-            ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(30));
-#endif
+            if (Debugger.IsAttached)
+                ScheduledActionService.LaunchForTest(task.Name, TimeSpan.FromSeconds(30));
+
             NotifyComplete();
         }
     }

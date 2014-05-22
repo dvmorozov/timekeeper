@@ -188,6 +188,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TimeKeeper.Agent\TimeKeeper.Agent.csproj">
+      <Project>{9CA97A10-2A49-4383-894C-828D4C75B60F}</Project>
+      <Name>TimeKeeper.Agent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TimeKeeper.Core\TimeKeeper.Core.csproj">
       <Project>{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}</Project>
       <Name>TimeKeeper.Core</Name>
