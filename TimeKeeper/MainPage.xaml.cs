@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 using TimeKeeper.Core;
 using TimeKeeper.Resources;
 
@@ -88,7 +89,8 @@ namespace TimeKeeper
 
             BuildLocalizedApplicationBar();
 
-            StartPeriodicAgent();
+            //StartPeriodicAgent();
+            SetTimer();
         }
 
         //  Replaces names with localized strings.
@@ -247,6 +249,23 @@ namespace TimeKeeper
             catch (Exception)
             {
             }
+        }
+
+        void OnTimerTick(Object sender, EventArgs args)
+        {
+            UpdatePerfShortText();
+        }
+
+        private void SetTimer()
+        {
+            // creating timer instance
+            var newTimer = new DispatcherTimer();
+            // timer interval specified as 1 second
+            newTimer.Interval = TimeSpan.FromSeconds(10);
+            // Sub-routine OnTimerTick will be called at every ... seconds
+            newTimer.Tick += OnTimerTick;
+            // starting the timer
+            newTimer.Start();
         }
     }
 }
