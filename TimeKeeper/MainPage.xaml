@@ -37,6 +37,8 @@
                 
                 <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
                 <TextBlock Grid.Column="1" Text="{Binding Path=LocalizedResources.PerformanceShortText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Name="PerfShortText"/>
+                <MediaElement x:Name="DingDown" Source="/Assets/Sounds/Ding Down.wav" AutoPlay="False" Visibility="Collapsed"/>
+                <MediaElement x:Name="DingUp" Source="/Assets/Sounds/Ding Up.wav" AutoPlay="False" Visibility="Collapsed"/>
             </Grid>
             <TextBlock Text="{Binding Path=LocalizedResources.MainPageName, Source={StaticResource LocalizedStrings}}" Margin="9,0,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
         </StackPanel>

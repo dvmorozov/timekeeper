@@ -243,6 +243,14 @@ namespace TimeKeeper.Core
             }
         }
 
+        //  Cached value of the performance.
+        private double _lastPerf;
+
+        public double LastPerf
+        {
+            get { return _lastPerf; }
+        }
+
         //  Accumulative performance.
         public double Perf
         {
@@ -274,6 +282,7 @@ namespace TimeKeeper.Core
                 if (totalSeconds != 0)
                     perf = importantDuration.TotalSeconds * 100.0 / totalSeconds;
 
+                _lastPerf = perf;
                 return perf;
             }
         }

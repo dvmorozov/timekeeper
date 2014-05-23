@@ -251,9 +251,23 @@ namespace TimeKeeper
             }
         }
 
+        private double _prevPerf;
+        private bool _prevPerfInitialized;
+
         void OnTimerTick(Object sender, EventArgs args)
         {
             UpdatePerfShortText();
+
+            var perf = Data.LastPerf;
+            if (_prevPerfInitialized)
+            {
+                if (perf >= _prevPerf)
+                    DingUp.Play();
+                else
+                    DingDown.Play();
+            }
+            _prevPerf = perf;
+            _prevPerfInitialized = true;
         }
 
         private void SetTimer()
