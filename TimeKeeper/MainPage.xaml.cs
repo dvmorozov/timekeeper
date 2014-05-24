@@ -125,8 +125,25 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/AddCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void SetAppBarTexts()
+        {
+            ApplicationBarIconButton b = ApplicationBar.Buttons[0] as ApplicationBarIconButton;
+            /*
+            if (b != null)
+            {
+                b.Text = "p0wnage";
+            }
+             * */
+            ApplicationBarMenuItem m = ApplicationBar.MenuItems[0] as ApplicationBarMenuItem;
+            if (m != null)
+            {
+                m.Text = AppResources.MainMenuItemAboutCaption;
+            }
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            SetAppBarTexts();            
         }
 
         private void ApplicationBarIconButtonDelete_Click(object sender, EventArgs e)
@@ -280,6 +297,11 @@ namespace TimeKeeper
             newTimer.Tick += OnTimerTick;
             // starting the timer
             newTimer.Start();
+        }
+
+        private void ApplicationBarAboutMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

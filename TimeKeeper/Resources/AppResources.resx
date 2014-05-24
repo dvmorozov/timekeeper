@@ -192,4 +192,25 @@
   <data name="BackgroundAgentsDisabled" xml:space="preserve">
     <value>Background agents for this application have been disabled by the user.</value>
   </data>
+  <data name="AboutPivotDonatePageHeader" xml:space="preserve">
+    <value>Donate</value>
+  </data>
+  <data name="AboutPivotPollPageHeader" xml:space="preserve">
+    <value>Poll</value>
+  </data>
+  <data name="AboutPivotSourcePageHeader" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="MainButtonAddCaption" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="MainButtonDeleteCaption" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MainButtonStatisticsCaption" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="MainMenuItemAboutCaption" xml:space="preserve">
+    <value>About</value>
+  </data>
 </root>

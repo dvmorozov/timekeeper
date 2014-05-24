@@ -61,6 +61,33 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Donate.
+        /// </summary>
+        public static string AboutPivotDonatePageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotDonatePageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poll.
+        /// </summary>
+        public static string AboutPivotPollPageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotPollPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source.
+        /// </summary>
+        public static string AboutPivotSourcePageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotSourcePageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Your Usual Activity.
         /// </summary>
         public static string AddCategoryPageName {
@@ -165,6 +192,42 @@ namespace TimeKeeper.Resources {
         public static string ImportantText {
             get {
                 return ResourceManager.GetString("ImportantText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string MainButtonAddCaption {
+            get {
+                return ResourceManager.GetString("MainButtonAddCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string MainButtonDeleteCaption {
+            get {
+                return ResourceManager.GetString("MainButtonDeleteCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string MainButtonStatisticsCaption {
+            get {
+                return ResourceManager.GetString("MainButtonStatisticsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string MainMenuItemAboutCaption {
+            get {
+                return ResourceManager.GetString("MainMenuItemAboutCaption", resourceCulture);
             }
         }
         
