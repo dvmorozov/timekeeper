@@ -27,6 +27,7 @@
                         <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotPollPageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
                     </Grid>
                 </phone:PivotItem.Header>
+                <phone:WebBrowser Source="https://docs.google.com/forms/d/19VZzbsViYjawtgKLq0Pnp12oR8OKiiGn9DlO-jPgVr0/viewform"/>
             </phone:PivotItem>
 
             <phone:PivotItem>
