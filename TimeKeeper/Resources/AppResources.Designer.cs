@@ -61,29 +61,83 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Donate.
+        ///   Looks up a localized string similar to ...or contact by email .
         /// </summary>
-        public static string AboutPivotDonatePageHeader {
+        public static string AboutContactByEmailText {
             get {
-                return ResourceManager.GetString("AboutPivotDonatePageHeader", resourceCulture);
+                return ResourceManager.GetString("AboutContactByEmailText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Poll.
+        ///   Looks up a localized string similar to Fill free to add me into your professional network at LinkedIn....
         /// </summary>
-        public static string AboutPivotPollPageHeader {
+        public static string AboutContactText {
             get {
-                return ResourceManager.GetString("AboutPivotPollPageHeader", resourceCulture);
+                return ResourceManager.GetString("AboutContactText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Source.
+        ///   Looks up a localized string similar to dvmorozov@hotmail.com.
         /// </summary>
-        public static string AboutPivotSourcePageHeader {
+        public static string AboutEmailText {
             get {
-                return ResourceManager.GetString("AboutPivotSourcePageHeader", resourceCulture);
+                return ResourceManager.GetString("AboutEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This project is open source and is published at GitHub. You are welcomed to contribute!.
+        /// </summary>
+        public static string AboutLicenseText {
+            get {
+                return ResourceManager.GetString("AboutLicenseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My LinkedIn Profile.
+        /// </summary>
+        public static string AboutMyProfileText {
+            get {
+                return ResourceManager.GetString("AboutMyProfileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact.
+        /// </summary>
+        public static string AboutPivotContactPageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotContactPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contribute.
+        /// </summary>
+        public static string AboutPivotContributePageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotContributePageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Respond.
+        /// </summary>
+        public static string AboutPivotRespondPageHeader {
+            get {
+                return ResourceManager.GetString("AboutPivotRespondPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project page at GitHub.
+        /// </summary>
+        public static string AboutProjectPageText {
+            get {
+                return ResourceManager.GetString("AboutProjectPageText", resourceCulture);
             }
         }
         
@@ -223,7 +277,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to Contribute.
         /// </summary>
         public static string MainMenuItemAboutCaption {
             get {

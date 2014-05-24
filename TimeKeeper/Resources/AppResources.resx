@@ -192,14 +192,14 @@
   <data name="BackgroundAgentsDisabled" xml:space="preserve">
     <value>Background agents for this application have been disabled by the user.</value>
   </data>
-  <data name="AboutPivotDonatePageHeader" xml:space="preserve">
-    <value>Donate</value>
+  <data name="AboutPivotContributePageHeader" xml:space="preserve">
+    <value>Contribute</value>
   </data>
-  <data name="AboutPivotPollPageHeader" xml:space="preserve">
-    <value>Poll</value>
+  <data name="AboutPivotRespondPageHeader" xml:space="preserve">
+    <value>Respond</value>
   </data>
-  <data name="AboutPivotSourcePageHeader" xml:space="preserve">
-    <value>Source</value>
+  <data name="AboutPivotContactPageHeader" xml:space="preserve">
+    <value>Contact</value>
   </data>
   <data name="MainButtonAddCaption" xml:space="preserve">
     <value>Add</value>
@@ -211,6 +211,24 @@
     <value>Statistics</value>
   </data>
   <data name="MainMenuItemAboutCaption" xml:space="preserve">
-    <value>About</value>
+    <value>Contribute</value>
+  </data>
+  <data name="AboutContactByEmailText" xml:space="preserve">
+    <value>...or contact by email </value>
+  </data>
+  <data name="AboutContactText" xml:space="preserve">
+    <value>Fill free to add me into your professional network at LinkedIn...</value>
+  </data>
+  <data name="AboutEmailText" xml:space="preserve">
+    <value>dvmorozov@hotmail.com</value>
+  </data>
+  <data name="AboutLicenseText" xml:space="preserve">
+    <value>This project is open source and is published at GitHub. You are welcomed to contribute!</value>
+  </data>
+  <data name="AboutMyProfileText" xml:space="preserve">
+    <value>My LinkedIn Profile</value>
+  </data>
+  <data name="AboutProjectPageText" xml:space="preserve">
+    <value>Project page at GitHub</value>
   </data>
 </root>

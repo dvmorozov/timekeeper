@@ -20,11 +20,11 @@
             <phone:Pivot.Title>
                 <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
             </phone:Pivot.Title>
-            
+
             <phone:PivotItem>
                 <phone:PivotItem.Header>
                     <Grid>
-                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotPollPageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotRespondPageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
                     </Grid>
                 </phone:PivotItem.Header>
                 <phone:WebBrowser Source="https://docs.google.com/forms/d/19VZzbsViYjawtgKLq0Pnp12oR8OKiiGn9DlO-jPgVr0/viewform"/>
@@ -33,7 +33,7 @@
             <phone:PivotItem>
                 <phone:PivotItem.Header>
                     <Grid>
-                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotDonatePageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotContributePageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
                     </Grid>
                 </phone:PivotItem.Header>
             </phone:PivotItem>
@@ -41,11 +41,19 @@
             <phone:PivotItem>
                 <phone:PivotItem.Header>
                     <Grid>
-                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotSourcePageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.AboutPivotContactPageHeader, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
                     </Grid>
                 </phone:PivotItem.Header>
+                <StackPanel>
+                    <TextBlock Margin="20" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.AboutLicenseText, Source={StaticResource LocalizedStrings}}"/>
+                    <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.AboutProjectPageText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" NavigateUri="https://github.com/dvmorozov/timekeeper" TargetName="_blank"/>
+                    <TextBlock Margin="20" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.AboutContactText, Source={StaticResource LocalizedStrings}}"/>
+                    <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.AboutMyProfileText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" NavigateUri="https://www.linkedin.com/pub/dmitry-morozov/55/265/743" TargetName="_blank"/>
+                    <TextBlock Margin="20" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.AboutContactByEmailText, Source={StaticResource LocalizedStrings}}"/>
+                    <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.AboutEmailText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" NavigateUri="mailto:dvmorozov@hotmail.com" TargetName="_blank"/>
+                </StackPanel>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>
