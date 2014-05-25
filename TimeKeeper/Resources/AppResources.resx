@@ -231,4 +231,13 @@
   <data name="AboutProjectPageText" xml:space="preserve">
     <value>Project page at GitHub</value>
   </data>
+  <data name="DonatePageText" xml:space="preserve">
+    <value>Donate by PayPal</value>
+  </data>
+  <data name="PageOpeningErrorMessage" xml:space="preserve">
+    <value>Error in opening page: {0}</value>
+  </data>
+  <data name="DonationText" xml:space="preserve">
+    <value>Your donations are very appreciated and will be spent at project development.</value>
+  </data>
 </root>

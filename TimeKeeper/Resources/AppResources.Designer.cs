@@ -241,6 +241,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Donate by PayPal.
+        /// </summary>
+        public static string DonatePageText {
+            get {
+                return ResourceManager.GetString("DonatePageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your donations are very appreciated and will be spent at project development..
+        /// </summary>
+        public static string DonationText {
+            get {
+                return ResourceManager.GetString("DonationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Important.
         /// </summary>
         public static string ImportantText {
@@ -309,6 +327,15 @@ namespace TimeKeeper.Resources {
         public static string NotUrgentText {
             get {
                 return ResourceManager.GetString("NotUrgentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error in opening page: {0}.
+        /// </summary>
+        public static string PageOpeningErrorMessage {
+            get {
+                return ResourceManager.GetString("PageOpeningErrorMessage", resourceCulture);
             }
         }
         
