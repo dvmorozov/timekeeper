@@ -271,10 +271,8 @@ namespace TimeKeeper
         private double _prevPerf;
         private bool _prevPerfInitialized;
 
-        void OnTimerTick(Object sender, EventArgs args)
+        private void PlayDing()
         {
-            UpdatePerfShortText();
-
             var perf = Data.LastPerf;
             if (_prevPerfInitialized)
             {
@@ -285,6 +283,31 @@ namespace TimeKeeper
             }
             _prevPerf = perf;
             _prevPerfInitialized = true;
+        }
+
+        private bool _wasATimerEvent;
+        private DateTime _prevTimerEvent;
+        private static IDateTime _dt = new SysDateTime();
+
+        void OnTimerTick(Object sender, EventArgs args)
+        {
+            UpdatePerfShortText();
+
+            if (!_wasATimerEvent)
+            {
+                //  Must be after UpdatePerfShortText(), because uses the cached value of performance.
+                PlayDing();
+                _wasATimerEvent = true;
+            }
+            else
+            {
+                //  Ding sounds every half an hour.
+                var now = _dt.Now;
+                if((now.Minute == 0 && _prevTimerEvent.Minute != 0) ||
+                   (now.Minute >= 30 && _prevTimerEvent.Minute < 30))
+                    PlayDing();
+            }
+            _prevTimerEvent = _dt.Now;
         }
 
         private void SetTimer()
