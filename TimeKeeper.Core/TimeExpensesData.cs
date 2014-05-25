@@ -148,7 +148,7 @@ namespace TimeKeeper.Core
         //  Used in debug environment.
         public int BackgroundAgentInterval { get { return _backgroundAgentInterval; } }
 
-        //  For unit-testing.
+        //  The time duration when no tasks are performed.
         public TimeSpan InactiveDuration { get { return _inactiveDuration; } }
 
         private static IDateTime _dt = new SysDateTime();
@@ -220,7 +220,7 @@ namespace TimeKeeper.Core
             get { return _categories; }
         }
 
-        //  Instantaneous performance.
+        //  Instantaneous performance (for statistics).
         public double InstPerf
         {
             get
@@ -277,6 +277,11 @@ namespace TimeKeeper.Core
                     else
                         notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(c.LastStart));
                 }
+
+                //  Adds inactive duration.
+                notImportantDuration = notImportantDuration.Add(_inactiveDuration);
+                if (Active.Count == 0)
+                    notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
 
                 var totalSeconds = notImportantDuration.TotalSeconds + importantDuration.TotalSeconds;
                 if (totalSeconds != 0)
