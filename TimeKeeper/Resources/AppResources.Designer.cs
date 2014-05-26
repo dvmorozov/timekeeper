@@ -412,6 +412,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to the translation form.
+        /// </summary>
+        public static string TranslatePageText {
+            get {
+                return ResourceManager.GetString("TranslatePageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ll be very appreciate if you will to translate the user interface into other languages. These languages will be available in one of next releases..
+        /// </summary>
+        public static string TranslationText {
+            get {
+                return ResourceManager.GetString("TranslationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Urgent.
         /// </summary>
         public static string UrgentText {

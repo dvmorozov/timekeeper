@@ -240,4 +240,10 @@
   <data name="DonationText" xml:space="preserve">
     <value>Your donations are very appreciated and will be spent at project development.</value>
   </data>
+  <data name="TranslatePageText" xml:space="preserve">
+    <value>Go to the translation form</value>
+  </data>
+  <data name="TranslationText" xml:space="preserve">
+    <value>I'll be very appreciate if you will to translate the user interface into other languages. These languages will be available in one of next releases.</value>
+  </data>
 </root>

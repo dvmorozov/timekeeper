@@ -41,6 +41,8 @@
                     <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.AboutProjectPageText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" NavigateUri="https://github.com/dvmorozov/timekeeper" TargetName="_blank"/>
                     <TextBlock Margin="20" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.DonationText, Source={StaticResource LocalizedStrings}}"/>
                     <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.DonatePageText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Click="HyperlinkButton_Click" TargetName="_blank"/>
+                    <TextBlock Margin="20" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.TranslationText, Source={StaticResource LocalizedStrings}}"/>
+                    <HyperlinkButton Margin="20" Content="{Binding Path=LocalizedResources.TranslatePageText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" NavigateUri="https://docs.google.com/forms/d/1dLwO5yhsLSUQB1ENAlHUoIUUGqReCA4ZCsnjuNJDPfo/viewform" TargetName="_blank"/>
                 </StackPanel>
             </phone:PivotItem>
 
