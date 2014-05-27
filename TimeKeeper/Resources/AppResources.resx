@@ -135,17 +135,17 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
-  <data name="AddCategoryPageName" xml:space="preserve">
+  <data name="AddCategoryText" xml:space="preserve">
     <value>Add Your Usual Activity</value>
   </data>
   <data name="AppBarButtonDeleteText" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="DeleteCategoryPageName" xml:space="preserve">
-    <value>Delete Activity</value>
+    <value>Delete</value>
   </data>
   <data name="MainPageName" xml:space="preserve">
-    <value>Start Activity</value>
+    <value>Start/Stop</value>
   </data>
   <data name="DeleteCategoryCaption" xml:space="preserve">
     <value>Attention</value>
@@ -245,5 +245,8 @@
   </data>
   <data name="TranslationText" xml:space="preserve">
     <value>I'll be very appreciate if you will to translate the user interface into other languages. These languages will be available in one of next releases.</value>
+  </data>
+  <data name="AddCategoryPageName" xml:space="preserve">
+    <value>Add</value>
   </data>
 </root>

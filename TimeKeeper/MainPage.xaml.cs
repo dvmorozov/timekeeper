@@ -69,9 +69,11 @@ namespace TimeKeeper
         {
             CategoryListActive.ItemsSource = null;
             CategoryListPaused.ItemsSource = null;
+            DeleteCategoryList.ItemsSource = null;
 
             CategoryListActive.ItemsSource = Data.Active;
             CategoryListPaused.ItemsSource = Data.Any;
+            DeleteCategoryList.ItemsSource = Data.Any;
         }
 
         // Constructor
@@ -120,11 +122,6 @@ namespace TimeKeeper
             }
         }
 
-        private void ApplicationBarIconButtonAdd_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AddCategoryPage.xaml", UriKind.RelativeOrAbsolute));
-        }
-
         private void SetAppBarTexts()
         {
             ApplicationBarIconButton b = ApplicationBar.Buttons[0] as ApplicationBarIconButton;
@@ -144,11 +141,6 @@ namespace TimeKeeper
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             SetAppBarTexts();            
-        }
-
-        private void ApplicationBarIconButtonDelete_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/DeleteCategoryPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void StartActivity(Category item)
@@ -325,6 +317,54 @@ namespace TimeKeeper
         private void ApplicationBarAboutMenuItem_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void DeleteSelectedItem()
+        {
+            var item = (Category)DeleteCategoryList.SelectedItem;
+            if (item != null)
+            {
+                //  Searches the list to protect from duplicate question.
+                if (MainPage.Data.Any.IndexOf(item) != -1)
+                {
+                    var name = item.Name;
+                    if (MessageBox.Show(string.Format(AppResources.DeleteCategoryMessage, name), AppResources.DeleteCategoryCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    {
+                        MainPage.Data.DeleteCategory(item);
+                    }
+                }
+            }
+        }
+
+        private void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DeleteSelectedItem();
+        }
+
+        //  This allows to repeat the deleting procedure if user cancels it for the first time.
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteSelectedItem();
+        }
+
+        private void ButtonAddUrgentImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, true);
+        }
+
+        private void ButtonAddNotUrgentImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, true);
+        }
+
+        private void ButtonAddUrgentNotImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, false);
+        }
+
+        private void ButtonAddNotUrgentNotImportant_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, false);
         }
     }
 }

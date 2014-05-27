@@ -142,11 +142,20 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Your Usual Activity.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddCategoryPageName {
             get {
                 return ResourceManager.GetString("AddCategoryPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Your Usual Activity.
+        /// </summary>
+        public static string AddCategoryText {
+            get {
+                return ResourceManager.GetString("AddCategoryText", resourceCulture);
             }
         }
         
@@ -232,7 +241,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Activity.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteCategoryPageName {
             get {
@@ -304,7 +313,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start Activity.
+        ///   Looks up a localized string similar to Start/Stop.
         /// </summary>
         public static string MainPageName {
             get {
