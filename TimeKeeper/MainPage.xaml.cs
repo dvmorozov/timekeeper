@@ -174,10 +174,13 @@ namespace TimeKeeper
             var button = (Button)sender;
             var value = (Guid)button.CommandParameter;
 
-            var item = Data.Paused.Single(t => t.CategoryId == value);
+            if (Data.Paused.Any(t => t.CategoryId == value))
+            {
+                var item = Data.Paused.Single(t => t.CategoryId == value);
 
-            if (item.Active) StopActivity(item);
-            else StartActivity(item);
+                if (item.Active) StopActivity(item);
+                else StartActivity(item);
+            }
         }
 
         private void ButtonStopAction_Click(object sender, RoutedEventArgs e)
@@ -185,8 +188,11 @@ namespace TimeKeeper
             var button = (Button)sender;
             var value = (Guid)button.CommandParameter;
 
-            var item = Data.Active.Single(t => t.CategoryId == value);
-            StopActivity(item);
+            if (Data.Paused.Any(t => t.CategoryId == value))
+            {
+                var item = Data.Active.Single(t => t.CategoryId == value);
+                StopActivity(item);
+            }
         }
 
         private void ApplicationBarIconButtonStatistics_Click(object sender, EventArgs e)
