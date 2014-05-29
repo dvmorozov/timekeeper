@@ -387,14 +387,11 @@ namespace TimeKeeper.Core
 
         public void AddDefaultCategories()
         {
-            if (MessageBox.Show(AppResources.AddDefaultCategoriesMessage, AppResources.AddDefaultCategoriesCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            var categories = AppResources.DefaultCategories;
+            var rootObject = JsonConvert.DeserializeObject<RootObject>(categories);
+            foreach (var c in rootObject.CategorieList)
             {
-                var categories = AppResources.DefaultCategories;
-                var rootObject = JsonConvert.DeserializeObject<RootObject>(categories);
-                foreach (var c in rootObject.CategorieList)
-                {
-                    AddCategory(c.Name, c.Urgent, c.Important);
-                }
+                AddCategory(c.Name, c.Urgent, c.Important);
             }
         }
 
@@ -420,8 +417,9 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "TimeExpensesData";
 
-        public static TimeExpensesData Load(bool showMessage = true)
+        public static TimeExpensesData Load(out string errorMsg)
         {
+            errorMsg = "";
             try
             {
                 //  Load data from file.
@@ -439,14 +437,15 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                if (showMessage)
-                    MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
+                //  To meet Windows Store conditions!
+                errorMsg = e.Message;
             }
             //  In any case the object must be created!
-            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, _lastActiveIsEmptyInitialized = true, _backgroundAgentInterval = 600 /*10 min*/ };
+            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, 
+                _lastActiveIsEmptyInitialized = true, _backgroundAgentInterval = 600 /*10 min*/ };
         }
 
-        public void Save(bool showMessage = true)
+        public void Save()
         {
             //  Save data to file.
             try
@@ -460,8 +459,7 @@ namespace TimeKeeper.Core
             }
             catch (Exception e)
             {
-                if (showMessage)
-                    MessageBox.Show(string.Format(AppResources.ActionSavingErrorMessage, e.Message));
+                //  To meet Windows Store conditions!
             }
         }
     }

@@ -46,8 +46,9 @@ namespace TimeKeeper.Agent
             //  Blocks messages output.
             try
             {
-                var data = TimeExpensesData.Load(false);
-                Statistics = StatStack.Load(data, false);
+                var errMsg = string.Empty;
+                var data = TimeExpensesData.Load(out errMsg);
+                Statistics = StatStack.Load(data, out errMsg);
 
                 Statistics.RecalculateStatisitics();
 

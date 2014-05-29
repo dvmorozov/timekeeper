@@ -246,7 +246,19 @@
   <data name="TranslationText" xml:space="preserve">
     <value>I'll be very appreciate if you will to translate the user interface into other languages. These languages will be available in one of next releases.</value>
   </data>
+  <data name="ActionLoadingErrorMessage" xml:space="preserve">
+    <value>Actions loading error: "{0}"!</value>
+  </data>
+  <data name="ActionSavingErrorMessage" xml:space="preserve">
+    <value>Actions saving error: "{0}"!</value>
+  </data>
   <data name="AddCategoryPageName" xml:space="preserve">
     <value>Add</value>
+  </data>
+  <data name="AddDefaultCategoriesCaption" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="AddDefaultCategoriesMessage" xml:space="preserve">
+    <value>Your activity list is empty. Do you want to add default activities?</value>
   </data>
 </root>

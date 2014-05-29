@@ -61,42 +61,6 @@ namespace TimeKeeper.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actions loading error: &quot;{0}&quot;!.
-        /// </summary>
-        internal static string ActionLoadingErrorMessage {
-            get {
-                return ResourceManager.GetString("ActionLoadingErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Actions saving error: &quot;{0}&quot;!.
-        /// </summary>
-        internal static string ActionSavingErrorMessage {
-            get {
-                return ResourceManager.GetString("ActionSavingErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hint.
-        /// </summary>
-        internal static string AddDefaultCategoriesCaption {
-            get {
-                return ResourceManager.GetString("AddDefaultCategoriesCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your activity list is empty. Do you want to add default activities?.
-        /// </summary>
-        internal static string AddDefaultCategoriesMessage {
-            get {
-                return ResourceManager.GetString("AddDefaultCategoriesMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {&apos;CategorieList&apos;: [{&apos;Name&apos;: &apos;Working&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Learning&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Eating&apos;, &apos;Urgent&apos;: true, 
         ///&apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Driving&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Sleeping&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Watching TV&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Walking&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Talking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Surfing Internet&apos;, [rest of string was truncated]&quot;;.
         /// </summary>

@@ -45,7 +45,10 @@ namespace TimeKeeper
 
         private void LoadCategories()
         {
-            Data = TimeExpensesData.Load();
+            var errMessage = string.Empty;
+            Data = TimeExpensesData.Load(out errMessage);
+            if (errMessage != string.Empty)
+                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, errMessage));
         }
 
         private void SaveCategories()
@@ -55,7 +58,10 @@ namespace TimeKeeper
 
         private void LoadStatistics()
         {
-            Statistics = StatStack.Load(Data);
+            var errMsg = string.Empty;
+            Statistics = StatStack.Load(Data, out errMsg);
+            if (errMsg != string.Empty)
+                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, errMsg));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -84,7 +90,13 @@ namespace TimeKeeper
             LoadStatistics();
 
             if (Data.Any.Count == 0)
-                Data.AddDefaultCategories();
+            {
+                //  To meet Windows Store conditions!
+                if (MessageBox.Show(
+                        AppResources.AddDefaultCategoriesMessage, AppResources.AddDefaultCategoriesCaption, 
+                        MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    Data.AddDefaultCategories();
+            }
 
             UpdateLists();
             UpdatePerfShortText();

@@ -142,6 +142,24 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actions loading error: &quot;{0}&quot;!.
+        /// </summary>
+        public static string ActionLoadingErrorMessage {
+            get {
+                return ResourceManager.GetString("ActionLoadingErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actions saving error: &quot;{0}&quot;!.
+        /// </summary>
+        public static string ActionSavingErrorMessage {
+            get {
+                return ResourceManager.GetString("ActionSavingErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddCategoryPageName {
@@ -156,6 +174,24 @@ namespace TimeKeeper.Resources {
         public static string AddCategoryText {
             get {
                 return ResourceManager.GetString("AddCategoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        public static string AddDefaultCategoriesCaption {
+            get {
+                return ResourceManager.GetString("AddDefaultCategoriesCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your activity list is empty. Do you want to add default activities?.
+        /// </summary>
+        public static string AddDefaultCategoriesMessage {
+            get {
+                return ResourceManager.GetString("AddDefaultCategoriesMessage", resourceCulture);
             }
         }
         
