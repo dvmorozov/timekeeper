@@ -200,7 +200,7 @@ namespace TimeKeeper
             var button = (Button)sender;
             var value = (Guid)button.CommandParameter;
 
-            if (Data.Paused.Any(t => t.CategoryId == value))
+            if (Data.Active.Any(t => t.CategoryId == value))
             {
                 var item = Data.Active.Single(t => t.CategoryId == value);
                 StopActivity(item);
