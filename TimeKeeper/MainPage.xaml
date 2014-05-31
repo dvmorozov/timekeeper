@@ -264,14 +264,13 @@
 
             <Grid Background="Transparent">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Grid>
+                <Grid x:Name="ContentPanelDelete" Grid.Row="1">
                     <phone:LongListSelector Margin="10" Name="DeleteCategoryList" 
                                     LayoutMode="Grid"
-                                    GridCellSize="140, 140"
-                                    SelectionChanged="CategoryList_SelectionChanged">
+                                    GridCellSize="140, 140">
                         <phone:LongListSelector.Resources>
                             <local:CategoryListTileColorConverter x:Key="CategoryListTileColorConverter"/>
                         </phone:LongListSelector.Resources>
@@ -281,10 +280,13 @@
                                     <Button Content="More" VerticalAlignment="Top" HorizontalAlignment="Right" Height="60" Width="60" Click="Button_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
-                                                <Grid Margin="10">
-                                                    <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                                    <Image Source="/Assets/AppBar/delete.png" HorizontalAlignment="Right"/>
-                                                </Grid>
+                                                <!-- Border is used to make all the button clickable. -->
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <Grid Margin="10">
+                                                        <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
+                                                        <Image Source="/Assets/AppBar/delete.png" HorizontalAlignment="Right"/>
+                                                    </Grid>
+                                                </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
