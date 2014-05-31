@@ -367,22 +367,26 @@ namespace TimeKeeper
 
         private void ButtonAddUrgentImportant_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, true);
+            Data.AddCategory(TextBoxCategoryName.Text, true, true);
+            MainPivot.SelectedIndex = 0;
         }
 
         private void ButtonAddNotUrgentImportant_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, true);
+            Data.AddCategory(TextBoxCategoryName.Text, false, true);
+            MainPivot.SelectedIndex = 0;
         }
 
         private void ButtonAddUrgentNotImportant_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Data.AddCategory(TextBoxCategoryName.Text, true, false);
+            Data.AddCategory(TextBoxCategoryName.Text, true, false);
+            MainPivot.SelectedIndex = 0;
         }
 
         private void ButtonAddNotUrgentNotImportant_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Data.AddCategory(TextBoxCategoryName.Text, false, false);
+            Data.AddCategory(TextBoxCategoryName.Text, false, false);
+            MainPivot.SelectedIndex = 0;
         }
     }
 }
