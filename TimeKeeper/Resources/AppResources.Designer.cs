@@ -232,7 +232,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time Keeper.
+        ///   Looks up a localized string similar to Performator.
         /// </summary>
         public static string ApplicationTitle {
             get {

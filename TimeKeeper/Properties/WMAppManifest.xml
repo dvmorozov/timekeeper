@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{e2e8698e-4cd9-46ad-baa6-265d52f40a50}" Title="TimeKeeper" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="TimeKeeper author" Description="Sample description" Publisher="TimeKeeper" PublisherID="{3b9e9721-2762-4fcc-9d55-864d16aed6a3}">
+  <App xmlns="" ProductID="{e2e8698e-4cd9-46ad-baa6-265d52f40a50}" Title="Performator" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Dmitry Morozov" Description="Sample description" Publisher="Dmitry Morozov" PublisherID="{3b9e9721-2762-4fcc-9d55-864d16aed6a3}">
     <IconPath IsRelative="true" IsResource="false">Assets\AppBar\feature.alarm.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -22,7 +22,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">Assets\AppBar\feature.alarm.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\AppBar\feature.alarm.png</BackgroundImageURI>
-          <Title>TimeKeeper</Title>
+          <Title>Performator</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI>
