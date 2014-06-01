@@ -13,7 +13,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded"
+    local:TiltEffect.IsTiltEnabled="True">
 
     <!--Pivot Control-->
     <phone:Pivot x:Name="MainPivot">
@@ -41,11 +42,11 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                
+
                         <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.PerformanceShortText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Name="PerfShortText"/>
                         <MediaElement x:Name="DingDown" Source="/Assets/Sounds/Ding Down.wav" AutoPlay="False" Visibility="Collapsed"/>
                         <MediaElement x:Name="DingUp" Source="/Assets/Sounds/Ding Up.wav" AutoPlay="False" Visibility="Collapsed"/>
@@ -63,25 +64,25 @@
                         </phone:LongListSelector.Resources>
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <Grid Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}"
-                                    Margin="0, 0, 12, 12">
-                                    <Button Click="ButtonStopAction_Click" CommandParameter="{Binding CategoryId}">
+                                <Grid Margin="0, 0, 12, 12">
+                                    <Button Click="ButtonStopAction_Click" CommandParameter="{Binding CategoryId}"
+                                            Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <!-- Border is used to make all the button clickable. -->
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                                        <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                                        <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
-                                                    </Grid>
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Gray">
+                                                    <StackPanel>
+                                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                            <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
+                                                        </Grid>
+                                                        <TextBlock TextWrapping="NoWrap" Text="{Binding Name}" Margin="6, 0, 0, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                        <TextBlock TextWrapping="NoWrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                    </StackPanel>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" />
-                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
@@ -98,25 +99,25 @@
                         </phone:LongListSelector.Resources>
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <Grid Background="{Binding Converter={StaticResource CategoryListTileColorConverter}}"
-                                    Margin="0, 0, 12, 12">
-                                    <Button Click="ButtonStartStopAction_Click" CommandParameter="{Binding CategoryId}">
+                                <Grid Margin="0, 0, 12, 12">
+                                    <Button BorderThickness="0" Click="ButtonStartStopAction_Click" CommandParameter="{Binding CategoryId}"
+                                            Background="{Binding Converter={StaticResource CategoryListTileColorConverter}}">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <!-- Border is used to make all the button clickable. -->
-                                                <Border Background="{TemplateBinding Background}">
-                                                    <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                                        <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                                        <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
-                                                    </Grid>
+                                                <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Gray">
+                                                    <StackPanel>
+                                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                            <Image Source="{Binding Converter={StaticResource CategoryListIconConverter}}"/>
+                                                        </Grid>
+                                                        <TextBlock TextWrapping="NoWrap" Text="{Binding Name}" Margin="6, 0, 0, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                        <TextBlock TextWrapping="NoWrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                    </StackPanel>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding DurationStr}" Margin="6, 0, 0, 6" />
-                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
@@ -160,96 +161,88 @@
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid Background="BlueViolet"
-                    Margin="6, 6, 6, 6"
-                    Grid.Row="0" Grid.Column="0" >
-
-                        <!-- The button must cover entire cell. -->
-
-                        <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                            <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                        </StackPanel>
-
-                        <Button Click="ButtonAddUrgentImportant_Click" >
+                    <Grid Margin="6, 6, 6, 6"
+                        Grid.Row="0" Grid.Column="0" >
+                        <Button BorderThickness="0" Click="ButtonAddUrgentImportant_Click" Background="BlueViolet">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <!-- <TextBlock Text="I" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
-                                            <Image Source="/Assets/AppBar/add.png"/>
-                                        </Grid>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="1">
+                                        <StackPanel>
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                <!-- <TextBlock Text="I" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                                <Image Source="/Assets/AppBar/add.png"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                        </StackPanel>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
                     </Grid>
 
-                    <Grid Background="Green"
-                    Margin="6, 6, 6, 6"
-                    Grid.Row="0" Grid.Column="1">
-                        <Button Click="ButtonAddNotUrgentImportant_Click">
+                    <Grid Margin="6, 6, 6, 6"
+                        Grid.Row="0" Grid.Column="1">
+                        <Button BorderThickness="0" Click="ButtonAddNotUrgentImportant_Click" Background="Green">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <!-- <TextBlock Text="II" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
-                                            <Image Source="/Assets/AppBar/add.png"/>
-                                        </Grid>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="1">
+                                        <StackPanel>
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                <!-- <TextBlock Text="II" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                                <Image Source="/Assets/AppBar/add.png"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                        </StackPanel>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Path=LocalizedResources.ImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                            <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                        </StackPanel>
                     </Grid>
 
-                    <Grid Background="Orange"
-                    Margin="6, 6, 6, 6"
-                    Grid.Row="1" Grid.Column="0">
-                        <Button Click="ButtonAddUrgentNotImportant_Click">
+                    <Grid Margin="6, 6, 6, 6"
+                        Grid.Row="1" Grid.Column="0">
+                        <Button BorderThickness="0" Click="ButtonAddUrgentNotImportant_Click" Background="Orange">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <!-- <TextBlock Text="III" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
-                                            <Image Source="/Assets/AppBar/add.png"/>
-                                        </Grid>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="1">
+                                        <StackPanel>
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                <!-- <TextBlock Text="III" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                                <Image Source="/Assets/AppBar/add.png"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}" />
+                                            <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}" />
+                                        </StackPanel>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                            <TextBlock Text="{Binding Path=LocalizedResources.UrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                        </StackPanel>
                     </Grid>
 
-                    <Grid Background="Red"
-                    Margin="6, 6, 6, 6"
-                    Grid.Row="1" Grid.Column="1">
-                        <Button Click="ButtonAddNotUrgentNotImportant_Click">
+                    <Grid Margin="6, 6, 6, 6"
+                        Grid.Row="1" Grid.Column="1">
+                        <Button BorderThickness="0" Click="ButtonAddNotUrgentNotImportant_Click" Background="Red">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                            <!-- <TextBlock Text="IV" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
-                                            <Image Source="/Assets/AppBar/add.png"/>
-                                        </Grid>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="Gray" BorderThickness="1">
+                                        <StackPanel>
+                                            <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                <!-- <TextBlock Text="IV" HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
+                                                <Image Source="/Assets/AppBar/add.png"/>
+                                            </Grid>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                        </StackPanel>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="{Binding Path=LocalizedResources.NotImportantText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                            <TextBlock Text="{Binding Path=LocalizedResources.NotUrgentText, Source={StaticResource LocalizedStrings}}" Margin="6, 0, 6, 6" />
-                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
@@ -276,23 +269,24 @@
                         </phone:LongListSelector.Resources>
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
-                                <Grid Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}" Margin="0, 0, 12, 12">
-                                    <Button Click="Button_Click">
+                                <Grid Margin="0, 0, 12, 12">
+                                    <Button BorderThickness="0" Click="Button_Click"  
+                                            Background="{Binding Converter={StaticResource CategoryActiveListTileColorConverter}}" >
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <!-- Border is used to make all the button clickable. -->
                                                 <Border Background="{TemplateBinding Background}">
-                                                    <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
-                                                        <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="3" />
-                                                        <Image Source="/Assets/AppBar/delete.png" HorizontalAlignment="Right"/>
-                                                    </Grid>
+                                                    <StackPanel>
+                                                        <Grid Margin="10" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                            <Ellipse Stroke="{StaticResource PhoneForegroundBrush}" StrokeThickness="2" />
+                                                            <Image Source="/Assets/AppBar/delete.png" HorizontalAlignment="Right"/>
+                                                        </Grid>
+                                                        <TextBlock TextWrapping="NoWrap" Text="{Binding Name}" Margin="6, 0, 0, 6" Style="{StaticResource PhoneTextNormalStyle}"/>
+                                                    </StackPanel>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Margin="6, 0, 0, 6" />
-                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>
