@@ -100,6 +100,7 @@ namespace TimeKeeper
 
             UpdateLists();
             UpdatePerfShortText();
+            ShowArrow();
 
             BuildLocalizedApplicationBar();
 
@@ -163,6 +164,7 @@ namespace TimeKeeper
 
             UpdateLists();
             UpdatePerfShortText();
+            ShowArrow();
         }
 
         private void UpdatePerfShortText()
@@ -179,6 +181,7 @@ namespace TimeKeeper
 
             UpdateLists();
             UpdatePerfShortText();
+            ShowArrow();
         }
 
         private void ButtonStartStopAction_Click(object sender, RoutedEventArgs e)
@@ -287,9 +290,37 @@ namespace TimeKeeper
             if (_prevPerfInitialized)
             {
                 if (perf >= _prevPerf)
+                {
                     DingUp.Play();
+                    TriangleUp.Visibility = Visibility.Visible;
+                    TriangleDown.Visibility = Visibility.Collapsed;
+                }
                 else
+                {
                     DingDown.Play();
+                    TriangleUp.Visibility = Visibility.Collapsed;
+                    TriangleDown.Visibility = Visibility.Visible;
+                }
+            }
+            _prevPerf = perf;
+            _prevPerfInitialized = true;
+        }
+
+        private void ShowArrow()
+        {
+            var perf = Data.LastPerf;
+            if (_prevPerfInitialized)
+            {
+                if (perf >= _prevPerf)
+                {
+                    TriangleUp.Visibility = Visibility.Visible;
+                    TriangleDown.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    TriangleUp.Visibility = Visibility.Collapsed;
+                    TriangleDown.Visibility = Visibility.Visible;
+                }
             }
             _prevPerf = perf;
             _prevPerfInitialized = true;
@@ -302,6 +333,7 @@ namespace TimeKeeper
         void OnTimerTick(Object sender, EventArgs args)
         {
             UpdatePerfShortText();
+            ShowArrow();
 
             if (!_wasATimerEvent)
             {
