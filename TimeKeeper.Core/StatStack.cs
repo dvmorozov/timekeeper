@@ -110,9 +110,8 @@ namespace TimeKeeper.Core
                         {
                             //  The first day.
                             //  Adds value to the integral.
-                            var diff = day.AddDays(1).Subtract(_lastRecalculationTime);
-                            var seconds = diff.TotalSeconds;
-                            _integralPerf += _prevData.InstPerf * seconds;
+                            var diff = 24 * 3600 - _lastRecalculationTime.TimeOfDay.TotalSeconds; 
+                            _integralPerf += _prevData.InstPerf * diff;
 
                             //  Calculates integral performance.
                             savedIntegralPerf = _integralPerf / (24 * 60 * 60);

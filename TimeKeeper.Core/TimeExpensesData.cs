@@ -117,15 +117,19 @@ namespace TimeKeeper.Core
             }
         }
 
-        //  Returns the middle of the night.
+        //  Returns the middle of the night (the first second of the day).
         static public DateTime Date(DateTime now)
         {
-            return now.Date.AddHours(-12);
+            var d = now.Date;
+            d = d.AddHours(-12);
+            return d;
         }
 
         static public DateTime NextDay(DateTime now)
         {
-            return Date(now).AddDays(1);
+            //  The begin of new day must be excluded.
+            var r = Date(now).AddDays(1);
+            return r;
         }
     }
 
