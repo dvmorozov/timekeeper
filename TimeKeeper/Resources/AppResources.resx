@@ -169,16 +169,16 @@
     <value>Urgent</value>
   </data>
   <data name="StatCountedTimeText" xml:space="preserve">
-    <value>Active Time: {0}</value>
+    <value>Active time: {0}</value>
   </data>
   <data name="PerformanceShortText" xml:space="preserve">
     <value>Your perf: {0}%</value>
   </data>
   <data name="StatUncountedTimeText" xml:space="preserve">
-    <value>Inactive Time: {0}</value>
+    <value>No activities: {0}</value>
   </data>
-  <data name="StatUtilizedTimeText" xml:space="preserve">
-    <value>Utilized Time: {0}</value>
+  <data name="StatBestDayText" xml:space="preserve">
+    <value>Best day: {0} ({1}%)</value>
   </data>
   <data name="AppBarButtonStatisticsText" xml:space="preserve">
     <value>Statistics</value>
@@ -260,5 +260,8 @@
   </data>
   <data name="AddDefaultCategoriesMessage" xml:space="preserve">
     <value>Your activity list is empty. Do you want to add default activities?</value>
+  </data>
+  <data name="StatWorstDayText" xml:space="preserve">
+    <value>Worst day: {0} ({1}%)</value>
   </data>
 </root>

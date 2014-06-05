@@ -305,19 +305,6 @@ namespace TimeKeeper.Core
             }
         }
 
-        //  The time counted for all activities in summary.
-        public string UtilizedTimeStr
-        {
-            get
-            {
-                TimeSpan duration;
-                foreach (var c in Any)
-                    duration = duration.Add(c.Duration);
-
-                return Category.DurationS(duration);
-            }
-        }
-
         //  The time counted for any activity.
         public string CountedTimeStr
         {

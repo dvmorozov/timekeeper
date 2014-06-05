@@ -421,7 +421,16 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active Time: {0}.
+        ///   Looks up a localized string similar to Best day: {0} ({1}%).
+        /// </summary>
+        public static string StatBestDayText {
+            get {
+                return ResourceManager.GetString("StatBestDayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active time: {0}.
         /// </summary>
         public static string StatCountedTimeText {
             get {
@@ -439,7 +448,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inactive Time: {0}.
+        ///   Looks up a localized string similar to No activities: {0}.
         /// </summary>
         public static string StatUncountedTimeText {
             get {
@@ -448,11 +457,11 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Utilized Time: {0}.
+        ///   Looks up a localized string similar to Worst day: {0} ({1}%).
         /// </summary>
-        public static string StatUtilizedTimeText {
+        public static string StatWorstDayText {
             get {
-                return ResourceManager.GetString("StatUtilizedTimeText", resourceCulture);
+                return ResourceManager.GetString("StatWorstDayText", resourceCulture);
             }
         }
         

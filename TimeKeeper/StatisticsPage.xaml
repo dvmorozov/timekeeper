@@ -34,7 +34,8 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <TextBlock Text="{Binding Path=LocalizedResources.StatUtilizedTimeText, Source={StaticResource LocalizedStrings}}" Margin="10" Style="{StaticResource PhoneTextTitle2Style}" Name="StatUtilizedTime" />
+                <TextBlock Text="{Binding Path=LocalizedResources.StatBestDayText, Source={StaticResource LocalizedStrings}}" Margin="10" Style="{StaticResource PhoneTextTitle2Style}" Name="StatBestDay" />
+                <TextBlock Text="{Binding Path=LocalizedResources.StatWorstDayText, Source={StaticResource LocalizedStrings}}" Margin="10" Style="{StaticResource PhoneTextTitle2Style}" Name="StatWorstDay" />
                 <TextBlock Text="{Binding Path=LocalizedResources.StatCountedTimeText, Source={StaticResource LocalizedStrings}}" Margin="10" Style="{StaticResource PhoneTextTitle2Style}" Name="StatCountedTime" />
                 <TextBlock Text="{Binding Path=LocalizedResources.StatUncountedTimeText, Source={StaticResource LocalizedStrings}}" Margin="10" Style="{StaticResource PhoneTextTitle2Style}" Name="StatUncountedTime" />
             </StackPanel>
