@@ -57,6 +57,9 @@ namespace TimeKeeper.Core
         {
             _dt = new SysDateTime();
             _data = data;
+
+            //  Adds additional points if necessary.
+            RecalculateStatisitics();
         }
 
         public StatStack(TimeExpensesData data)
@@ -135,6 +138,14 @@ namespace TimeKeeper.Core
                 //  Removes old history.
                 while (_lastDays.Count > _stackCapacity)
                     _lastDays.RemoveAt(0);
+
+                //  Adds missed days to get full list.
+                firstDay = _lastDays.Count != 0 ? _lastDays[0].Date : _dt.Now;
+                while (_lastDays.Count < _stackCapacity)
+                {
+                    firstDay = firstDay.AddDays(-1);
+                    _lastDays.Insert(0, new StatDay(SysDateTime.Date(firstDay), 0));
+                }
             }
 
             CopyData();
