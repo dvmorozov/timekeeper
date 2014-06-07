@@ -124,7 +124,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Respond.
+        ///   Looks up a localized string similar to Feedback.
         /// </summary>
         public static string AboutPivotRespondPageHeader {
             get {
