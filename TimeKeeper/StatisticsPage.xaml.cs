@@ -44,6 +44,15 @@ namespace TimeKeeper
             }
         }
 
+        private void SetAppBarTexts()
+        {
+            ApplicationBarMenuItem m = ApplicationBar.MenuItems[0] as ApplicationBarMenuItem;
+            if (m != null)
+            {
+                m.Text = AppResources.MainMenuItemAboutCaption;
+            }
+        }
+
         private void UpdateChart(out DateTime bestDay, out DateTime worstDay, out double bestPerf, out double worstPerf)
         {
             _lastDaysSerie.Points.Clear();
@@ -93,6 +102,7 @@ namespace TimeKeeper
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             UpdatePage();
+            SetAppBarTexts();
         }
 
         private void UpdatePage()
@@ -115,6 +125,11 @@ namespace TimeKeeper
                 MainPage.ResetStatistics();
                 UpdatePage();
             }
+        }
+
+        private void ApplicationBarAboutMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

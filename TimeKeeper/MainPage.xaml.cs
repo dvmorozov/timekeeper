@@ -143,13 +143,6 @@ namespace TimeKeeper
 
         private void SetAppBarTexts()
         {
-            ApplicationBarIconButton b = ApplicationBar.Buttons[0] as ApplicationBarIconButton;
-            /*
-            if (b != null)
-            {
-                b.Text = "p0wnage";
-            }
-             * */
             ApplicationBarMenuItem m = ApplicationBar.MenuItems[0] as ApplicationBarMenuItem;
             if (m != null)
             {
@@ -159,7 +152,7 @@ namespace TimeKeeper
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            SetAppBarTexts();            
+            SetAppBarTexts();
         }
 
         private void StartActivity(Category item)
