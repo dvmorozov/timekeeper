@@ -264,4 +264,13 @@
   <data name="StatWorstDayText" xml:space="preserve">
     <value>Worst day: {0} ({1}%)</value>
   </data>
+  <data name="AppBarButtonActivitiesText" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="AppBarButtonResetStatisticsText" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetStatisticsMessage" xml:space="preserve">
+    <value>Do you really want to reset accumulated statistics?</value>
+  </data>
 </root>

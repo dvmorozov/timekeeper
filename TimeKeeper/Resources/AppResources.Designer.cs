@@ -196,6 +196,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activities.
+        /// </summary>
+        public static string AppBarButtonActivitiesText {
+            get {
+                return ResourceManager.GetString("AppBarButtonActivitiesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AppBarButtonAddText {
@@ -210,6 +219,15 @@ namespace TimeKeeper.Resources {
         public static string AppBarButtonDeleteText {
             get {
                 return ResourceManager.GetString("AppBarButtonDeleteText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string AppBarButtonResetStatisticsText {
+            get {
+                return ResourceManager.GetString("AppBarButtonResetStatisticsText", resourceCulture);
             }
         }
         
@@ -390,6 +408,15 @@ namespace TimeKeeper.Resources {
         public static string PerformanceShortText {
             get {
                 return ResourceManager.GetString("PerformanceShortText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you really want to reset accumulated statistics?.
+        /// </summary>
+        public static string ResetStatisticsMessage {
+            get {
+                return ResourceManager.GetString("ResetStatisticsMessage", resourceCulture);
             }
         }
         

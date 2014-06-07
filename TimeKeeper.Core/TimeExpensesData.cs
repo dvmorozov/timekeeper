@@ -355,6 +355,14 @@ namespace TimeKeeper.Core
             _backgroundAgentInterval = t._backgroundAgentInterval;
         }
 
+        public void Reset()
+        { 
+            _startDate = _dt.Now;
+            _lastActiveIsEmpty = _dt.Now;
+            _inactiveDuration = new TimeSpan();
+            _lastActiveIsEmptyInitialized = false;
+        }
+
         private ObservableCollection<Category> CopyCategories()
         {
             var result = new ObservableCollection<Category>();

@@ -143,6 +143,7 @@
     <Content Include="Assets\AppBar\add.png" />
     <Content Include="Assets\AppBar\delete.png" />
     <Content Include="Assets\AppBar\feature.alarm.png" />
+    <Content Include="Assets\AppBar\feature.calendar.png" />
     <Content Include="Assets\AppBar\feature.settings.png" />
     <Content Include="Assets\AppBar\transport.pause.png" />
     <Content Include="Assets\AppBar\transport.play.png" />

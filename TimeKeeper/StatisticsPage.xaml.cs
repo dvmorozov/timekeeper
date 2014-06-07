@@ -2,6 +2,7 @@
 using Microsoft.Phone.Controls;
 using TimeKeeper.Resources;
 using System;
+using Microsoft.Phone.Shell;
 
 namespace TimeKeeper
 {
@@ -16,6 +17,31 @@ namespace TimeKeeper
 
             _lastDaysSerie = new Sparrow.Chart.StepLineSeries();
             Chart.Series.Add(_lastDaysSerie);
+
+            BuildLocalizedApplicationBar();
+        }
+
+        //  Replaces names with localized strings.
+        private void BuildLocalizedApplicationBar()
+        {
+            for (var i = 0; i < ApplicationBar.Buttons.Count; i++)
+            {
+                var btn = ApplicationBar.Buttons[i] as ApplicationBarIconButton;
+                if (btn != null)
+                {
+                    switch (btn.Text.Trim().ToLower())
+                    {
+                        //  Uses default names to update button captions.
+                        case ("activities"):
+                            btn.Text = AppResources.AppBarButtonActivitiesText;
+                            break;
+
+                        case ("reset"):
+                            btn.Text = AppResources.AppBarButtonResetStatisticsText;
+                            break;
+                    }
+                }
+            }
         }
 
         private void UpdateChart(out DateTime bestDay, out DateTime worstDay, out double bestPerf, out double worstPerf)
@@ -23,8 +49,8 @@ namespace TimeKeeper
             _lastDaysSerie.Points.Clear();
             bestDay = DateTime.Now;
             worstDay = DateTime.Now;
-            bestPerf = 100;
-            worstPerf = 100;
+            bestPerf = 0;
+            worstPerf = 0;
 
             if (MainPage.Statistics.LastDays.Count != 0)
             {
@@ -66,10 +92,29 @@ namespace TimeKeeper
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            UpdatePage();
+        }
+
+        private void UpdatePage()
+        {
             DateTime bestDay, worstDay;
             double bestPerf, worstPerf;
             UpdateChart(out bestDay, out worstDay, out bestPerf, out worstPerf);
             UpdateTexts(bestDay, worstDay, bestPerf, worstPerf);
+        }
+
+        private void ApplicationBarIconButtonActivities_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ApplicationBarIconButtonReset_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(AppResources.ResetStatisticsMessage, AppResources.DeleteCategoryCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                MainPage.ResetStatistics();
+                UpdatePage();
+            }
         }
     }
 }

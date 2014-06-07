@@ -43,6 +43,12 @@ namespace TimeKeeper
         public static TimeExpensesData Data;
         public static StatStack Statistics;
 
+        public static void ResetStatistics()
+        {
+            Data.Reset();
+            Statistics = new StatStack(Data);
+        }
+
         private void LoadCategories()
         {
             var errMessage = string.Empty;
