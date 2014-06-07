@@ -205,24 +205,6 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
-        /// </summary>
-        public static string AppBarButtonAddText {
-            get {
-                return ResourceManager.GetString("AppBarButtonAddText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string AppBarButtonDeleteText {
-            get {
-                return ResourceManager.GetString("AppBarButtonDeleteText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string AppBarButtonResetStatisticsText {

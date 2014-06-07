@@ -33,11 +33,11 @@ namespace TimeKeeper
                     {
                         //  Uses default names to update button captions.
                         case ("activities"):
-                            btn.Text = AppResources.AppBarButtonActivitiesText;
+                                btn.Text = AppResources.AppBarButtonActivitiesText;
                             break;
 
                         case ("reset"):
-                            btn.Text = AppResources.AppBarButtonResetStatisticsText;
+                                btn.Text = AppResources.AppBarButtonResetStatisticsText;
                             break;
                     }
                 }

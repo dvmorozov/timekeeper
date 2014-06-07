@@ -128,18 +128,11 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Performator</value>
   </data>
-  <data name="AppBarButtonAddText" xml:space="preserve">
-    <value>Add</value>
-    <comment>Name for "add category" button.</comment>
-  </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
   <data name="AddCategoryText" xml:space="preserve">
     <value>Add Your Usual Activity</value>
-  </data>
-  <data name="AppBarButtonDeleteText" xml:space="preserve">
-    <value>Delete</value>
   </data>
   <data name="DeleteCategoryPageName" xml:space="preserve">
     <value>Delete</value>

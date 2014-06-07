@@ -124,17 +124,8 @@ namespace TimeKeeper
                 {
                     switch(btn.Text.Trim().ToLower())
                     {
-                        //  Uses default names to update button captions.
-                        case("add"):
-                            btn.Text = AppResources.AppBarButtonAddText;
-                        break;
-
-                        case ("delete"):
-                            btn.Text = AppResources.AppBarButtonDeleteText;
-                        break;
-
                         case("statistics"):
-                        btn.Text = AppResources.AppBarButtonStatisticsText;
+                            btn.Text = AppResources.AppBarButtonStatisticsText;
                         break;
                     }
                 }

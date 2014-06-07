@@ -33,5 +33,38 @@ namespace TimeKeeper
                 MessageBox.Show(string.Format(AppResources.PageOpeningErrorMessage, ex.Message));
             }
         }
+
+        private void ApplicationBarIconActivitiesButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ApplicationBarIconStatisticsButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/StatisticsPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        //  Replaces names with localized strings.
+        private void BuildLocalizedApplicationBar()
+        {
+            for (var i = 0; i < ApplicationBar.Buttons.Count; i++)
+            {
+                var btn = ApplicationBar.Buttons[i] as ApplicationBarIconButton;
+                if (btn != null)
+                {
+                    switch (btn.Text.Trim().ToLower())
+                    {
+                        //  Uses default names to update button captions.
+                        case ("statistics"):
+                            btn.Text = AppResources.AppBarButtonStatisticsText;
+                            break;
+
+                        case ("activities"):
+                            btn.Text = AppResources.AppBarButtonActivitiesText;
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
