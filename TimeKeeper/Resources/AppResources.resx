@@ -183,7 +183,7 @@
     <value>Updating TimeKeeper performance values.</value>
   </data>
   <data name="BackgroundAgentsDisabled" xml:space="preserve">
-    <value>Background agents for this application have been disabled by the user.</value>
+    <value>Background agents for this application have been disabled by user.</value>
   </data>
   <data name="AboutPivotContributePageHeader" xml:space="preserve">
     <value>Contribute</value>

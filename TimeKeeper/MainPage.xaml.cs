@@ -395,9 +395,8 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void DeleteSelectedItem()
+        private void DeleteSelectedItem(Category item)
         {
-            var item = (Category)DeleteCategoryList.SelectedItem;
             if (item != null)
             {
                 //  Searches the list to protect from duplicate question.
@@ -409,18 +408,24 @@ namespace TimeKeeper
                         MainPage.Data.DeleteCategory(item);
                     }
                 }
+                UpdateLists();
             }
         }
 
-        private void CategoryList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DeleteSelectedItem();
-        }
-
         //  This allows to repeat the deleting procedure if user cancels it for the first time.
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonDeleteActivity_Click(object sender, RoutedEventArgs e)
         {
-            DeleteSelectedItem();
+            var button = (Button)sender;
+            if (button != null)
+            {
+                var value = (Guid)button.CommandParameter;
+
+                if (Data.Any.Any(t => t.CategoryId == value))
+                {
+                    var item = Data.Any.Single(t => t.CategoryId == value);
+                    DeleteSelectedItem(item);
+                }
+            }
         }
 
         private void ButtonAddUrgentImportant_Click(object sender, RoutedEventArgs e)

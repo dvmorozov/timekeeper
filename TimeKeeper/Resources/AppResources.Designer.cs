@@ -259,7 +259,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Background agents for this application have been disabled by the user..
+        ///   Looks up a localized string similar to Background agents for this application have been disabled by user..
         /// </summary>
         public static string BackgroundAgentsDisabled {
             get {
