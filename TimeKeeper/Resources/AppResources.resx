@@ -266,4 +266,19 @@
   <data name="ResetStatisticsMessage" xml:space="preserve">
     <value>Do you really want to reset accumulated statistics?</value>
   </data>
+  <data name="AppBarButtonSettingsText" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsPageName" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="DisableDingPlayingText" xml:space="preserve">
+    <value>Disable ding playing</value>
+  </data>
+  <data name="FromText" xml:space="preserve">
+    <value>From: </value>
+  </data>
+  <data name="ToText" xml:space="preserve">
+    <value>To:</value>
+  </data>
 </root>

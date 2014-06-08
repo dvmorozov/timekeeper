@@ -19,13 +19,17 @@
     <!--Pivot Control-->
     <phone:Pivot x:Name="MainPivot">
         <phone:Pivot.Title>
-            <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="0"/>
         </phone:Pivot.Title>
 
         <phone:PivotItem>
             <phone:PivotItem.Header>
                 <Grid>
-                    <TextBlock Text="{Binding Path=LocalizedResources.MainPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="89*"/>
+                        <ColumnDefinition Width="61*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Path=LocalizedResources.MainPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Right" Margin="0, 12, 12, 0" Width="138" Grid.ColumnSpan="2"/>
                 </Grid>
             </phone:PivotItem.Header>
 
@@ -37,7 +41,7 @@
                 </Grid.RowDefinitions>
 
                 <!--TitlePanel contains the name of the application and page title-->
-                <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+                <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,0,0,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -48,11 +52,11 @@
                             <ColumnDefinition Width="1*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.PerformanceShortText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0" Name="PerfShortText"/>
+                        <TextBlock Grid.Column="0" Text="{Binding Path=LocalizedResources.PerformanceShortText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0,0,12,12" Name="PerfShortText" VerticalAlignment="Center"/>
                         <MediaElement x:Name="DingDown" Source="/Assets/Sounds/Ding Down.wav" AutoPlay="False" Visibility="Collapsed"/>
                         <MediaElement x:Name="DingUp" Source="/Assets/Sounds/Ding Up.wav" AutoPlay="False" Visibility="Collapsed"/>
-                        <Polygon Grid.Column="1" Points="0,20 8,0, 16,20" Stroke="Black" Fill="LightGreen" VerticalAlignment="Bottom" Name="TriangleUp" Visibility="Collapsed"/>
-                        <Polygon Grid.Column="1" Points="0,0 16,0, 8,20" Stroke="Black" Fill="Red" VerticalAlignment="Bottom" Name="TriangleDown" Visibility="Collapsed"/>
+                        <Polygon Grid.Column="1" Points="0,20 8,0, 16,20" Stroke="Black" Fill="LightGreen" VerticalAlignment="Center" Name="TriangleUp" Visibility="Collapsed"/>
+                        <Polygon Grid.Column="1" Points="0,0 16,0, 8,20" Stroke="Black" Fill="Red" VerticalAlignment="Center" Name="TriangleDown" Visibility="Collapsed"/>
                     </Grid>
                 </StackPanel>
 
@@ -132,7 +136,7 @@
         <phone:PivotItem>
             <phone:PivotItem.Header>
                 <Grid>
-                    <TextBlock Text="{Binding Path=LocalizedResources.AddCategoryPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.AddCategoryPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0, 12, 12, 0"/>
                 </Grid>
             </phone:PivotItem.Header>
 
@@ -254,7 +258,7 @@
         <phone:PivotItem>
             <phone:PivotItem.Header>
                 <Grid>
-                    <TextBlock Text="{Binding Path=LocalizedResources.DeleteCategoryPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
+                    <TextBlock Text="{Binding Path=LocalizedResources.DeleteCategoryPageName, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}" Margin="0, 12, 12, 0"/>
                 </Grid>
             </phone:PivotItem.Header>
 
@@ -302,6 +306,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.alarm.png" Text="Statistics" Click="ApplicationBarIconButtonStatistics_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" Text="Settings" Click="ApplicationBarIconButton_Click"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="About" Click="ApplicationBarAboutMenuItem_Click"/>
             </shell:ApplicationBar.MenuItems>

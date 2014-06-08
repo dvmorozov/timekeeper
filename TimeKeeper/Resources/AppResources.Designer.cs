@@ -214,6 +214,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string AppBarButtonSettingsText {
+            get {
+                return ResourceManager.GetString("AppBarButtonSettingsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistics.
         /// </summary>
         public static string AppBarButtonStatisticsText {
@@ -286,6 +295,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable ding playing.
+        /// </summary>
+        public static string DisableDingPlayingText {
+            get {
+                return ResourceManager.GetString("DisableDingPlayingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Donate by PayPal.
         /// </summary>
         public static string DonatePageText {
@@ -300,6 +318,15 @@ namespace TimeKeeper.Resources {
         public static string DonationText {
             get {
                 return ResourceManager.GetString("DonationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From: .
+        /// </summary>
+        public static string FromText {
+            get {
+                return ResourceManager.GetString("FromText", resourceCulture);
             }
         }
         
@@ -430,6 +457,15 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsPageName {
+            get {
+                return ResourceManager.GetString("SettingsPageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Best day: {0} ({1}%).
         /// </summary>
         public static string StatBestDayText {
@@ -471,6 +507,15 @@ namespace TimeKeeper.Resources {
         public static string StatWorstDayText {
             get {
                 return ResourceManager.GetString("StatWorstDayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To:.
+        /// </summary>
+        public static string ToText {
+            get {
+                return ResourceManager.GetString("ToText", resourceCulture);
             }
         }
         

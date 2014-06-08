@@ -127,6 +127,10 @@ namespace TimeKeeper
                         case("statistics"):
                             btn.Text = AppResources.AppBarButtonStatisticsText;
                         break;
+
+                        case ("settings"):
+                            btn.Text = AppResources.AppBarButtonSettingsText;
+                        break;
                     }
                 }
             }
@@ -409,6 +413,11 @@ namespace TimeKeeper
         {
             Data.AddCategory(TextBoxCategoryName.Text, false, false);
             MainPivot.SelectedIndex = 0;
+        }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/ConfigPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
