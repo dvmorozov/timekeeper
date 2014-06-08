@@ -43,10 +43,10 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0" TextWrapping="NoWrap" Text="{Binding Path=LocalizedResources.FromText, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextTitle2Style}"/>
-                    <toolkit:TimePicker Grid.Column="1" Grid.Row="0" Name="TimePickerFrom"/>
+                    <toolkit:TimePicker Grid.Column="1" Grid.Row="0" Name="TimePickerFrom" ValueChanged="TimePickerFrom_ValueChanged" />
 
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.ToText, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" Style="{StaticResource PhoneTextTitle2Style}"/>
-                    <toolkit:TimePicker Grid.Column="1" Grid.Row="1" Name="TimePickerTo"/>
+                    <toolkit:TimePicker Grid.Column="1" Grid.Row="1" Name="TimePickerTo" ValueChanged="TimePickerTo_ValueChanged"/>
                 </Grid>
             </StackPanel>
         </Grid>
