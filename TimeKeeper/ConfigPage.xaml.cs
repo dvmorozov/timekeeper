@@ -29,8 +29,8 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/StatisticsPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private const string silenceTimeFrom = "SilenceTimeFrom";
-        private const string silenceTimeTo = "SilenceTimeTo";
+        public static string SilenceTimeFrom = "SilenceTimeFrom";
+        public static string SilenceTimeTo = "SilenceTimeTo";
 
         private void UpdateSilenceInterval()
         {
@@ -39,16 +39,16 @@ namespace TimeKeeper
             var settings = IsolatedStorageSettings.ApplicationSettings;
 
             var t = ((DateTime)TimePickerFrom.Value).ToShortTimeString();
-            if (!settings.Contains(silenceTimeFrom))
-                settings.Add(silenceTimeFrom, t);
+            if (!settings.Contains(SilenceTimeFrom))
+                settings.Add(SilenceTimeFrom, t);
             else
-                settings[silenceTimeFrom] = t;
+                settings[SilenceTimeFrom] = t;
 
             t = ((DateTime)TimePickerTo.Value).ToShortTimeString();
-            if (!settings.Contains(silenceTimeTo))
-                settings.Add(silenceTimeTo, t);
+            if (!settings.Contains(SilenceTimeTo))
+                settings.Add(SilenceTimeTo, t);
             else
-                settings[silenceTimeTo] = t;
+                settings[SilenceTimeTo] = t;
 
             settings.Save();
         }
@@ -63,15 +63,15 @@ namespace TimeKeeper
             //  during the initialization process.
             _isConfigUpdateBlocked = true;
 
-            if (settings.Contains(silenceTimeFrom))
+            if (settings.Contains(SilenceTimeFrom))
             {
-                var t = settings[silenceTimeFrom] as string;
+                var t = settings[SilenceTimeFrom] as string;
                 TimePickerFrom.Value = DateTime.Parse(t);
             }
 
-            if (settings.Contains(silenceTimeTo))
+            if (settings.Contains(SilenceTimeTo))
             {
-                var t = settings[silenceTimeTo] as string;
+                var t = settings[SilenceTimeTo] as string;
                 TimePickerTo.Value = DateTime.Parse(t);
             }
 

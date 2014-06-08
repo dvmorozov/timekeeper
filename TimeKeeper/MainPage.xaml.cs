@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -92,6 +93,7 @@ namespace TimeKeeper
         public MainPage()
         {
             InitializeComponent();
+            LoadSilenceInterval();
             LoadCategories();
             LoadStatistics();
 
@@ -277,9 +279,39 @@ namespace TimeKeeper
 
         private double _prevPerf;
         private bool _prevPerfInitialized;
+        private bool _silenceIntervalInitialized = false;
+        private DateTime _silenceIntervalFrom;
+        private DateTime _silenceIntervalTo;
+
+        private void LoadSilenceInterval()
+        {
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+
+            if (settings.Contains(ConfigPage.SilenceTimeFrom) && settings.Contains(ConfigPage.SilenceTimeTo))
+            {
+                var t1 = settings[ConfigPage.SilenceTimeFrom] as string;
+                var t2 = settings[ConfigPage.SilenceTimeTo] as string;
+
+                _silenceIntervalInitialized = true;
+                _silenceIntervalFrom = DateTime.Parse(t1);
+                _silenceIntervalTo = DateTime.Parse(t2);
+            }
+        }
 
         private void PlayDing()
         {
+            //  Checks the silence interval.
+            if (_silenceIntervalInitialized)
+            {
+                var from = _silenceIntervalFrom.TimeOfDay.TotalMinutes;
+                var to = _silenceIntervalTo.TimeOfDay.TotalMinutes;
+
+                var now = DateTime.Now.TimeOfDay.TotalMinutes;
+
+                if (to > from && now >= from && now <= to) return;
+                if (to < from && (now >= from || now <= to)) return;
+            }
+
             var perf = Data.LastPerf;
             if (_prevPerfInitialized)
             {
