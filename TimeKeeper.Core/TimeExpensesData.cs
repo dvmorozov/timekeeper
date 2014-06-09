@@ -397,6 +397,8 @@ namespace TimeKeeper.Core
         public void AddCategory(string name, bool urgent = false, bool important = false)
         {
             var preparedName = name.Trim().ToLower();
+            if (preparedName == string.Empty) return;
+
             //  Searches for existing category with the same name.
             foreach (var c in _categories)
             {
