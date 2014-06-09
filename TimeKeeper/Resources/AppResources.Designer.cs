@@ -187,7 +187,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your activity list is empty. Do you want to add default activities?.
+        ///   Looks up a localized string similar to Your activity list is empty. Do you want to add default activities? You can easily delete some of them or add new..
         /// </summary>
         public static string AddDefaultCategoriesMessage {
             get {
@@ -448,7 +448,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a category for this activity relatively of your goals. Be objective!.
+        ///   Looks up a localized string similar to Select an appropriate category for this activity relatively of your goals. Please, be objective!.
         /// </summary>
         public static string SelectCategoryText {
             get {

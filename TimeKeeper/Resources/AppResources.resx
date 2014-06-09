@@ -156,7 +156,7 @@
     <value>Not urgent</value>
   </data>
   <data name="SelectCategoryText" xml:space="preserve">
-    <value>Select a category for this activity relatively of your goals. Be objective!</value>
+    <value>Select an appropriate category for this activity relatively of your goals. Please, be objective!</value>
   </data>
   <data name="UrgentText" xml:space="preserve">
     <value>Urgent</value>
@@ -252,7 +252,7 @@
     <value>Hint</value>
   </data>
   <data name="AddDefaultCategoriesMessage" xml:space="preserve">
-    <value>Your activity list is empty. Do you want to add default activities?</value>
+    <value>Your activity list is empty. Do you want to add default activities? You can easily delete some of them or add new.</value>
   </data>
   <data name="StatWorstDayText" xml:space="preserve">
     <value>Worst day: {0} ({1}%)</value>

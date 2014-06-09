@@ -62,7 +62,7 @@ namespace TimeKeeper.Core.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to {&apos;CategorieList&apos;: [{&apos;Name&apos;: &apos;Working&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Learning&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Eating&apos;, &apos;Urgent&apos;: true, 
-        ///&apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Driving&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Sleeping&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Watching TV&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Walking&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Talking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Surfing Internet&apos;, [rest of string was truncated]&quot;;.
+        ///&apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Driving&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Sleeping&apos;, &apos;Urgent&apos;: true, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;TV&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Walking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: true}, {&apos;Name&apos;: &apos;Talking&apos;, &apos;Urgent&apos;: false, &apos;Important&apos;: false}, {&apos;Name&apos;: &apos;Internet&apos;, &apos;Urgent&apos;: false, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultCategories {
             get {
