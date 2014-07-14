@@ -50,12 +50,16 @@ namespace TimeKeeper
             Statistics = new StatStack(Data);
         }
 
-        private void LoadCategories()
+        private async void LoadCategories()
         {
-            var errMessage = string.Empty;
-            Data = TimeExpensesData.Load(out errMessage);
-            if (errMessage != string.Empty)
-                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, errMessage));
+            try
+            {
+                Data = await TimeExpensesData.Load();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
+            }
         }
 
         private void SaveCategories()
@@ -63,12 +67,16 @@ namespace TimeKeeper
             Data.Save();
         }
 
-        private void LoadStatistics()
+        private async void LoadStatistics()
         {
-            var errMsg = string.Empty;
-            Statistics = StatStack.Load(Data, out errMsg);
-            if (errMsg != string.Empty)
-                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, errMsg));
+            try
+            {
+                Statistics = await StatStack.Load(Data);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(string.Format(AppResources.ActionLoadingErrorMessage, e.Message));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

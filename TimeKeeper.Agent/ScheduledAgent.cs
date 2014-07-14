@@ -41,14 +41,13 @@ namespace TimeKeeper.Agent
         /// <remarks>
         /// This method is called when a periodic or resource intensive task is invoked
         /// </remarks>
-        protected override void OnInvoke(ScheduledTask task)
+        protected override async void OnInvoke(ScheduledTask task)
         {
             //  Blocks messages output.
             try
             {
-                var errMsg = string.Empty;
-                var data = TimeExpensesData.Load(out errMsg);
-                Statistics = StatStack.Load(data, out errMsg);
+                var data = await TimeExpensesData.Load();
+                Statistics = await StatStack.Load(data);
 
                 Statistics.RecalculateStatisitics();
 

@@ -5,8 +5,11 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Threading.Tasks;
 using System.Windows;
 using TimeKeeper.Core.Resources;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace TimeKeeper.Core
 {
@@ -154,51 +157,41 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "StatisticsData";
 
-        public static StatStack Load(TimeExpensesData data, out string errorMsg)
+        public static async Task<StatStack> Load(TimeExpensesData data)
         {
-            errorMsg = string.Empty;
             try
             {
-                //  Load data from file.
-                var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-
-                if (fileStorage.FileExists(_fileName))
+                using (var stream = await PersistentData.GetReadFileStream(_fileName))
                 {
-                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read, fileStorage))
-                    {
-                        //  Deserialize the object.
-                        var ser = new DataContractJsonSerializer(typeof(StatStack));
-                        var stack = (StatStack)ser.ReadObject(stream);
+                    //  Deserialize the object.
+                    var ser = new DataContractJsonSerializer(typeof(StatStack));
+                    var stack = (StatStack)ser.ReadObject(stream);
 
-                        if (stack == null) stack = new StatStack(data);
-                        else stack.Initialize(data);
+                    if (stack == null) stack = new StatStack(data);
+                    else stack.Initialize(data);
 
-                        return stack;
-                    }
+                    return stack;
                 }
             }
-            catch (Exception e)
+            catch
             {
-                //  To meet Windows Store conditions!
-                errorMsg = e.Message;
+                //  In any case the object must be created!
+                return new StatStack(data);
             }
-            //  In any case the object must be created!
-            return new StatStack(data);
         }
 
-        public void Save()
+        public async void Save()
         {
             //  Save data to file.
             try
             {
-                var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-                using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Create, fileStorage))
+                using (var stream = await PersistentData.GetWriteFileStream(_fileName))
                 {
                     var ser = new DataContractJsonSerializer(typeof(StatStack));
                     ser.WriteObject(stream, this);
                 }
             }
-            catch (Exception e)
+            catch
             {
                 //  To meet Windows Store conditions!
             }

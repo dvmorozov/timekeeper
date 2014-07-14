@@ -9,6 +9,7 @@ using System.Windows;
 using Newtonsoft.Json;
 using System.Linq;
 using TimeKeeper.Core.Resources;
+using System.Threading.Tasks;
 
 namespace TimeKeeper.Core
 {
@@ -418,47 +419,42 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "TimeExpensesData";
 
-        public static TimeExpensesData Load(out string errorMsg)
+        public static async Task<TimeExpensesData> Load()
         {
-            errorMsg = "";
             try
             {
-                //  Load data from file.
-                var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-
-                if (fileStorage.FileExists(_fileName))
+                using (var stream = await PersistentData.GetReadFileStream(_fileName))
                 {
-                    using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read, fileStorage))
-                    {
-                        //  Deserialize the object.
-                        var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
-                        return (TimeExpensesData)ser.ReadObject(stream);
-                    }
+                    //  Deserialize the object.
+                    var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
+                    return (TimeExpensesData)ser.ReadObject(stream);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                //  To meet Windows Store conditions!
-                errorMsg = e.Message;
+                //  In any case the object must be created!
+                return new TimeExpensesData()
+                {
+                    _startDate = _dt.Now,
+                    _lastActiveIsEmpty = _dt.Now,
+                    _lastActiveIsEmptyInitialized = true,
+                    _backgroundAgentInterval = 600 /*10 min*/
+                };
             }
-            //  In any case the object must be created!
-            return new TimeExpensesData() { _startDate = _dt.Now, _lastActiveIsEmpty = _dt.Now, 
-                _lastActiveIsEmptyInitialized = true, _backgroundAgentInterval = 600 /*10 min*/ };
         }
 
-        public void Save()
+        public async void Save()
         {
             //  Save data to file.
             try
             {
-                var fileStorage = IsolatedStorageFile.GetUserStoreForApplication();
-                using (var stream = new IsolatedStorageFileStream(_fileName, FileMode.Create, fileStorage))
+                using (var stream = await PersistentData.GetWriteFileStream(_fileName))
                 {
                     var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
                     ser.WriteObject(stream, this);
                 }
             }
-            catch (Exception e)
+            catch
             {
                 //  To meet Windows Store conditions!
             }
