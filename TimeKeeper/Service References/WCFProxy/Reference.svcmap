@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4a62aef8-0749-467d-9d32-2f0d642c89a8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/TimeKeeper.WCFProxy/WCFProxy.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFProxy.xsd" MetadataType="Schema" ID="885f3f18-03a6-4b16-8cf7-81ecaaf9ad5a" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFProxy/WCFProxy.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFProxy1.xsd" MetadataType="Schema" ID="be84fa7b-b4d1-41c6-a05e-21013e079894" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFProxy/WCFProxy.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFProxy.disco" MetadataType="Disco" ID="4ec134ef-e0d8-48b0-a903-d6b198d54ceb" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFProxy/WCFProxy.svc?disco" />
+    <MetadataFile FileName="WCFProxy.wsdl" MetadataType="Wsdl" ID="45e0de2e-1215-4ee2-8b26-5e173179cdae" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFProxy/WCFProxy.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
