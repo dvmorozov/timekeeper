@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
+using TimeKeeper.WCFProxy;
 
 namespace TimeKeeper
 {
@@ -86,6 +87,21 @@ namespace TimeKeeper
         private void TimePickerTo_ValueChanged(object sender, DateTimeValueChangedEventArgs e)
         {
             UpdateSilenceInterval();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new WCFProxyClient();
+            client.GetMessageCompleted += client_GetMessageCompleted;
+            client.GetMessageAsync();
+        }
+
+        void client_GetMessageCompleted(object sender, GetMessageCompletedEventArgs e)
+        {
+            if (e.Error == null)
+            {
+                MessageBox.Show(e.Result);
+            }
         }
     }
 }

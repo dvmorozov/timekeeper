@@ -110,6 +110,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WCFProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
@@ -143,7 +148,21 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="TimeKeeper_2014_05_30_15_36_51.sap" />
+    <None Include="Service References\WCFProxy\WCFProxy.wsdl" />
+    <None Include="Service References\WCFProxy\WCFProxy.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFProxy\WCFProxy1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFProxy\WCFProxy.disco" />
+    <None Include="Service References\WCFProxy\configuration91.svcinfo" />
+    <None Include="Service References\WCFProxy\configuration.svcinfo" />
+    <None Include="Service References\WCFProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -216,7 +235,9 @@
       <Name>TimeKeeper.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WCFProxy\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

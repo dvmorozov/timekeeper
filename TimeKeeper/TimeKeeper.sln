@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Phone
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper", "TimeKeeper.csproj", "{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE} = {0953F59B-FFF2-4140-884D-49F625FE4CFE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTimeKeeper", "..\TestTimeKeeper\TestTimeKeeper.csproj", "{27DC6860-A20A-43D5-A3BE-84195ECD940D}"
 EndProject
@@ -11,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Agent", "..\Time
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Core", "..\TimeKeeper.Core\TimeKeeper.Core.csproj", "{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.WCFProxy", "..\TimeKeeper.WCFProxy\TimeKeeper.WCFProxy.csproj", "{0953F59B-FFF2-4140-884D-49F625FE4CFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +110,22 @@ Global
 		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|x86.ActiveCfg = Release|x86
 		{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}.Release|x86.Build.0 = Release|x86
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Debug|x86.Build.0 = Debug|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|ARM.Build.0 = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|x86.ActiveCfg = Release|Any CPU
+		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
