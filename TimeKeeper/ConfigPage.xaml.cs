@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
-using TimeKeeper.WCFProxy;
+using TimeKeeper.WCFAdapter;
 
 namespace TimeKeeper
 {

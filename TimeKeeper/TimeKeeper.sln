@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Agent", "..\Time
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Core", "..\TimeKeeper.Core\TimeKeeper.Core.csproj", "{1ED2194F-3B91-4772-B37A-2D27C18AD0F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.WCFProxy", "..\TimeKeeper.WCFProxy\TimeKeeper.WCFProxy.csproj", "{0953F59B-FFF2-4140-884D-49F625FE4CFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.WCFAdapter", "..\TimeKeeper.WCFProxy\TimeKeeper.WCFAdapter.csproj", "{0953F59B-FFF2-4140-884D-49F625FE4CFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,9 +37,9 @@ Global
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|ARM.ActiveCfg = Debug|ARM
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|ARM.Build.0 = Debug|ARM
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|ARM.Deploy.0 = Debug|ARM
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|x86.ActiveCfg = Debug|x86
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|x86.Build.0 = Debug|x86
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Debug|x86.Deploy.0 = Debug|x86
@@ -49,9 +49,9 @@ Global
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|ARM.ActiveCfg = Release|ARM
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|ARM.Build.0 = Release|ARM
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|ARM.Deploy.0 = Release|ARM
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.ActiveCfg = Release|ARM
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.Build.0 = Release|ARM
+		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|Mixed Platforms.Deploy.0 = Release|ARM
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|x86.ActiveCfg = Release|x86
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|x86.Build.0 = Release|x86
 		{E2E8698E-4CD9-46AD-BAA6-265D52F40A50}.Release|x86.Deploy.0 = Release|x86

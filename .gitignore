@@ -3,3 +3,19 @@
 ################################################################################
 
 /TestTimeKeeper/Bin/x86/Debug
+/TestTimeKeeper/obj/x86/Debug
+/TestTimeKeeper/obj/x86/Release
+/TimeKeeper/.vs/TimeKeeper/v14
+/TimeKeeper/Bin
+/TimeKeeper/obj
+/TimeKeeper/packages
+/TimeKeeper.Agent/Bin
+/TimeKeeper.Agent/obj/Debug
+/TimeKeeper.Agent/obj/Release
+/TimeKeeper.Agent/obj/x86/Debug
+/TimeKeeper.Agent/obj/x86/Release
+/TimeKeeper.Core/Bin
+/TimeKeeper.Core/obj
+/TimeKeeper.WCFProxy/bin
+/TimeKeeper.WCFProxy/obj/Debug
+/TimeKeeper.WCFProxy/obj/Release
