@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="97181c12-ed15-4926-999f-2c3bebbb860c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFAdapter.disco" MetadataType="Disco" ID="9f56b6d6-089d-46e9-a0f1-303c54b9fe78" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc?disco" />
+    <MetadataFile FileName="WCFAdapter.xsd" MetadataType="Schema" ID="51232415-5f97-4179-9473-5c419cbb1029" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFAdapter1.xsd" MetadataType="Schema" ID="078d20a4-5907-433e-a0b6-9dae04231668" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFAdapter2.xsd" MetadataType="Schema" ID="e1e61033-96fc-425d-b838-2873ea0ea210" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFAdapter.wsdl" MetadataType="Wsdl" ID="2743eaa1-af95-4121-966c-af0b6de6ba2f" SourceId="1" SourceUrl="http://localhost/TimeKeeper.WCFAdapter/WCFAdapter.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

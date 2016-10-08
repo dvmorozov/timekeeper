@@ -19,3 +19,5 @@
 /TimeKeeper.WCFProxy/bin
 /TimeKeeper.WCFProxy/obj/Debug
 /TimeKeeper.WCFProxy/obj/Release
+/TestTodoistAPI/.idea
+/TimeKeeper/.vs/config

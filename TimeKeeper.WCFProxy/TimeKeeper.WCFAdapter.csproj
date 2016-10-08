@@ -95,7 +95,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>34826</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/TimeKeeper.WCFProxy</IISUrl>
+          <IISUrl>http://localhost/TimeKeeper.WCFAdapter</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

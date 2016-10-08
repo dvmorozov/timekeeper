@@ -91,16 +91,17 @@ namespace TimeKeeper
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var client = new WCFProxyClient();
-            client.GetMessageCompleted += client_GetMessageCompleted;
-            client.GetMessageAsync();
+            var client = new WCFAdapter_1_0_0Client();
+
+            client.GetTaskListCompleted += client_GetTaskListCompleted;
+            client.GetTaskListAsync();
         }
 
-        void client_GetMessageCompleted(object sender, GetMessageCompletedEventArgs e)
+        void client_GetTaskListCompleted(object sender, GetTaskListCompletedEventArgs e)
         {
             if (e.Error == null)
             {
-                MessageBox.Show(e.Result);
+                MessageBox.Show("Task list received successfully.");
             }
         }
     }

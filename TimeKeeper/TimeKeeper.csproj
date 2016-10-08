@@ -110,7 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WCFProxy\Reference.cs">
+    <Compile Include="Service References\WCFAdapter\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -148,21 +148,27 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WCFProxy\WCFProxy.wsdl" />
-    <None Include="Service References\WCFProxy\WCFProxy.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\WCFAdapter\TimeKeeper.WCFAdapter.Task_1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\WCFProxy\WCFProxy1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\WCFProxy\WCFProxy.disco" />
-    <None Include="Service References\WCFProxy\configuration91.svcinfo" />
-    <None Include="Service References\WCFProxy\configuration.svcinfo" />
-    <None Include="Service References\WCFProxy\Reference.svcmap">
+    <None Include="Service References\WCFAdapter\WCFAdapter.disco" />
+    <None Include="Service References\WCFAdapter\configuration91.svcinfo" />
+    <None Include="Service References\WCFAdapter\configuration.svcinfo" />
+    <None Include="Service References\WCFAdapter\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\WCFAdapter\WCFAdapter.wsdl" />
+    <None Include="Service References\WCFAdapter\WCFAdapter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFAdapter\WCFAdapter1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFAdapter\WCFAdapter2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -236,7 +242,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WCFProxy\" />
+    <WCFMetadataStorage Include="Service References\WCFAdapter\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
