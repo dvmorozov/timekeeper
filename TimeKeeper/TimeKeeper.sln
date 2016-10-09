@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.Core", "..\TimeK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.WCFAdapter", "..\TimeKeeper.WCFProxy\TimeKeeper.WCFAdapter.csproj", "{0953F59B-FFF2-4140-884D-49F625FE4CFE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TimeKeeper.TodoistAdapter", "..\TimeKeeper.TodoistAdapter\TimeKeeper.TodoistAdapter.pyproj", "{46B41897-93EB-4F8A-86D9-D6B0A2542018}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +128,14 @@ Global
 		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|x86.ActiveCfg = Release|Any CPU
 		{0953F59B-FFF2-4140-884D-49F625FE4CFE}.Release|x86.Build.0 = Release|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|ARM.ActiveCfg = Release|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
