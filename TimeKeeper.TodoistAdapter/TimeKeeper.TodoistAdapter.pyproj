@@ -25,6 +25,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TestTodoistAdapterComm.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TimeKeeper.TodoistAdapter.py" />
   </ItemGroup>
   <PropertyGroup>

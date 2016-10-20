@@ -4,6 +4,7 @@ import argparse
 import configparser
 import base64
 import sys
+import win32pipe, win32file
 
 class Task_1:
     id = None
@@ -74,29 +75,46 @@ class WCFAdapter_1_0_0(TodoistClient):
     def FinishTask():
         pass
 
-parser = argparse.ArgumentParser(description='Query Todoist API.')
+parser = argparse.ArgumentParser(description='Todoist API adapter')
 parser.add_argument('--configfile')
-parser.add_argument('--outputfile')
 
-def queryTodoistAPI(userName, password, outFile):
+def queryTodoistAPI(userName, password):
     adapter = WCFAdapter_1_0_0(userName, password)
     list = adapter.GetTaskList()
-    file = open(outFile, "w")
-    file.write(list.toJSON())
-    file.close()
+    return list.toJSON()
 
 if __name__ == '__main__':
-    try:
-        args = parser.parse_args()
+    args = parser.parse_args()
 
-        config = configparser.ConfigParser()
-        config.read(args.configfile)
+    config = configparser.ConfigParser()
+    config.read(args.configfile)
 
-        queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password'], args.outputfile)
+    while True:
+        p = win32pipe.CreateNamedPipe(r'\\.\pipe\todoist_adapter',
+            win32pipe.PIPE_ACCESS_DUPLEX,
+            win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT,
+            2, 65536, 65536, 300, None)
 
-    except Exception as e:
-        print(e)
+        try:
+            while True:
+                win32pipe.ConnectNamedPipe(p, None)
+                data = win32file.ReadFile(p, 4096)
 
-    finally:
-        print('Request completed')
-        sys.exit(0)
+                if data[0] == 0:
+                    print('Args: ' + str(data[1:]))
+                    win32file.WriteFile(p, bytes(queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password']), encoding = 'utf-8'))
+                    # Wait until all the data will be received by client.
+                    win32file.FlushFileBuffers(p)
+
+                else:
+                    print('Error: ' + str(data))
+
+                win32pipe.DisconnectNamedPipe(p)
+
+        except Exception as e:
+            # When client unexpectedly terminated connection exception occurs.
+            print('Exception: ' + str(e))
+            win32file.CloseHandle(p)
+
+    print('Process terminated')
+    sys.exit(0)
