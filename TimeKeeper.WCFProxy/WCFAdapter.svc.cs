@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Security;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 
 namespace TimeKeeper.WCFAdapter
 {
@@ -12,7 +15,7 @@ namespace TimeKeeper.WCFAdapter
 
         public List<Task_1> GetTaskList()
         {
-            throw new NotImplementedException();
+            return new List<Task_1>();
         }
     }
 }

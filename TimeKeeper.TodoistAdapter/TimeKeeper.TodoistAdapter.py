@@ -3,6 +3,7 @@ import todoist
 import argparse
 import configparser
 import base64
+import sys
 
 class Task_1:
     id = None
@@ -75,16 +76,27 @@ class WCFAdapter_1_0_0(TodoistClient):
 
 parser = argparse.ArgumentParser(description='Query Todoist API.')
 parser.add_argument('--configfile')
+parser.add_argument('--outputfile')
 
-def queryTodoistAPI(userName, password):
+def queryTodoistAPI(userName, password, outFile):
     adapter = WCFAdapter_1_0_0(userName, password)
     list = adapter.GetTaskList()
-    print(list.toJSON())
+    file = open(outFile, "w")
+    file.write(list.toJSON())
+    file.close()
 
 if __name__ == '__main__':
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
 
-    config = configparser.ConfigParser()
-    config.read(args.configfile)
+        config = configparser.ConfigParser()
+        config.read(args.configfile)
 
-    queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password'])
+        queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password'], args.outputfile)
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        print('Request completed')
+        sys.exit(0)
