@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeKeeper.WCFAdapter", "..
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TimeKeeper.TodoistAdapter", "..\TimeKeeper.TodoistAdapter\TimeKeeper.TodoistAdapter.pyproj", "{46B41897-93EB-4F8A-86D9-D6B0A2542018}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTodoistAdapterComm", "..\TestTodoistAdapterComm\TestTodoistAdapterComm.csproj", "{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,22 @@ Global
 		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|ARM.ActiveCfg = Release|Any CPU
 		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{46B41897-93EB-4F8A-86D9-D6B0A2542018}.Release|x86.ActiveCfg = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|ARM.Build.0 = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Debug|x86.Build.0 = Debug|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|ARM.Build.0 = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|x86.ActiveCfg = Release|Any CPU
+		{52ED5772-FCFA-4EF3-B8A4-671254E66CE2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

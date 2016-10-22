@@ -22,3 +22,5 @@
 /TestTodoistAPI/.idea
 /TimeKeeper/.vs/config
 /TimeKeeper.TodoistAdapter/config.ini
+/TestTodoistAdapterComm/bin/Debug
+/TestTodoistAdapterComm/obj/Debug

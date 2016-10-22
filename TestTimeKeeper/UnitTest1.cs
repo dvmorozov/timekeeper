@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using TimeKeeper;
 using TimeKeeper.Core;
 
 namespace TestTimeKeeper

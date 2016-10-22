@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO.Pipes;
 using System.IO;
+using System.IO.Pipes;
+using System.Threading;
 
-namespace TimeKeeper.WCFAdapter
+namespace TestTodoistAdapterComm
 {
-    public class WCFAdapter : IWCFAdapter_1_0_0
+    class Program
     {
-        public void FinishTask()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Task_1> GetTaskList()
+        static void Main(string[] args)
         {
             var client = new NamedPipeClientStream("todoist_adapter");
 
@@ -26,7 +21,9 @@ namespace TimeKeeper.WCFAdapter
 
             var jsonData = reader.ReadToEnd();
 
-            return new List<Task_1>();
+            Console.WriteLine(jsonData);
+            //  Show results.
+            Thread.Sleep(5000);
         }
     }
 }
