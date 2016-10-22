@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TimeKeeper.WCFAdapter
 {
     public class WCFAdapter : IWCFAdapter_1_0_0
     {
+        private string GetTaskAttr(JObject task, string attrName)
+        {
+            var buffer = Convert.FromBase64String(task.GetValue(attrName).Value<string>());
+            return System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
+        }
+
         public void FinishTask()
         {
             throw new NotImplementedException();
@@ -25,8 +33,16 @@ namespace TimeKeeper.WCFAdapter
             writer.Flush();
 
             var jsonData = reader.ReadToEnd();
+            dynamic obj = JsonConvert.DeserializeObject(jsonData);
 
-            return new List<Task_1>();
+            var result = new List<Task_1>();
+
+            for (var i = 0; i < obj.tasks.Count - 1; i++)
+            {
+                var task = obj.tasks[i];
+                result.Add(new Task_1(id: int.Parse(GetTaskAttr(task, "id")), name: GetTaskAttr(task, "name") /*, url : GetTaskAttr(task, "url")*/ ));
+            }
+            return result;
         }
     }
 }

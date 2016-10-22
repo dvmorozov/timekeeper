@@ -17,9 +17,9 @@ class Task_1:
         self.url = url
 
     def toJSON(self):
-        result = '{"id" : "' + str(base64.standard_b64encode(str(self.id).encode()))
-        result += '", "name" : "' + str(base64.standard_b64encode(self.name.encode()))
-        result += '", "url" : "' + str(base64.standard_b64encode(self.url.encode())) + '"}'
+        result = '{"id" : "' + str(base64.standard_b64encode(str(self.id).encode()), "utf-8")
+        result += '", "name" : "' + str(base64.standard_b64encode(self.name.encode()), "utf-8")
+        result += '", "url" : "' + str(base64.standard_b64encode(self.url.encode()), "utf-8") + '"}'
         return result
 
 class TaskList:
