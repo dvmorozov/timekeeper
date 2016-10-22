@@ -36,11 +36,10 @@ namespace TimeKeeper.WCFAdapter
             dynamic obj = JsonConvert.DeserializeObject(jsonData);
 
             var result = new List<Task_1>();
-
             for (var i = 0; i < obj.tasks.Count - 1; i++)
             {
                 var task = obj.tasks[i];
-                result.Add(new Task_1(id: int.Parse(GetTaskAttr(task, "id")), name: GetTaskAttr(task, "name") /*, url : GetTaskAttr(task, "url")*/ ));
+                result.Add(new Task_1 { Id = int.Parse(GetTaskAttr(task, "id")), Name = GetTaskAttr(task, "name") });
             }
             return result;
         }

@@ -8,17 +8,9 @@ namespace TimeKeeper.WCFAdapter
     [DataContract]
     public class Task_1
     {
-        private int _id;
-        private string _name;
-
         [DataMember]
-        public int Id { get { return _id; } }
-        public string Name { get { return _name; } }
-
-        public Task_1(int id, string name) {
-            _id = id;
-            _name = name;
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     [ServiceContract]
