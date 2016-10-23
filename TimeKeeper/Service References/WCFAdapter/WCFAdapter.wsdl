@@ -13,6 +13,12 @@
   <wsdl:message name="IWCFAdapter_1_0_0_GetTaskList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTaskListResponse" />
   </wsdl:message>
+  <wsdl:message name="IWCFAdapter_1_0_0_GetActiveTaskList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveTaskList" />
+  </wsdl:message>
+  <wsdl:message name="IWCFAdapter_1_0_0_GetActiveTaskList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveTaskListResponse" />
+  </wsdl:message>
   <wsdl:message name="IWCFAdapter_1_0_0_FinishTask_InputMessage">
     <wsdl:part name="parameters" element="tns:FinishTask" />
   </wsdl:message>
@@ -24,6 +30,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/GetTaskList" message="tns:IWCFAdapter_1_0_0_GetTaskList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/GetTaskListResponse" message="tns:IWCFAdapter_1_0_0_GetTaskList_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetActiveTaskList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/GetActiveTaskList" message="tns:IWCFAdapter_1_0_0_GetActiveTaskList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/GetActiveTaskListResponse" message="tns:IWCFAdapter_1_0_0_GetActiveTaskList_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="FinishTask">
       <wsdl:input wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/FinishTask" message="tns:IWCFAdapter_1_0_0_FinishTask_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWCFAdapter_1_0_0/FinishTaskResponse" message="tns:IWCFAdapter_1_0_0_FinishTask_OutputMessage" />
@@ -33,6 +43,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetTaskList">
       <soap:operation soapAction="http://tempuri.org/IWCFAdapter_1_0_0/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveTaskList">
+      <soap:operation soapAction="http://tempuri.org/IWCFAdapter_1_0_0/GetActiveTaskList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

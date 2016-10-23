@@ -13,6 +13,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetActiveTaskList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveTaskListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TimeKeeper.WCFAdapter" minOccurs="0" name="GetActiveTaskListResult" nillable="true" type="q2:ArrayOfTask_1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="FinishTask">
     <xs:complexType>
       <xs:sequence />

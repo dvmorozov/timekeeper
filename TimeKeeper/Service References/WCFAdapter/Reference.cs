@@ -54,6 +54,11 @@ namespace TimeKeeper.WCFAdapter {
         
         System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> EndGetTaskList(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWCFAdapter_1_0_0/GetActiveTaskList", ReplyAction="http://tempuri.org/IWCFAdapter_1_0_0/GetActiveTaskListResponse")]
+        System.IAsyncResult BeginGetActiveTaskList(System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> EndGetActiveTaskList(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IWCFAdapter_1_0_0/FinishTask", ReplyAction="http://tempuri.org/IWCFAdapter_1_0_0/FinishTaskResponse")]
         System.IAsyncResult BeginFinishTask(System.AsyncCallback callback, object asyncState);
         
@@ -85,6 +90,25 @@ namespace TimeKeeper.WCFAdapter {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetActiveTaskListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetActiveTaskListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WCFAdapter_1_0_0Client : System.ServiceModel.ClientBase<TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0>, TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0 {
         
         private BeginOperationDelegate onBeginGetTaskListDelegate;
@@ -92,6 +116,12 @@ namespace TimeKeeper.WCFAdapter {
         private EndOperationDelegate onEndGetTaskListDelegate;
         
         private System.Threading.SendOrPostCallback onGetTaskListCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetActiveTaskListDelegate;
+        
+        private EndOperationDelegate onEndGetActiveTaskListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetActiveTaskListCompletedDelegate;
         
         private BeginOperationDelegate onBeginFinishTaskDelegate;
         
@@ -154,6 +184,8 @@ namespace TimeKeeper.WCFAdapter {
         
         public event System.EventHandler<GetTaskListCompletedEventArgs> GetTaskListCompleted;
         
+        public event System.EventHandler<GetActiveTaskListCompletedEventArgs> GetActiveTaskListCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> FinishTaskCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
@@ -202,6 +234,50 @@ namespace TimeKeeper.WCFAdapter {
                 this.onGetTaskListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetTaskListCompleted);
             }
             base.InvokeAsync(this.onBeginGetTaskListDelegate, null, this.onEndGetTaskListDelegate, this.onGetTaskListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0.BeginGetActiveTaskList(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetActiveTaskList(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0.EndGetActiveTaskList(System.IAsyncResult result) {
+            return base.Channel.EndGetActiveTaskList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetActiveTaskList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0)(this)).BeginGetActiveTaskList(callback, asyncState);
+        }
+        
+        private object[] OnEndGetActiveTaskList(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> retVal = ((TimeKeeper.WCFAdapter.IWCFAdapter_1_0_0)(this)).EndGetActiveTaskList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetActiveTaskListCompleted(object state) {
+            if ((this.GetActiveTaskListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetActiveTaskListCompleted(this, new GetActiveTaskListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetActiveTaskListAsync() {
+            this.GetActiveTaskListAsync(null);
+        }
+        
+        public void GetActiveTaskListAsync(object userState) {
+            if ((this.onBeginGetActiveTaskListDelegate == null)) {
+                this.onBeginGetActiveTaskListDelegate = new BeginOperationDelegate(this.OnBeginGetActiveTaskList);
+            }
+            if ((this.onEndGetActiveTaskListDelegate == null)) {
+                this.onEndGetActiveTaskListDelegate = new EndOperationDelegate(this.OnEndGetActiveTaskList);
+            }
+            if ((this.onGetActiveTaskListCompletedDelegate == null)) {
+                this.onGetActiveTaskListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetActiveTaskListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetActiveTaskListDelegate, null, this.onEndGetActiveTaskListDelegate, this.onGetActiveTaskListCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -332,6 +408,18 @@ namespace TimeKeeper.WCFAdapter {
             public System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> EndGetTaskList(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> _result = ((System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1>)(base.EndInvoke("GetTaskList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetActiveTaskList(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetActiveTaskList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> EndGetActiveTaskList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1> _result = ((System.Collections.ObjectModel.ObservableCollection<TimeKeeper.WCFAdapter.Task_1>)(base.EndInvoke("GetActiveTaskList", _args, result)));
                 return _result;
             }
             

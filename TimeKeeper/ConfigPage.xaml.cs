@@ -93,11 +93,11 @@ namespace TimeKeeper
         {
             var client = new WCFAdapter_1_0_0Client();
 
-            client.GetTaskListCompleted += client_GetTaskListCompleted;
-            client.GetTaskListAsync();
+            client.GetActiveTaskListCompleted += client_GetActiveTaskListCompleted;
+            client.GetActiveTaskListAsync();
         }
 
-        void client_GetTaskListCompleted(object sender, GetTaskListCompletedEventArgs e)
+        void client_GetActiveTaskListCompleted(object sender, GetActiveTaskListCompletedEventArgs e)
         {
             if (e.Error == null)
             {

@@ -6,20 +6,34 @@ import base64
 import sys
 import win32pipe, win32file
 
-class Task_1:
+class Task:
     id = None
     name = None
     url = None
+    isArchived = False
 
-    def __init__(self, id, name, url, **kwargs):
+    def __init__(self, id, name, url, isArchived, **kwargs):
         self.id = id
         self.name = name
         self.url = url
+        self.isArchived = isArchived
+
+    # The list of transmitted attributes.
+    jsonAttrList = ["id", "name", "url", "isArchived"]
+
+    def attrToJSON(self, attrName):
+        return '"' + attrName +  '" : "' + str(base64.standard_b64encode(str(self.__dict__[attrName]).encode()), "utf-8") + '"'
 
     def toJSON(self):
-        result = '{"id" : "' + str(base64.standard_b64encode(str(self.id).encode()), "utf-8")
-        result += '", "name" : "' + str(base64.standard_b64encode(self.name.encode()), "utf-8")
-        result += '", "url" : "' + str(base64.standard_b64encode(self.url.encode()), "utf-8") + '"}'
+        result = '{'
+
+        for index in range(0, len(self.jsonAttrList)):
+            attrName = self.jsonAttrList[index]
+            result += self.attrToJSON(attrName)
+            if index < len(self.jsonAttrList) - 1:
+                result += ', '
+
+        result += '}'
         return result
 
 class TaskList:
@@ -27,6 +41,7 @@ class TaskList:
 
     def toJSON(self):
         result = '{"tasks" : [' 
+        # Convert all tasks into JSON representation.
         for index in range(0, len(self.list)):
             result += (self.list[index].toJSON())
             if index < len(self.list) - 1:
@@ -68,7 +83,7 @@ class WCFAdapter_1_0_0(TodoistClient):
                 if name[len(name) - 1] == ')':
                     name = name[:len(name) - 1]
 
-                result.list.append(Task_1(item['id'], name, url))
+                result.list.append(Task(item['id'], name, url, bool(item['is_archived'])))
 
         return result
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -20,7 +21,8 @@ namespace TimeKeeper.WCFAdapter
             throw new NotImplementedException();
         }
 
-        public List<Task_1> GetTaskList()
+        //  Request from pipe-server full set of task data and convert them into inner format.
+        private List<Task> GetFullTaskData()
         {
             var client = new NamedPipeClientStream("todoist_adapter");
 
@@ -35,13 +37,42 @@ namespace TimeKeeper.WCFAdapter
             var jsonData = reader.ReadToEnd();
             dynamic obj = JsonConvert.DeserializeObject(jsonData);
 
-            var result = new List<Task_1>();
+            var result = new List<Task>();
             for (var i = 0; i < obj.tasks.Count - 1; i++)
             {
                 var task = obj.tasks[i];
-                result.Add(new Task_1 { Id = int.Parse(GetTaskAttr(task, "id")), Name = GetTaskAttr(task, "name") });
+                result.Add(new Task {
+                    Id = int.Parse(GetTaskAttr(task, "id")),
+                    Name = GetTaskAttr(task, "name"),
+                    Url = GetTaskAttr(task, "url"),
+                    IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
+                });
             }
             return result;
+        }
+
+        //  Perform conversion from inner representation into data contract representation.
+        private List<Task_1> ConvertToList_1(List<Task> list)
+        {
+            var result = new List<Task_1>();
+            for (var i = 0; i < list.Count - 1; i++)
+            {
+                var task = list[i];
+                result.Add(new Task_1 { Id = task.Id, Name = task.Name });
+            }
+            return result;
+        }
+
+        //  Return full list of tasks.
+        public List<Task_1> GetTaskList()
+        {
+            return ConvertToList_1(GetFullTaskData());
+        }
+
+        //  Return only tasks not marked as archive.
+        public List<Task_1> GetActiveTaskList()
+        {
+            return ConvertToList_1(GetFullTaskData().Where(t => !t.IsArchived).ToList());
         }
     }
 }
