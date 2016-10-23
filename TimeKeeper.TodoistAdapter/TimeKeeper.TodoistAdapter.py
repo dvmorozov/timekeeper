@@ -7,30 +7,20 @@ import sys
 import win32pipe, win32file
 
 class Task:
-    id = None
-    name = None
-    url = None
-    isArchived = False
-
-    def __init__(self, id, name, url, isArchived, **kwargs):
-        self.id = id
-        self.name = name
-        self.url = url
-        self.isArchived = isArchived
-
     # The list of transmitted attributes.
-    jsonAttrList = ["id", "name", "url", "isArchived"]
+    def getTransAttrList(self):
+        return ["id", "name", "url", "isArchived"]
 
     def attrToJSON(self, attrName):
-        return '"' + attrName +  '" : "' + str(base64.standard_b64encode(str(self.__dict__[attrName]).encode()), "utf-8") + '"'
+        return '"' + attrName +  '": "' + str(base64.standard_b64encode(str(self.__dict__[attrName]).encode()), "utf-8") + '"'
 
     def toJSON(self):
         result = '{'
 
-        for index in range(0, len(self.jsonAttrList)):
-            attrName = self.jsonAttrList[index]
+        for index in range(0, len(self.getTransAttrList())):
+            attrName = self.getTransAttrList()[index]
             result += self.attrToJSON(attrName)
-            if index < len(self.jsonAttrList) - 1:
+            if index < len(self.getTransAttrList()) - 1:
                 result += ', '
 
         result += '}'
@@ -83,7 +73,19 @@ class WCFAdapter_1_0_0(TodoistClient):
                 if name[len(name) - 1] == ')':
                     name = name[:len(name) - 1]
 
-                result.list.append(Task(item['id'], name, url, bool(item['is_archived'])))
+                task = Task()
+                task.id = item['id']
+                task.name = name
+                task.url = url
+                task.isArchived = bool(item['is_archived'])
+
+                assert len(task.getTransAttrList()) == 4, 'len(task.getTransAttrList()) == 4'
+                assert 'id' in task.getTransAttrList(), 'id in task.getTransAttrList()'
+                assert 'name' in task.getTransAttrList(), 'name in task.getTransAttrList()'
+                assert 'url' in task.getTransAttrList(), 'url in task.getTransAttrList()'
+                assert 'isArchived' in task.getTransAttrList(), 'isArchived in task.getTransAttrList()'
+
+                result.list.append(task)
 
         return result
 
