@@ -12,5 +12,7 @@ if __name__ == '__main__':
     data = "Hello Todoist Adapter!"
     win32file.WriteFile(p, bytes(data, encoding = 'utf-8'))
 
-    data = win32file.ReadFile(p, 16384)
+    data = win32file.ReadFile(p, 1024 * 1024)
     print(str(data))
+
+    win32file.CloseHandle(p)

@@ -4,7 +4,7 @@ import argparse
 import configparser
 import base64
 import sys
-import win32pipe, win32file
+import win32pipe, win32file, win32con
 
 class Task:
     # The list of transmitted attributes.
@@ -53,6 +53,7 @@ class WCFAdapter_1_0_0(TodoistClient):
     def GetTaskList(self):
         result = TaskList()
 
+        itemCount = 0
         for item in self.response['items']:
             if item['checked'] == 0:
                 s = item['content']
@@ -79,6 +80,8 @@ class WCFAdapter_1_0_0(TodoistClient):
                 task.url = url
                 task.isArchived = bool(item['is_archived'])
 
+                print('name: ' + name)
+
                 assert len(task.getTransAttrList()) == 4, 'len(task.getTransAttrList()) == 4'
                 assert 'id' in task.getTransAttrList(), 'id in task.getTransAttrList()'
                 assert 'name' in task.getTransAttrList(), 'name in task.getTransAttrList()'
@@ -86,7 +89,9 @@ class WCFAdapter_1_0_0(TodoistClient):
                 assert 'isArchived' in task.getTransAttrList(), 'isArchived in task.getTransAttrList()'
 
                 result.list.append(task)
+                itemCount += 1
 
+        print('item count: ' + str(itemCount))
         return result
 
     def FinishTask():
@@ -107,26 +112,26 @@ if __name__ == '__main__':
     config.read(args.configfile)
 
     while True:
-        p = win32pipe.CreateNamedPipe(r'\\.\pipe\todoist_adapter',
-            win32pipe.PIPE_ACCESS_DUPLEX,
-            win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT,
-            2, 65536, 65536, 300, None)
-
         try:
-            while True:
-                win32pipe.ConnectNamedPipe(p, None)
-                data = win32file.ReadFile(p, 4096)
+            p = win32pipe.CreateNamedPipe(r'\\.\pipe\todoist_adapter',
+                win32pipe.PIPE_ACCESS_DUPLEX,
+                #win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT,
+                0,
+                1, 65536, 65536, 300, None)
 
-                if data[0] == 0:
-                    print('Args: ' + str(data[1:]))
-                    win32file.WriteFile(p, bytes(queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password']), encoding = 'utf-8'))
-                    # Wait until all the data will be received by client.
-                    win32file.FlushFileBuffers(p)
+            win32pipe.ConnectNamedPipe(p, None)
+            data = win32file.ReadFile(p, 4096)
 
-                else:
-                    print('Error: ' + str(data))
+            if data[0] == 0:
+                print('Args: ' + str(data[1:]))
+                win32file.WriteFile(p, bytes(queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password']), encoding = 'utf-8'))
+                # Wait until all the data will be received by client.
+                #win32file.FlushFileBuffers(p)
 
-                win32pipe.DisconnectNamedPipe(p)
+            else:
+                print('Error: ' + str(data))
+
+            win32file.CloseHandle(p)
 
         except Exception as e:
             # When client unexpectedly terminated connection exception occurs.

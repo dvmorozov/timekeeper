@@ -24,31 +24,33 @@ namespace TimeKeeper.WCFAdapter
         //  Request from pipe-server full set of task data and convert them into inner format.
         private List<Task> GetFullTaskData()
         {
-            var client = new NamedPipeClientStream("todoist_adapter");
-
-            client.Connect();
-
-            var reader = new StreamReader(client);
-            var writer = new StreamWriter(client);
-
-            writer.WriteLine("GetTaskList");
-            writer.Flush();
-
-            var jsonData = reader.ReadToEnd();
-            dynamic obj = JsonConvert.DeserializeObject(jsonData);
-
-            var result = new List<Task>();
-            for (var i = 0; i < obj.tasks.Count - 1; i++)
+            using (var client = new NamedPipeClientStream("todoist_adapter"))
             {
-                var task = obj.tasks[i];
-                result.Add(new Task {
-                    Id = int.Parse(GetTaskAttr(task, "id")),
-                    Name = GetTaskAttr(task, "name"),
-                    Url = GetTaskAttr(task, "url"),
-                    IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
-                });
+                client.Connect();
+
+                var reader = new StreamReader(client);
+                var writer = new StreamWriter(client);
+
+                writer.WriteLine("GetTaskList");
+                writer.Flush();
+
+                var jsonData = reader.ReadToEnd();
+                dynamic obj = JsonConvert.DeserializeObject(jsonData);
+
+                var result = new List<Task>();
+                for (var i = 0; i < obj.tasks.Count - 1; i++)
+                {
+                    var task = obj.tasks[i];
+                    result.Add(new Task
+                    {
+                        Id = int.Parse(GetTaskAttr(task, "id")),
+                        Name = GetTaskAttr(task, "name"),
+                        Url = GetTaskAttr(task, "url"),
+                        IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
+                    });
+                }
+                return result;
             }
-            return result;
         }
 
         //  Perform conversion from inner representation into data contract representation.
