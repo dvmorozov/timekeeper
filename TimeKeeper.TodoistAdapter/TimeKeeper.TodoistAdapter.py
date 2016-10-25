@@ -50,6 +50,12 @@ class TodoistClient:
         return super().__init__(**kwargs)
 
 class WCFAdapter_1_0_0(TodoistClient):
+    disableDebug = False
+
+    def __init__(self, userName, password, disableDebug, **kwargs):
+        super().__init__(userName, password, **kwargs)
+        self.disableDebug = disableDebug
+
     def GetTaskList(self):
         result = TaskList()
 
@@ -80,7 +86,8 @@ class WCFAdapter_1_0_0(TodoistClient):
                 task.url = url
                 task.isArchived = bool(item['is_archived'])
 
-                print('name: ' + name)
+                if not self.disableDebug:
+                    print('name: ' + name)
 
                 assert len(task.getTransAttrList()) == 4, 'len(task.getTransAttrList()) == 4'
                 assert 'id' in task.getTransAttrList(), 'id in task.getTransAttrList()'
@@ -91,26 +98,22 @@ class WCFAdapter_1_0_0(TodoistClient):
                 result.list.append(task)
                 itemCount += 1
 
-        print('item count: ' + str(itemCount))
+        if not self.disableDebug:
+            print('item count: ' + str(itemCount))
         return result
 
     def FinishTask():
         pass
 
-parser = argparse.ArgumentParser(description='Todoist API adapter')
-parser.add_argument('--configfile')
-
-def queryTodoistAPI(userName, password):
-    adapter = WCFAdapter_1_0_0(userName, password)
+def queryTodoistAPI(userName, password, disableDebug):
+    adapter = WCFAdapter_1_0_0(userName, password, disableDebug)
     list = adapter.GetTaskList()
     return list.toJSON()
 
-if __name__ == '__main__':
-    args = parser.parse_args()
+def queryWithConfig(disableDebug):
+    return queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password'], disableDebug)
 
-    config = configparser.ConfigParser()
-    config.read(args.configfile)
-
+def pipeServer():
     while True:
         try:
             p = win32pipe.CreateNamedPipe(r'\\.\pipe\todoist_adapter',
@@ -124,7 +127,7 @@ if __name__ == '__main__':
 
             if data[0] == 0:
                 print('Args: ' + str(data[1:]))
-                win32file.WriteFile(p, bytes(queryTodoistAPI(config['DEFAULT']['username'], config['DEFAULT']['password']), encoding = 'utf-8'))
+                win32file.WriteFile(p, bytes(queryWithConfig(False), encoding = 'utf-8'))
                 # Wait until all the data will be received by client.
                 #win32file.FlushFileBuffers(p)
 
@@ -138,5 +141,30 @@ if __name__ == '__main__':
             print('Exception: ' + str(e))
             win32file.CloseHandle(p)
 
-    print('Process terminated')
+def queryToFile(outFile):
+    file = open(outFile, "w")
+    file.write(queryWithConfig(False))
+    file.close()
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Todoist API adapter')
+    parser.add_argument('--configfile')
+    parser.add_argument('--outputfile')
+    parser.add_argument('--pipe')
+
+    args = parser.parse_args()
+
+    config = configparser.ConfigParser()
+    config.read(args.configfile)
+
+    if args.pipe is not None:
+        pipeServer()
+        print('Process terminated')
+    else:
+        if args.outputfile is not None:
+            queryToFile(args.outputfile)
+        else:
+            # To standard output.
+            print(queryWithConfig(True))
+
     sys.exit(0)
