@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace TimeKeeper.WCFAdapter
 {
@@ -21,6 +23,25 @@ namespace TimeKeeper.WCFAdapter
             throw new NotImplementedException();
         }
 
+        private List<Task> ProcessData(string jsonData)
+        {
+            dynamic obj = JsonConvert.DeserializeObject(jsonData);
+
+            var result = new List<Task>();
+            for (var i = 0; i < obj.tasks.Count - 1; i++)
+            {
+                var task = obj.tasks[i];
+                result.Add(new Task
+                {
+                    Id = int.Parse(GetTaskAttr(task, "id")),
+                    Name = GetTaskAttr(task, "name"),
+                    Url = GetTaskAttr(task, "url"),
+                    IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
+                });
+            }
+            return result;
+        }
+
         //  Request from pipe-server full set of task data and convert them into inner format.
         private List<Task> GetFullTaskData()
         {
@@ -34,23 +55,25 @@ namespace TimeKeeper.WCFAdapter
                 writer.WriteLine("GetTaskList");
                 writer.Flush();
 
-                var jsonData = reader.ReadToEnd();
-                dynamic obj = JsonConvert.DeserializeObject(jsonData);
-
-                var result = new List<Task>();
-                for (var i = 0; i < obj.tasks.Count - 1; i++)
-                {
-                    var task = obj.tasks[i];
-                    result.Add(new Task
-                    {
-                        Id = int.Parse(GetTaskAttr(task, "id")),
-                        Name = GetTaskAttr(task, "name"),
-                        Url = GetTaskAttr(task, "url"),
-                        IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
-                    });
-                }
-                return result;
+                return ProcessData(reader.ReadToEnd());
             }
+        }
+
+        private List<Task> GetFullTaskData2()
+        {
+            Process cmd = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\TodoistAdapter", "FileName", ""),
+                    Arguments = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\TodoistAdapter", "Arguments", ""),
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                }
+            };
+            cmd.Start();
+            return ProcessData(cmd.StandardOutput.ReadToEnd());
         }
 
         //  Perform conversion from inner representation into data contract representation.
@@ -74,7 +97,7 @@ namespace TimeKeeper.WCFAdapter
         //  Return only tasks not marked as archive.
         public List<Task_1> GetActiveTaskList()
         {
-            return ConvertToList_1(GetFullTaskData().Where(t => !t.IsArchived).ToList());
+            return ConvertToList_1(GetFullTaskData2().Where(t => !t.IsArchived).ToList());
         }
     }
 }
