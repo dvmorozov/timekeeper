@@ -12,6 +12,16 @@ namespace TimeKeeper.WCFAdapter
 {
     public class WCFAdapter : IWCFAdapter_1_0_0
     {
+        public delegate List<Task> GetFullTaskData();
+
+        private GetFullTaskData _getFullTaskData;
+
+        public WCFAdapter()
+        {
+            //  Initialize the method for requesting task data.
+            _getFullTaskData = GetFullTaskDataProcess;
+        }
+
         private string GetTaskAttr(JObject task, string attrName)
         {
             var buffer = Convert.FromBase64String(task.GetValue(attrName).Value<string>());
@@ -23,6 +33,7 @@ namespace TimeKeeper.WCFAdapter
             throw new NotImplementedException();
         }
 
+        //  Convert task data into inner format.
         private List<Task> ProcessData(string jsonData)
         {
             dynamic obj = JsonConvert.DeserializeObject(jsonData);
@@ -42,8 +53,8 @@ namespace TimeKeeper.WCFAdapter
             return result;
         }
 
-        //  Request from pipe-server full set of task data and convert them into inner format.
-        private List<Task> GetFullTaskData()
+        //  Request task data from pipe-server.
+        private List<Task> GetFullTaskDataPipe()
         {
             using (var client = new NamedPipeClientStream("todoist_adapter"))
             {
@@ -59,7 +70,8 @@ namespace TimeKeeper.WCFAdapter
             }
         }
 
-        private List<Task> GetFullTaskData2()
+        //  Request task data via execution of external process.
+        private List<Task> GetFullTaskDataProcess()
         {
             Process cmd = new Process()
             {
@@ -91,13 +103,13 @@ namespace TimeKeeper.WCFAdapter
         //  Return full list of tasks.
         public List<Task_1> GetTaskList()
         {
-            return ConvertToList_1(GetFullTaskData());
+            return ConvertToList_1(_getFullTaskData());
         }
 
         //  Return only tasks not marked as archive.
         public List<Task_1> GetActiveTaskList()
         {
-            return ConvertToList_1(GetFullTaskData2().Where(t => !t.IsArchived).ToList());
+            return ConvertToList_1(_getFullTaskData().Where(t => !t.IsArchived).ToList());
         }
     }
 }
