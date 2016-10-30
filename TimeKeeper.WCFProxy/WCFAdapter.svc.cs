@@ -24,7 +24,8 @@ namespace TimeKeeper.WCFAdapter
 
         private string GetTaskAttr(JObject task, string attrName)
         {
-            var buffer = Convert.FromBase64String(task.GetValue(attrName).Value<string>());
+            var value = task.GetValue(attrName).Value<string>();
+            var buffer = Convert.FromBase64String(value);
             return System.Text.Encoding.UTF8.GetString(buffer, 0, buffer.Length);
         }
 
@@ -42,13 +43,14 @@ namespace TimeKeeper.WCFAdapter
             for (var i = 0; i < obj.tasks.Count - 1; i++)
             {
                 var task = obj.tasks[i];
-                result.Add(new Task
+                var newTask = new Task
                 {
                     Id = int.Parse(GetTaskAttr(task, "id")),
                     Name = GetTaskAttr(task, "name"),
                     Url = GetTaskAttr(task, "url"),
                     IsArchived = bool.Parse(GetTaskAttr(task, "isArchived"))
-                });
+                };
+                result.Add(newTask);
             }
             return result;
         }
