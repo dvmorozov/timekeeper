@@ -385,7 +385,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not important.
+        ///   Looks up a localized string similar to Not Important.
         /// </summary>
         public static string NotImportantText {
             get {
@@ -394,7 +394,7 @@ namespace TimeKeeper.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not urgent.
+        ///   Looks up a localized string similar to Not Urgent.
         /// </summary>
         public static string NotUrgentText {
             get {

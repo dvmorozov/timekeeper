@@ -1,15 +1,9 @@
 ﻿
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
-using System.Windows;
-using TimeKeeper.Core.Resources;
-using Windows.Storage;
-using Windows.Storage.Streams;
 
 namespace TimeKeeper.Core
 {
@@ -36,7 +30,7 @@ namespace TimeKeeper.Core
         [DataMember]
         private ObservableCollection<StatDay> _lastDays;
         [DataMember]
-        private TimeExpensesData _prevData;
+        private TimeExpensesDataBase _prevData;
         [DataMember]
         private DateTime _lastRecalculationTime;
         [DataMember]
@@ -44,7 +38,7 @@ namespace TimeKeeper.Core
         [DataMember]
         private double _integralPerf;
 
-        private TimeExpensesData _data;
+        private TimeExpensesDataBase _data;
         private IDateTime _dt;
         //  Used for unit testing.
         public IDateTime Dt { set { _dt = value; } }
@@ -56,7 +50,7 @@ namespace TimeKeeper.Core
 
         //  Initializes the attributes not read from the JSON-stream.
         //  Is called after ReadObject.
-        public void Initialize(TimeExpensesData data)
+        public void Initialize(TimeExpensesDataBase data)
         {
             _dt = new SysDateTime();
             _data = data;
@@ -65,17 +59,17 @@ namespace TimeKeeper.Core
             RecalculateStatisitics();
         }
 
-        public StatStack(TimeExpensesData data)
+        public StatStack(TimeExpensesDataBase data)
         {
             _lastDays = new ObservableCollection<StatDay>();
-            _prevData = new TimeExpensesData();
+            _prevData = new TimeExpensesData_2();
 
             Initialize(data);
         }
 
         private void CopyData()
         {
-            _prevData = new TimeExpensesData(_data);
+            _prevData = new TimeExpensesData_2(_data);
             _lastRecalculationTime = _dt.Now;
             _lastRecalculationTimeInitialized = true;
         }
@@ -92,7 +86,7 @@ namespace TimeKeeper.Core
 
         public void RecalculateStatisitics()
         {
-            //  Gets the current active task list.
+            //  Gets the current Active Task list.
 
             //  Checks has the change been done in the current day or not.
             if (_lastRecalculationTimeInitialized)
@@ -157,7 +151,7 @@ namespace TimeKeeper.Core
 
         private const string _fileName = "StatisticsData";
 
-        public static async Task<StatStack> Load(TimeExpensesData data)
+        public static async Task<StatStack> Load(TimeExpensesDataBase data)
         {
             try
             {

@@ -137,15 +137,15 @@ namespace TimeKeeper
         /// <summary>
         /// Gets the IsTiltEnabled dependency property from an object
         /// </summary>
-        /// <param name="source">The object to get the property from</param>
+        /// <param Name="source">The object to get the property from</param>
         /// <returns>The property's value</returns>
         public static bool GetIsTiltEnabled(DependencyObject source) { return (bool)source.GetValue(IsTiltEnabledProperty); }
 
         /// <summary>
         /// Sets the IsTiltEnabled dependency property on an object
         /// </summary>
-        /// <param name="source">The object to set the property on</param>
-        /// <param name="value">The value to set</param>
+        /// <param Name="source">The object to set the property on</param>
+        /// <param Name="value">The value to set</param>
         public static void SetIsTiltEnabled(DependencyObject source, bool value) { source.SetValue(IsTiltEnabledProperty, value); }
 
         /// <summary>
@@ -161,14 +161,14 @@ namespace TimeKeeper
         /// <summary>
         /// Gets the SuppressTilt dependency property from an object
         /// </summary>
-        /// <param name="source">The object to get the property from</param>
+        /// <param Name="source">The object to get the property from</param>
         /// <returns>The property's value</returns>
         public static bool GetSuppressTilt(DependencyObject source) { return (bool)source.GetValue(SuppressTiltProperty); }
 
         /// <summary>
         /// Sets the SuppressTilt dependency property from an object
         /// </summary>
-        /// <param name="source">The object to get the property from</param>
+        /// <param Name="source">The object to get the property from</param>
         /// <returns>The property's value</returns>
         public static void SetSuppressTilt(DependencyObject source, bool value) { source.SetValue(SuppressTiltProperty, value); }
 
@@ -176,8 +176,8 @@ namespace TimeKeeper
         /// <summary>
         /// Property change handler for the IsTiltEnabled dependency property
         /// </summary>
-        /// <param name="target">The element that the property is atteched to</param>
-        /// <param name="args">Event args</param>
+        /// <param Name="target">The element that the property is atteched to</param>
+        /// <param Name="args">Event args</param>
         /// <remarks>
         /// Adds or removes event handlers from the element that has been (un)registered for tilting
         /// </remarks>
@@ -205,8 +205,8 @@ namespace TimeKeeper
         /// <summary>
         /// Event handler for ManipulationStarted
         /// </summary>
-        /// <param name="sender">sender of the event - this will be the tilt container (eg, entire page)</param>
-        /// <param name="e">event args</param>
+        /// <param Name="sender">sender of the event - this will be the tilt container (eg, entire page)</param>
+        /// <param Name="e">event args</param>
         static void TiltEffect_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
         {
            
@@ -216,8 +216,8 @@ namespace TimeKeeper
         /// <summary>
         /// Event handler for ManipulationDelta
         /// </summary>
-        /// <param name="sender">sender of the event - this will be the tilting object (eg a button)</param>
-        /// <param name="e">event args</param>
+        /// <param Name="sender">sender of the event - this will be the tilting object (eg a button)</param>
+        /// <param Name="e">event args</param>
         static void TiltEffect_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
             
@@ -227,8 +227,8 @@ namespace TimeKeeper
         /// <summary>
         /// Event handler for ManipulationCompleted
         /// </summary>
-        /// <param name="sender">sender of the event - this will be the tilting object (eg a button)</param>
-        /// <param name="e">event args</param>
+        /// <param Name="sender">sender of the event - this will be the tilting object (eg a button)</param>
+        /// <param Name="e">event args</param>
         static void TiltEffect_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
         {
             
@@ -243,8 +243,8 @@ namespace TimeKeeper
         /// <summary>
         /// Checks if the manipulation should cause a tilt, and if so starts the tilt effect
         /// </summary>
-        /// <param name="source">The source of the manipulation (the tilt container, eg entire page)</param>
-        /// <param name="e">The args from the ManipulationStarted event</param>
+        /// <param Name="source">The source of the manipulation (the tilt container, eg entire page)</param>
+        /// <param Name="e">The args from the ManipulationStarted event</param>
         static void TryStartTiltEffect(FrameworkElement source, ManipulationStartedEventArgs e)
         {
             foreach (FrameworkElement ancestor in (e.OriginalSource as FrameworkElement).GetVisualAncestors())
@@ -283,8 +283,8 @@ namespace TimeKeeper
         /// <summary>
         /// Computes the delta between the centre of an element and its container
         /// </summary>
-        /// <param name="element">The element to compare</param>
-        /// <param name="container">The element to compare against</param>
+        /// <param Name="element">The element to compare</param>
+        /// <param Name="container">The element to compare against</param>
         /// <returns>A point that represents the delta between the two centers</returns>
         static Point GetCenterToCenterDelta(FrameworkElement element, FrameworkElement container)
         {
@@ -324,10 +324,10 @@ namespace TimeKeeper
         /// <summary>
         /// Begins the tilt effect by preparing the control and doing the initial animation
         /// </summary>
-        /// <param name="element">The element to tilt </param>
-        /// <param name="touchPoint">The touch point, in element coordinates</param>
-        /// <param name="centerPoint">The center point of the element in element coordinates</param>
-        /// <param name="centerDelta">The delta between the <paramref name="element"/>'s center and 
+        /// <param Name="element">The element to tilt </param>
+        /// <param Name="touchPoint">The touch point, in element coordinates</param>
+        /// <param Name="centerPoint">The center point of the element in element coordinates</param>
+        /// <param Name="centerDelta">The delta between the <paramref Name="element"/>'s center and 
         /// the container's center</param>
         static void BeginTiltEffect(FrameworkElement element, Point touchPoint, Point centerPoint, Point centerDelta)
         {
@@ -349,8 +349,8 @@ namespace TimeKeeper
         /// <summary>
         /// Prepares a control to be tilted by setting up a plane projection and some event handlers
         /// </summary>
-        /// <param name="element">The control that is to be tilted</param>
-        /// <param name="centerDelta">Delta between the element's center and the tilt container's</param>
+        /// <param Name="element">The control that is to be tilted</param>
+        /// <param Name="centerDelta">Delta between the element's center and the tilt container's</param>
         /// <returns>true if successful; false otherwise</returns>
         /// <remarks>
         /// This method is conservative; it will fail any attempt to tilt a control that already
@@ -381,7 +381,7 @@ namespace TimeKeeper
         /// <summary>
         /// Removes modifications made by PrepareControlForTilt
         /// </summary>
-        /// <param name="element">THe control to be un-prepared</param>
+        /// <param Name="element">THe control to be un-prepared</param>
         /// <remarks>
         /// This method is basic; it does not do anything to detect if the control being un-prepared
         /// was previously prepared
@@ -397,7 +397,7 @@ namespace TimeKeeper
         /// <summary>
         /// Creates the tilt return storyboard (if not already created) and targets it to the projection
         /// </summary>
-        /// <param name="projection">the projection that should be the target of the animation</param>
+        /// <param Name="projection">the projection that should be the target of the animation</param>
         static void PrepareTiltReturnStoryboard(FrameworkElement element)
         {
 
@@ -446,8 +446,8 @@ namespace TimeKeeper
         /// Continues a tilt effect that is currently applied to an element, presumably because
         /// the user moved their finger
         /// </summary>
-        /// <param name="element">The element being tilted</param>
-        /// <param name="e">The manipulation event args</param>
+        /// <param Name="element">The element being tilted</param>
+        /// <param Name="e">The manipulation event args</param>
         static void ContinueTiltEffect(FrameworkElement element, ManipulationDeltaEventArgs e)
         {
             FrameworkElement container = e.ManipulationContainer as FrameworkElement;
@@ -471,7 +471,7 @@ namespace TimeKeeper
         /// <summary>
         /// Ends the tilt effect by playing the animation  
         /// </summary>
-        /// <param name="element">The element being tilted</param>
+        /// <param Name="element">The element being tilted</param>
         static void EndTiltEffect(FrameworkElement element)
         {
             if (element != null)
@@ -493,8 +493,8 @@ namespace TimeKeeper
         /// <summary>
         /// Handler for the storyboard complete event
         /// </summary>
-        /// <param name="sender">sender of the event</param>
-        /// <param name="e">event args</param>
+        /// <param Name="sender">sender of the event</param>
+        /// <param Name="e">event args</param>
         static void TiltReturnStoryboard_Completed(object sender, EventArgs e)
         {
             if (wasPauseAnimation)
@@ -506,7 +506,7 @@ namespace TimeKeeper
         /// <summary>
         /// Resets the tilt effect on the control, making it appear 'normal' again 
         /// </summary>
-        /// <param name="element">The element to reset the tilt on</param>
+        /// <param Name="element">The element to reset the tilt on</param>
         /// <remarks>
         /// This method doesn't turn off the tilt effect or cancel any current
         /// manipulation; it just temporarily cancels the effect
@@ -556,12 +556,12 @@ namespace TimeKeeper
         /// <summary>
         /// Applies the tilt effect to the control
         /// </summary>
-        /// <param name="element">the control to tilt</param>
-        /// <param name="touchPoint">The touch point, in the container's coordinates</param>
-        /// <param name="centerPoint">The center point of the container</param>
+        /// <param Name="element">the control to tilt</param>
+        /// <param Name="touchPoint">The touch point, in the container's coordinates</param>
+        /// <param Name="centerPoint">The center point of the container</param>
         static void ApplyTiltEffect(FrameworkElement element, Point touchPoint, Point centerPoint)
         {
-            // Stop any active animation
+            // Stop any Active animation
             ResetTiltReturnStoryboard();
 
             // Get relative point of the touch in percentage of container size
@@ -603,7 +603,7 @@ namespace TimeKeeper
             /// <summary>
             /// Computes the easing function
             /// </summary>
-            /// <param name="normalizedTime">The time</param>
+            /// <param Name="normalizedTime">The time</param>
             /// <returns>The eased value</returns>
             protected override double EaseInCore(double normalizedTime)
             {
@@ -622,7 +622,7 @@ namespace TimeKeeper
         /// <summary>
         /// Gets the ancestors of the element, up to the root
         /// </summary>
-        /// <param name="node">The element to start from</param>
+        /// <param Name="node">The element to start from</param>
         /// <returns>An enumerator of the ancestors</returns>
         public static IEnumerable<FrameworkElement> GetVisualAncestors(this FrameworkElement node)
         {
@@ -637,7 +637,7 @@ namespace TimeKeeper
         /// <summary>
         /// Gets the visual parent of the element
         /// </summary>
-        /// <param name="node">The element to check</param>
+        /// <param Name="node">The element to check</param>
         /// <returns>The visual parent</returns>
         public static FrameworkElement GetVisualParent(this FrameworkElement node)
         {

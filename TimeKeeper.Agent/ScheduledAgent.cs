@@ -33,20 +33,20 @@ namespace TimeKeeper.Agent
         public static StatStack Statistics;
 
         /// <summary>
-        /// Agent that runs a scheduled task
+        /// Agent that runs a scheduled Task
         /// </summary>
-        /// <param name="task">
-        /// The invoked task
+        /// <param Name="Task">
+        /// The invoked Task
         /// </param>
         /// <remarks>
-        /// This method is called when a periodic or resource intensive task is invoked
+        /// This method is called when a periodic or resource intensive Task is invoked
         /// </remarks>
         protected override async void OnInvoke(ScheduledTask task)
         {
             //  Blocks messages output.
             try
             {
-                var data = await TimeExpensesData.Load();
+                var data = await TimeExpensesDataBase.Load();
                 Statistics = await StatStack.Load(data);
 
                 Statistics.RecalculateStatisitics();

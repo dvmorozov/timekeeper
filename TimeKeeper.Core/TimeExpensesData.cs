@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.IO.IsolatedStorage;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Windows;
 using Newtonsoft.Json;
 using System.Linq;
 using TimeKeeper.Core.Resources;
@@ -13,59 +10,19 @@ using System.Threading.Tasks;
 
 namespace TimeKeeper.Core
 {
-    //  This class represents the work category.
-    [DataContract]
-    public class Category
+    //  https://action.mindjet.com/Task/14778395
+    //  Base class contains all data attributes according to latest version.
+    public class CategoryBase
     {
-        [DataMember]
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public bool Active
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public TimeSpan Duration
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public bool Urgent
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public bool Important
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public DateTime LastStart
-        {
-            get;
-            set;
-        }
-
+        public bool Active_;
         //  Unique category identifier.
-        [DataMember]
-        public Guid CategoryId
-        {
-            get;
-            set;
-        }
+        public Guid CategoryId_;
+        public TimeSpan Duration_;
+        public bool Important_;
+        public DateTime LastStart_;
+        public string Name_;
+        public TaskId Task_;
+        public bool Urgent_;
 
         public static string DurationS(TimeSpan duration)
         {
@@ -80,25 +37,189 @@ namespace TimeKeeper.Core
         {
             get
             {
-                return DurationS(Duration);
+                return DurationS(Duration_);
             }
         }
 
-        public Category(string name)
+        public CategoryBase()
+        { }
+
+        public CategoryBase(string name)
         {
-            this.CategoryId = Guid.NewGuid();
-            this.Name = name;
+            this.CategoryId_ = Guid.NewGuid();
+            this.Name_ = name;
         }
 
-        public Category(Category c)
+        public CategoryBase(CategoryBase c)
         {
-            this.CategoryId = c.CategoryId;
-            this.Name = c.Name;
-            this.Active = c.Active;
-            this.Urgent = c.Urgent;
-            this.Important = c.Important;
-            this.Duration = c.Duration;
-            this.LastStart = c.LastStart;
+            this.CategoryId_ = c.CategoryId_;
+            this.Name_ = c.Name_;
+            this.Active_ = c.Active_;
+            this.Urgent_ = c.Urgent_;
+            this.Important_ = c.Important_;
+            this.Duration_ = c.Duration_;
+            this.LastStart_ = c.LastStart_;
+        }
+    }
+
+    //  This class represents the work category.
+    [DataContract]
+    public class Category : CategoryBase
+    {
+        [DataMember]
+        public string Name
+        {
+            get { return base.Name_; }
+            set { base.Name_ = value; }
+        }
+
+        [DataMember]
+        public bool Active
+        {
+            get { return base.Active_; }
+            set { base.Active_ = value; }
+        }
+
+        [DataMember]
+        public TimeSpan Duration
+        {
+            get { return base.Duration_; }
+            set { base.Duration_ = value; }
+        }
+
+        [DataMember]
+        public bool Urgent
+        {
+            get { return base.Urgent_; }
+            set { base.Urgent_ = value; }
+        }
+
+        [DataMember]
+        public bool Important
+        {
+            get { return base.Important_; }
+            set { base.Important_ = value; }
+        }
+
+        [DataMember]
+        public DateTime LastStart
+        {
+            get { return base.LastStart_; }
+            set { base.LastStart_ = value; }
+        }
+
+        //  Unique category identifier.
+        [DataMember]
+        public Guid CategoryId
+        {
+            get { return base.CategoryId_; }
+            set { base.CategoryId_ = value; }
+        }
+
+        public Category(string name) : base(name)
+        {
+        }
+
+        public Category(CategoryBase c) : base(c)
+        {
+        }
+    }
+
+    [DataContract]
+    //  https://action.mindjet.com/Task/14778395
+    public class TaskId
+    {
+        [DataMember]
+        public string Source
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string Id
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        //  Indicates that the Task was obtained from external source.
+        public bool IsExternal
+        {
+            get;
+            set;
+        }
+    }
+
+    [DataContract]
+    //  https://action.mindjet.com/Task/14778395
+    //  The class has data member to store information about associated service from which Task was obtained.
+    public class Category_2 : CategoryBase
+    {
+        [DataMember]
+        public TaskId Task
+        {
+            get { return base.Task_; }
+            set { base.Task_ = value; }
+        }
+
+        [DataMember]
+        public string Name
+        {
+            get { return base.Name_; }
+            set { base.Name_ = value; }
+        }
+
+        [DataMember]
+        public bool Active
+        {
+            get { return base.Active_; }
+            set { base.Active_ = value; }
+        }
+
+        [DataMember]
+        public TimeSpan Duration
+        {
+            get { return base.Duration_; }
+            set { base.Duration_ = value; }
+        }
+
+        [DataMember]
+        public bool Urgent
+        {
+            get { return base.Urgent_; }
+            set { base.Urgent_ = value; }
+        }
+
+        [DataMember]
+        public bool Important
+        {
+            get { return base.Important_; }
+            set { base.Important_ = value; }
+        }
+
+        [DataMember]
+        public DateTime LastStart
+        {
+            get { return base.LastStart_; }
+            set { base.LastStart_ = value; }
+        }
+
+        //  Unique category identifier.
+        [DataMember]
+        public Guid CategoryId
+        {
+            get { return base.CategoryId_; }
+            set { base.CategoryId_ = value; }
+        }
+
+        public Category_2(string name) : base(name)
+        {
+        }
+
+        public Category_2(CategoryBase c) : base(c)
+        {
         }
     }
 
@@ -134,85 +255,78 @@ namespace TimeKeeper.Core
         }
     }
 
-    [DataContract]
-    public class TimeExpensesData
+    public abstract class TimeExpensesDataBase
     {
-        [DataMember]
-        private ObservableCollection<Category> _categories;
-        [DataMember]
-        //  Initialized at the first attempt of loading.
-        private DateTime _startDate;
-        [DataMember]
-        private TimeSpan _inactiveDuration;
-        [DataMember]
-        private DateTime _lastActiveIsEmpty;
-        [DataMember]
-        private bool _lastActiveIsEmptyInitialized;
-        [DataMember]
-        private int _backgroundAgentInterval;
-        //  Used in debug environment.
-        public int BackgroundAgentInterval { get { return _backgroundAgentInterval; } }
-
-        //  The time duration when no tasks are performed.
-        public TimeSpan InactiveDuration { get { return _inactiveDuration; } }
-
-        private static IDateTime _dt = new SysDateTime();
+        protected static IDateTime _dt = new SysDateTime();
         //  Used for unit testing.
         public static IDateTime Dt { set { _dt = value; } }
 
+        protected ObservableCollection<CategoryBase> categories;
+        protected const string fileName = "TimeExpensesDataBase";
+        //  Initialized at the first attempt of loading.
+        protected DateTime startDate;
+        protected TimeSpan inactiveDuration;
+        protected DateTime lastActiveIsEmpty;
+        protected bool lastActiveIsEmptyInitialized;
+        protected int backgroundAgentInterval;
+        //  Used in debug environment.
+        public int BackgroundAgentInterval { get { return backgroundAgentInterval; } }
+        //  The time Duration when no tasks are performed.
+        public TimeSpan InactiveDuration { get { return inactiveDuration; } }
+
         public void SetActive(string name, bool active)
         {
-            var item = _categories.Single(t => t.Name == name);
-            item.Active = active;
+            var item = categories.Single(t => t.Name_ == name);
+            item.Active_ = active;
             if (active)
             {
-                item.LastStart = _dt.Now;
+                item.LastStart_ = _dt.Now;
 
-                if (_lastActiveIsEmptyInitialized)
+                if (lastActiveIsEmptyInitialized)
                 {
-                    _inactiveDuration = _inactiveDuration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
-                    _lastActiveIsEmptyInitialized = false;
+                    inactiveDuration = inactiveDuration.Add(_dt.Now.Subtract(lastActiveIsEmpty));
+                    lastActiveIsEmptyInitialized = false;
                 }
             }
             else
             {
-                item.Duration = item.Duration.Add(_dt.Now.Subtract(item.LastStart));
+                item.Duration_ = item.Duration_.Add(_dt.Now.Subtract(item.LastStart_));
 
                 var isAnyActive = Active.Count != 0;
                 if (!isAnyActive)
                 {
-                    _lastActiveIsEmpty = _dt.Now;
-                    _lastActiveIsEmptyInitialized = true;
+                    lastActiveIsEmpty = _dt.Now;
+                    lastActiveIsEmptyInitialized = true;
                 }
             }
 
             Save();
         }
 
-        public ObservableCollection<Category> Active
+        public ObservableCollection<CategoryBase> Active
         {
             get
             {
-                var result = new ObservableCollection<Category>();
-                foreach (var c in _categories)
+                var result = new ObservableCollection<CategoryBase>();
+                foreach (var c in categories)
                 {
-                    if (c.Active)
+                    if (c.Active_)
                         //  Copy ensures refreshment of the list.
-                        result.Add(new Category(c));
+                        result.Add(new CategoryBase(c));
                 }
                 //  TODO: sorting.
                 return result;
             }
         }
 
-        public ObservableCollection<Category> Paused
+        public ObservableCollection<CategoryBase> Paused
         {
             get
             {
-                var result = new ObservableCollection<Category>();
-                foreach (var c in _categories)
+                var result = new ObservableCollection<CategoryBase>();
+                foreach (var c in categories)
                 {
-                    if (!c.Active)
+                    if (!c.Active_)
                         result.Add(new Category(c));
                 }
                 //  TODO: sorting.
@@ -220,9 +334,9 @@ namespace TimeKeeper.Core
             }
         }
 
-        public ObservableCollection<Category> Any
+        public ObservableCollection<CategoryBase> Any
         {
-            get { return _categories; }
+            get { return categories; }
         }
 
         //  Instantaneous performance (for statistics).
@@ -235,7 +349,7 @@ namespace TimeKeeper.Core
 
                 foreach (var c in Active)
                 {
-                    if (c.Important)
+                    if (c.Important_)
                         importantCount++;
                     else
                         notImportantCount++;
@@ -268,25 +382,25 @@ namespace TimeKeeper.Core
                 //  Adds durations of all finished activities.
                 foreach (var c in Any)
                 {
-                    if (c.Important)
-                        importantDuration = importantDuration.Add(c.Duration);
+                    if (c.Important_)
+                        importantDuration = importantDuration.Add(c.Duration_);
                     else
-                        notImportantDuration = notImportantDuration.Add(c.Duration);
+                        notImportantDuration = notImportantDuration.Add(c.Duration_);
                 }
 
                 //  Adds durations of all current activities.
                 foreach (var c in Active)
                 {
-                    if (c.Important)
-                        importantDuration = importantDuration.Add(_dt.Now.Subtract(c.LastStart));
+                    if (c.Important_)
+                        importantDuration = importantDuration.Add(_dt.Now.Subtract(c.LastStart_));
                     else
-                        notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(c.LastStart));
+                        notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(c.LastStart_));
                 }
 
-                //  Adds inactive duration.
-                notImportantDuration = notImportantDuration.Add(_inactiveDuration);
+                //  Adds inactive Duration.
+                notImportantDuration = notImportantDuration.Add(inactiveDuration);
                 if (Active.Count == 0)
-                    notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
+                    notImportantDuration = notImportantDuration.Add(_dt.Now.Subtract(lastActiveIsEmpty));
 
                 var totalSeconds = notImportantDuration.TotalSeconds + importantDuration.TotalSeconds;
                 if (totalSeconds != 0)
@@ -311,7 +425,7 @@ namespace TimeKeeper.Core
         {
             get
             {
-                TimeSpan totalDuration = _dt.Now.Subtract(_startDate);
+                TimeSpan totalDuration = _dt.Now.Subtract(startDate);
 
                 return Category.DurationS(totalDuration.Subtract(UncountedTime));
             }
@@ -322,10 +436,10 @@ namespace TimeKeeper.Core
             get
             {
                 TimeSpan duration;
-                duration = duration.Add(_inactiveDuration);
+                duration = duration.Add(inactiveDuration);
 
-                if (_lastActiveIsEmptyInitialized)
-                    duration = duration.Add(_dt.Now.Subtract(_lastActiveIsEmpty));
+                if (lastActiveIsEmptyInitialized)
+                    duration = duration.Add(_dt.Now.Subtract(lastActiveIsEmpty));
 
                 return duration;
             }
@@ -340,35 +454,35 @@ namespace TimeKeeper.Core
             }
         }
 
-        public TimeExpensesData()
+        public TimeExpensesDataBase()
         {
             //  Must be initialized in the constructor.
-            _categories = new ObservableCollection<Category>();
+            categories = new ObservableCollection<CategoryBase>();
         }
 
-        public TimeExpensesData(TimeExpensesData t)
+        public TimeExpensesDataBase(TimeExpensesDataBase t)
         {
-            _categories = t.CopyCategories();
-            _startDate = t._startDate;
-            _inactiveDuration = t._inactiveDuration;
-            _lastActiveIsEmpty = t._lastActiveIsEmpty;
-            _lastActiveIsEmptyInitialized = t._lastActiveIsEmptyInitialized;
-            _backgroundAgentInterval = t._backgroundAgentInterval;
+            categories = t.CopyCategories();
+            startDate = t.startDate;
+            inactiveDuration = t.inactiveDuration;
+            lastActiveIsEmpty = t.lastActiveIsEmpty;
+            lastActiveIsEmptyInitialized = t.lastActiveIsEmptyInitialized;
+            backgroundAgentInterval = t.backgroundAgentInterval;
         }
 
         public void Reset()
-        { 
-            _startDate = _dt.Now;
-            _lastActiveIsEmpty = _dt.Now;
-            _inactiveDuration = new TimeSpan();
-            _lastActiveIsEmptyInitialized = false;
+        {
+            startDate = _dt.Now;
+            lastActiveIsEmpty = _dt.Now;
+            inactiveDuration = new TimeSpan();
+            lastActiveIsEmptyInitialized = false;
         }
 
-        private ObservableCollection<Category> CopyCategories()
+        private ObservableCollection<CategoryBase> CopyCategories()
         {
-            var result = new ObservableCollection<Category>();
-            foreach (var c in _categories)
-                result.Add(new Category(c));
+            var result = new ObservableCollection<CategoryBase>();
+            foreach (var c in categories)
+                result.Add(new CategoryBase(c));
             return result;
         }
 
@@ -400,57 +514,131 @@ namespace TimeKeeper.Core
             var preparedName = name.Trim().ToLower();
             if (preparedName == string.Empty) return;
 
-            //  Searches for existing category with the same name.
-            foreach (var c in _categories)
+            //  Searches for existing category with the same Name.
+            foreach (var c in categories)
             {
                 //  Silently exits if the category already exists.
-                if (c.Name == preparedName)
+                if (c.Name_ == preparedName)
                     return;
             }
-            _categories.Add(new Category(preparedName) { Urgent = urgent, Important = important });
+            categories.Add(new Category(preparedName) { Urgent = urgent, Important = important });
             Save();
         }
 
-        public void DeleteCategory(Category obj)
+        public void DeleteCategory(CategoryBase obj)
         {
-            _categories.Remove(obj);
+            categories.Remove(obj);
             Save();
         }
 
-        private const string _fileName = "TimeExpensesData";
-
-        public static async Task<TimeExpensesData> Load()
+        public static async Task<TimeExpensesDataBase> Load()
         {
             try
             {
-                using (var stream = await PersistentData.GetReadFileStream(_fileName))
+                using (var stream = await PersistentData.GetReadFileStream(fileName))
                 {
                     //  Deserialize the object.
-                    var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
-                    return (TimeExpensesData)ser.ReadObject(stream);
+                    try
+                    {
+                        //  Tries to read object ver. 1.
+                        var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
+                        return (TimeExpensesData)ser.ReadObject(stream);
+                    }
+                    catch
+                    {
+                        //  Tries to read object ver. 1.
+                        var ser = new DataContractJsonSerializer(typeof(TimeExpensesData_2));
+                        return (TimeExpensesData_2)ser.ReadObject(stream);
+                    }
                 }
             }
             catch
             {
                 //  In any case the object must be created!
-                return new TimeExpensesData()
+                return new TimeExpensesData_2()
                 {
-                    _startDate = _dt.Now,
-                    _lastActiveIsEmpty = _dt.Now,
-                    _lastActiveIsEmptyInitialized = true,
-                    _backgroundAgentInterval = 600 /*10 min*/
+                    startDate = _dt.Now,
+                    lastActiveIsEmpty = _dt.Now,
+                    lastActiveIsEmptyInitialized = true,
+                    backgroundAgentInterval = 600 /*10 min*/
                 };
             }
         }
 
-        public async void Save()
+        public abstract void Save();
+    }
+
+#pragma warning disable 169
+    [DataContract]
+    public class TimeExpensesData : TimeExpensesDataBase
+    {
+        //  https://action.mindjet.com/task/14778395
+        //  Members of data contract are left as private to avoid any possible interference.
+        [DataMember]
+        //  Translates into appropriate data type (contract).
+        private ObservableCollection<Category> _categories
+        {
+            get {
+                var result = new ObservableCollection<Category>();
+                foreach (var i in categories)
+                    result.Add(new Category(i));
+                return result;
+            }
+
+            set {
+                categories.Clear();
+                foreach (var i in value)
+                    categories.Add(new CategoryBase(i));
+            }
+        }
+        [DataMember]
+        //  Initialized at the first attempt of loading.
+        private DateTime _startDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+        }
+        [DataMember]
+        private TimeSpan _inactiveDuration
+        {
+            get { return inactiveDuration; }
+            set { inactiveDuration = value; }
+        }
+        [DataMember]
+        private DateTime _lastActiveIsEmpty
+        {
+            get { return lastActiveIsEmpty; }
+            set { lastActiveIsEmpty = value; }
+        }
+        [DataMember]
+        private bool _lastActiveIsEmptyInitialized
+        {
+            get { return lastActiveIsEmptyInitialized; }
+            set { lastActiveIsEmptyInitialized = value; }
+        }
+        [DataMember]
+        private int _backgroundAgentInterval
+        {
+            get { return backgroundAgentInterval; }
+            set { backgroundAgentInterval = value; }
+        }
+
+        public TimeExpensesData() : base()
+        {
+        }
+
+        public TimeExpensesData(TimeExpensesDataBase t) : base(t)
+        {
+        }
+
+        public override async void Save()
         {
             //  Save data to file.
             try
             {
-                using (var stream = await PersistentData.GetWriteFileStream(_fileName))
+                using (var stream = await PersistentData.GetWriteFileStream(fileName))
                 {
-                    var ser = new DataContractJsonSerializer(typeof(TimeExpensesData));
+                    var ser = new DataContractJsonSerializer(typeof(TimeExpensesDataBase));
                     ser.WriteObject(stream, this);
                 }
             }
@@ -460,4 +648,87 @@ namespace TimeKeeper.Core
             }
         }
     }
+
+    [DataContract]
+    public class TimeExpensesData_2 : TimeExpensesDataBase
+    {
+        //  https://action.mindjet.com/task/14778395
+        //  Members of data contract are left as private to avoid any possible interference.
+        [DataMember]
+        //  Translates into appropriate data type (contract).
+        private ObservableCollection<Category_2> _categories
+        {
+            get
+            {
+                var result = new ObservableCollection<Category_2>();
+                foreach (var i in categories)
+                    result.Add(new Category_2(i));
+                return result;
+            }
+
+            set
+            {
+                categories.Clear();
+                foreach (var i in value)
+                    categories.Add(new CategoryBase(i));
+            }
+        }
+        [DataMember]
+        //  Initialized at the first attempt of loading.
+        private DateTime _startDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+        }
+        [DataMember]
+        private TimeSpan _inactiveDuration
+        {
+            get { return inactiveDuration; }
+            set { inactiveDuration = value; }
+        }
+        [DataMember]
+        private DateTime _lastActiveIsEmpty
+        {
+            get { return lastActiveIsEmpty; }
+            set { lastActiveIsEmpty = value; }
+        }
+        [DataMember]
+        private bool _lastActiveIsEmptyInitialized
+        {
+            get { return lastActiveIsEmptyInitialized; }
+            set { lastActiveIsEmptyInitialized = value; }
+        }
+        [DataMember]
+        private int _backgroundAgentInterval
+        {
+            get { return backgroundAgentInterval; }
+            set { backgroundAgentInterval = value; }
+        }
+
+        public TimeExpensesData_2() : base()
+        {
+        }
+
+        public TimeExpensesData_2(TimeExpensesDataBase t) : base(t)
+        {
+        }
+
+        public override async void Save()
+        {
+            //  Save data to file.
+            try
+            {
+                using (var stream = await PersistentData.GetWriteFileStream(fileName))
+                {
+                    var ser = new DataContractJsonSerializer(typeof(TimeExpensesData_2));
+                    ser.WriteObject(stream, this);
+                }
+            }
+            catch
+            {
+                //  To meet Windows Store conditions!
+            }
+        }
+    }
+#pragma warning restore 169
 }

@@ -41,7 +41,7 @@ namespace TimeKeeper
     public partial class MainPage : PhoneApplicationPage
     {
         //  For exchange between pages.
-        public static TimeExpensesData Data;
+        public static TimeExpensesDataBase Data;
         public static StatStack Statistics;
 
         public static void ResetStatistics()
@@ -54,7 +54,7 @@ namespace TimeKeeper
         {
             try
             {
-                Data = await TimeExpensesData.Load();
+                Data = await TimeExpensesDataBase.Load();
             }
             catch (Exception e)
             {
@@ -160,9 +160,9 @@ namespace TimeKeeper
             SetAppBarTexts();
         }
 
-        private void StartActivity(Category item)
+        private void StartActivity(CategoryBase item)
         {
-            Data.SetActive(item.Name, true);
+            Data.SetActive(item.Name_, true);
             //  Must be after SetActive.
             Statistics.StartActivity();
 
@@ -177,9 +177,9 @@ namespace TimeKeeper
             PerfShortText.Text = text;
         }
 
-        private void StopActivity(Category item)
+        private void StopActivity(CategoryBase item)
         {
-            Data.SetActive(item.Name, false);
+            Data.SetActive(item.Name_, false);
             //  Must be after SetActive.
             Statistics.StopActivity();
 
@@ -193,11 +193,11 @@ namespace TimeKeeper
             var button = (Button)sender;
             var value = (Guid)button.CommandParameter;
 
-            if (Data.Paused.Any(t => t.CategoryId == value))
+            if (Data.Paused.Any(t => t.CategoryId_ == value))
             {
-                var item = Data.Paused.Single(t => t.CategoryId == value);
+                var item = Data.Paused.Single(t => t.CategoryId_ == value);
 
-                if (item.Active) StopActivity(item);
+                if (item.Active_) StopActivity(item);
                 else StartActivity(item);
             }
         }
@@ -207,9 +207,9 @@ namespace TimeKeeper
             var button = (Button)sender;
             var value = (Guid)button.CommandParameter;
 
-            if (Data.Active.Any(t => t.CategoryId == value))
+            if (Data.Active.Any(t => t.CategoryId_ == value))
             {
-                var item = Data.Active.Single(t => t.CategoryId == value);
+                var item = Data.Active.Single(t => t.CategoryId_ == value);
                 StopActivity(item);
             }
         }
@@ -229,11 +229,11 @@ namespace TimeKeeper
             // Variable for tracking enabled status of background agents for this app.
             agentsAreEnabled = true;
 
-            // Obtain a reference to the period task, if one exists
+            // Obtain a reference to the period Task, if one exists
             periodicTask = ScheduledActionService.Find(periodicTaskName) as PeriodicTask;
 
-            // If the task already exists and background agents are enabled for the
-            // application, you must remove the task and then add it again to update 
+            // If the Task already exists and background agents are enabled for the
+            // application, you must remove the Task and then add it again to update 
             // the schedule
             if (periodicTask != null)
             {
@@ -403,14 +403,14 @@ namespace TimeKeeper
             NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void DeleteSelectedItem(Category item)
+        private void DeleteSelectedItem(CategoryBase item)
         {
             if (item != null)
             {
                 //  Searches the list to protect from duplicate question.
                 if (MainPage.Data.Any.IndexOf(item) != -1)
                 {
-                    var name = item.Name;
+                    var name = item.Name_;
                     if (MessageBox.Show(string.Format(AppResources.DeleteCategoryMessage, name), AppResources.DeleteCategoryCaption, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
                         MainPage.Data.DeleteCategory(item);
@@ -428,9 +428,9 @@ namespace TimeKeeper
             {
                 var value = (Guid)button.CommandParameter;
 
-                if (Data.Any.Any(t => t.CategoryId == value))
+                if (Data.Any.Any(t => t.CategoryId_ == value))
                 {
-                    var item = Data.Any.Single(t => t.CategoryId == value);
+                    var item = Data.Any.Single(t => t.CategoryId_ == value);
                     DeleteSelectedItem(item);
                 }
             }
